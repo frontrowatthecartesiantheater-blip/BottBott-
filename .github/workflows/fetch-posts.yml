@@ -1,0 +1,26 @@
+name: Fetch Substack Posts
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  fetch-posts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Fetch RSS and convert to JSON
+        run: |
+          curl -s "https://api.rss2json.com/v1/api.json?rss_url=https://bottbott.substack.com/feed" \
+            | jq '{posts: [.items[:3][] | {title: .title, link: .link, pubDate: .pubDate, excerpt: (.description | gsub("<[^>]*>"; "") | .[0:120])}], updated: now | strftime("%Y-%m-%dT%H:%M:%SZ")}' \
+            > posts.json
+      
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add posts.json
+          git diff --staged --quiet || git commit -m "Update posts $(date -u +%Y-%m-%d)"
+          git push
