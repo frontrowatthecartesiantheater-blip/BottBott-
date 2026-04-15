@@ -2,8 +2,11 @@ name: Fetch Substack Posts
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Every 6 hours
-  workflow_dispatch:  # Manual trigger
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   fetch-posts:
