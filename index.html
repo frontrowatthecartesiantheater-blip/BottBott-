@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BottBott Business Systems | Workflow Systems Architect</title>
   <meta name="description" content="I design workflow systems for founders and SMEs who are tired of being the bottleneck in their own business.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://www.bottbottgenai.com/" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     
@@ -20,18 +18,20 @@
       --grey-100: #f5f7f9;
       --grey-200: #e5e9ed;
       --grey-300: #c8d0d8;
-      --grey-400: #8a9aaa;
-      --grey-500: #5a6a7a;
-      --grey-600: #3d4d5d;
+      --grey-400: #64748b;
+      --grey-500: #475569;
+      --grey-600: #334155;
       --white: #ffffff;
       --text-dark: #1a2a3a;
       --text-light: #ffffff;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
     
     body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--font-body);
       color: var(--text-dark);
       background: var(--white);
       line-height: 1.6;
@@ -108,7 +108,7 @@
     }
 
     .logo-text {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: 22px;
       font-weight: 700;
       color: var(--primary);
@@ -235,7 +235,7 @@
     }
 
     .hero-title {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: clamp(38px, 5vw, 56px);
       font-weight: 800;
       line-height: 1.1;
@@ -406,7 +406,7 @@
     .client-logo:hover { opacity: 1; }
 
     .client-text {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: 20px;
       font-weight: 700;
       color: var(--grey-600);
@@ -443,7 +443,7 @@
     }
 
     .stat-number {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: 48px;
       font-weight: 800;
       color: var(--text-light);
@@ -490,7 +490,7 @@
     }
 
     .section-title {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: clamp(32px, 5vw, 44px);
       font-weight: 700;
       color: var(--primary);
@@ -548,7 +548,7 @@
     }
 
     .service-title {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: 22px;
       font-weight: 700;
       color: var(--primary);
@@ -577,7 +577,7 @@
     }
 
     .about-title {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: clamp(28px, 4vw, 38px);
       font-weight: 700;
       line-height: 1.2;
@@ -728,7 +728,7 @@
     }
 
     .post-title {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: 20px;
       font-weight: 700;
       color: var(--primary);
@@ -767,7 +767,7 @@
     }
 
     .cta-banner-title {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: clamp(24px, 4vw, 32px);
       font-weight: 700;
       color: var(--text-light);
@@ -802,7 +802,7 @@
     }
 
     .contact-title {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       font-size: 36px;
       font-weight: 700;
       color: var(--primary);
@@ -936,7 +936,7 @@
         <a href="#contact" class="nav-link">Contact</a>
         <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="nav-cta">Book a Call</a>
       </div>
-      <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
       <a href="#services" class="mobile-nav-link" onclick="closeMenu()">Services</a>
@@ -1116,11 +1116,13 @@
       <p class="section-subtitle">Practical guidance. No hype, no fluff — just what works.</p>
     </div>
     <div class="posts-grid" id="postsGrid">
-      <div class="post-card">
-        <div class="post-meta">Loading...</div>
-        <h3 class="post-title">Fetching latest posts</h3>
-        <p class="post-excerpt">Loading posts from Substack...</p>
-      </div>
+      <!-- Fallback content shown until JS loads cached/fresh posts -->
+      <a href="https://bottbott.substack.com" target="_blank" rel="noopener" class="post-card">
+        <div class="post-meta">Latest</div>
+        <h3 class="post-title">Read the BottBott Newsletter</h3>
+        <p class="post-excerpt">Practical guidance on workflow systems, automation, and building infrastructure that scales.</p>
+        <span class="post-link">Visit Substack →</span>
+      </a>
     </div>
   </section>
 
@@ -1140,7 +1142,7 @@
       <div class="contact-actions">
         <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="contact-btn">Book Your Call</a>
         <div class="contact-or">or email directly</div>
-        <a href="mailto:simon@bottbottgenai.com" class="contact-email">simon@bottbottgenai.com</a>
+        <a href="/cdn-cgi/l/email-protection#c9baa0a4a6a789aba6bdbdaba6bdbdaeaca7a8a0e7aaa6a4" class="contact-email"><span class="__cf_email__" data-cfemail="36455f5b5958765459424254594242515358575f1855595b">[email&#160;protected]</span></a>
       </div>
     </div>
   </section>
@@ -1158,64 +1160,52 @@
       <div class="footer-links">
         <a href="https://bottbott.substack.com" target="_blank" class="footer-link">Substack</a>
         <a href="https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change" target="_blank" class="footer-link">LinkedIn</a>
-        <a href="mailto:simon@bottbottgenai.com" class="footer-link">Email</a>
+        <a href="/cdn-cgi/l/email-protection#55263c383a3b15373a2121373a212132303b343c7b363a38" class="footer-link">Email</a>
       </div>
       <div class="footer-copy">© 2026 BottBott Business Systems. All rights reserved.</div>
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Mobile menu
     function toggleMenu() {
       const menu = document.getElementById('mobileMenu');
       const btn = document.querySelector('.mobile-menu-btn');
       menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', menu.classList.contains('open'));
       btn.textContent = menu.classList.contains('open') ? '✕' : '☰';
     }
 
     function closeMenu() {
       document.getElementById('mobileMenu').classList.remove('open');
       document.querySelector('.mobile-menu-btn').textContent = '☰';
+      document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', 'false');
     }
 
-    // Fetch Substack posts
+    // Fetch posts from local JSON (updated by GitHub Action)
     async function fetchPosts() {
       const postsGrid = document.getElementById('postsGrid');
       
-      const showFallback = () => {
-        postsGrid.innerHTML = `
-          <a href="https://bottbott.substack.com" target="_blank" class="post-card">
-            <div class="post-meta">Latest</div>
-            <h3 class="post-title">Read the BottBott Newsletter</h3>
-            <p class="post-excerpt">Practical guidance on workflow systems, automation, and building infrastructure that scales.</p>
-            <span class="post-link">Visit Substack →</span>
-          </a>
-        `;
-      };
-      
       try {
-        const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://bottbott.substack.com/feed');
+        const response = await fetch('posts.json');
         const data = await response.json();
         
-        if (data.items && data.items.length > 0) {
-          postsGrid.innerHTML = data.items.slice(0, 3).map(post => {
+        if (data.posts && data.posts.length > 0) {
+          postsGrid.innerHTML = data.posts.map(post => {
             const date = new Date(post.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-            const excerpt = post.description.replace(/<[^>]*>/g, '').substring(0, 120);
             return `
-              <a href="${post.link}" target="_blank" class="post-card">
+              <a href="${post.link}" target="_blank" rel="noopener" class="post-card">
                 <div class="post-meta">${date}</div>
                 <h3 class="post-title">${post.title}</h3>
-                <p class="post-excerpt">${excerpt}...</p>
+                <p class="post-excerpt">${post.excerpt}...</p>
                 <span class="post-link">Read on Substack →</span>
               </a>
             `;
           }).join('');
-        } else {
-          showFallback();
         }
       } catch (error) {
+        // Fetch failed, keep fallback content
         console.error('Failed to fetch posts:', error);
-        showFallback();
       }
     }
 
@@ -1240,7 +1230,10 @@
     }
 
     window.addEventListener('scroll', updateActiveNav);
-    document.addEventListener('DOMContentLoaded', fetchPosts);
+    document.addEventListener('DOMContentLoaded', () => {
+      updateActiveNav();
+      fetchPosts();
+    });
   </script>
 </body>
 </html>
