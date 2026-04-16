@@ -750,6 +750,71 @@
       color: var(--accent);
     }
 
+    /* Projects */
+    .projects {
+      padding: 100px 24px;
+      background: var(--white);
+    }
+
+    .projects-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px;
+    }
+
+    .project-card {
+      padding: 36px;
+      background: var(--grey-100);
+      border-radius: 20px;
+      text-decoration: none;
+      border: 1px solid var(--grey-200);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: block;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(27, 58, 85, 0.12);
+      border-color: var(--accent);
+    }
+
+    .project-logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .project-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-name {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .project-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--grey-500);
+      margin-bottom: 20px;
+    }
+
+    .project-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
     /* CTA Banner */
     .cta-banner {
       padding: 80px 24px;
@@ -1122,6 +1187,32 @@
         <h3 class="post-title">Read the BottBott Newsletter</h3>
         <p class="post-excerpt">Practical guidance on workflow systems, automation, and building infrastructure that scales.</p>
         <span class="post-link">Visit Substack →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="projects">
+    <div class="section-header">
+      <h2 class="section-title">More From BottBott</h2>
+      <p class="section-subtitle">Web apps and tools built to solve real problems, just for the fun of it.</p>
+    </div>
+    <div class="projects-grid">
+      <a href="https://movesmart.world/" target="_blank" rel="noopener" class="project-card">
+        <div class="project-logo">
+          <img src="icon-movesmart.png" alt="MoveSmart icon">
+        </div>
+        <h3 class="project-name">MoveSmart</h3>
+        <p class="project-desc">Takes the guesswork out of your international move. Creates a personalized relocation plan tailored to your timeline, budget, and family needs.</p>
+        <span class="project-link">Visit MoveSmart →</span>
+      </a>
+      <a href="https://substackanalyzer.app" target="_blank" rel="noopener" class="project-card">
+        <div class="project-logo">
+          <img src="icon-substackanalyzer.png" alt="Substack Analyzer icon">
+        </div>
+        <h3 class="project-name">Substack Analyzer</h3>
+        <p class="project-desc">Cut through newsletter fatigue. Score Substack posts in seconds so you can focus on the best and skip the rest.</p>
+        <span class="project-link">Visit Substack Analyzer →</span>
       </a>
     </div>
   </section>
