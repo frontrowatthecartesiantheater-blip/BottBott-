@@ -486,16 +486,16 @@
     }
 
     .service-content {
-      padding-right: 80px;
+      /* no padding restriction - text flows full width */
     }
 
     .service-icon {
-      width: 64px;
-      height: 64px;
+      width: 76px;
+      height: 76px;
       object-fit: contain;
       position: absolute;
-      top: 32px;
-      right: 32px;
+      top: 28px;
+      right: 28px;
     }
 
     .service-meta {
@@ -505,6 +505,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 8px;
+      max-width: calc(100% - 90px);
     }
 
     .service-title {
@@ -513,6 +514,7 @@
       font-weight: 700;
       color: var(--primary);
       margin-bottom: 12px;
+      max-width: calc(100% - 90px);
     }
 
     .service-desc {
