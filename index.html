@@ -477,6 +477,10 @@
       border-radius: 20px;
       border: 1px solid var(--grey-200);
       transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
     }
 
     .service-card:hover {
@@ -484,11 +488,16 @@
       box-shadow: 0 20px 50px rgba(27, 58, 85, 0.15);
     }
 
+    .service-content {
+      flex: 1;
+    }
+
     .service-icon {
-      width: 56px;
-      height: 56px;
-      margin-bottom: 16px;
+      width: 72px;
+      height: 72px;
       object-fit: contain;
+      flex-shrink: 0;
+      order: 2;
     }
 
     .service-meta {
@@ -1030,40 +1039,52 @@
     </div>
     <div class="services-grid">
       <div class="service-card">
+        <div class="service-content">
+          <div class="service-meta">60 minutes</div>
+          <h3 class="service-title">Strategy Call</h3>
+          <p class="service-desc">Your starting point. We diagnose your workflows, audit what is working and what is not, and map your first system improvement.</p>
+        </div>
         <img src="Strategy%20Call.png" alt="" class="service-icon">
-        <div class="service-meta">60 minutes</div>
-        <h3 class="service-title">Strategy Call</h3>
-        <p class="service-desc">Your starting point. We diagnose your workflows, audit what is working and what is not, and map your first system improvement.</p>
       </div>
       <div class="service-card">
+        <div class="service-content">
+          <div class="service-meta">Done-for-you</div>
+          <h3 class="service-title">Workflow & Integration Build</h3>
+          <p class="service-desc">Custom-built workflow systems — from process mapping to tool integration to automation pipelines.</p>
+        </div>
         <img src="Workflow%20%26%20Integration%20Build.png" alt="" class="service-icon">
-        <div class="service-meta">Done-for-you</div>
-        <h3 class="service-title">Workflow & Integration Build</h3>
-        <p class="service-desc">Custom-built workflow systems — from process mapping to tool integration to automation pipelines.</p>
       </div>
       <div class="service-card">
+        <div class="service-content">
+          <div class="service-meta">Custom AI agent</div>
+          <h3 class="service-title">Agent Build</h3>
+          <p class="service-desc">Purpose-built AI agents that handle specific tasks autonomously — intake processing, document generation, lead qualification.</p>
+        </div>
         <img src="Agent%20Build.png" alt="" class="service-icon">
-        <div class="service-meta">Custom AI agent</div>
-        <h3 class="service-title">Agent Build</h3>
-        <p class="service-desc">Purpose-built AI agents that handle specific tasks autonomously — intake processing, document generation, lead qualification.</p>
       </div>
       <div class="service-card">
+        <div class="service-content">
+          <div class="service-meta">Concept to tool</div>
+          <h3 class="service-title">Web App MVP Build</h3>
+          <p class="service-desc">Functional internal tools and prototypes — dashboards, scoring systems, utilities. From idea to working product.</p>
+        </div>
         <img src="Web%20App%20MVP%20Build.png" alt="" class="service-icon">
-        <div class="service-meta">Concept to tool</div>
-        <h3 class="service-title">Web App MVP Build</h3>
-        <p class="service-desc">Functional internal tools and prototypes — dashboards, scoring systems, utilities. From idea to working product.</p>
       </div>
       <div class="service-card">
+        <div class="service-content">
+          <div class="service-meta">Live workshop</div>
+          <h3 class="service-title">Team Fluency Training</h3>
+          <p class="service-desc">For teams adopting new systems into daily operations. Fundamentals, workflow design, and an actionable playbook.</p>
+        </div>
         <img src="Team%20Fluency%20Training.png" alt="" class="service-icon">
-        <div class="service-meta">Live workshop</div>
-        <h3 class="service-title">Team Fluency Training</h3>
-        <p class="service-desc">For teams adopting new systems into daily operations. Fundamentals, workflow design, and an actionable playbook.</p>
       </div>
       <div class="service-card">
+        <div class="service-content">
+          <div class="service-meta">Monthly retainer</div>
+          <h3 class="service-title">Ongoing Systems Support</h3>
+          <p class="service-desc">Continuous optimization — system reviews, troubleshooting, and expanding your library of repeatable processes.</p>
+        </div>
         <img src="Ongoing%20Systems%20Support.png" alt="" class="service-icon">
-        <div class="service-meta">Monthly retainer</div>
-        <h3 class="service-title">Ongoing Systems Support</h3>
-        <p class="service-desc">Continuous optimization — system reviews, troubleshooting, and expanding your library of repeatable processes.</p>
       </div>
     </div>
   </section>
