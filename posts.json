@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "title": "Are You Renting a Template Or Building Infrastructure?",
+      "link": "https://bottbott.substack.com/p/are-you-renting-a-template-or-building",
+      "pubDate": "2026-04-17 11:03:49",
+      "excerpt": "How to avoid being a founder who falls for convenience at the cost of control and ownership"
+    },
+    {
       "title": "The ‘Slop’ Scapegoat",
       "link": "https://bottbott.substack.com/p/the-slop-scapegoat",
       "pubDate": "2026-04-10 12:03:28",
@@ -11,13 +17,7 @@
       "link": "https://bottbott.substack.com/p/stop-perfecting-your-prompts-start-building-systems",
       "pubDate": "2026-03-06 11:03:40",
       "excerpt": "Why automations matter more than perfect prompts (and how to build both)"
-    },
-    {
-      "title": "Your Past Work is Actually a Systems Blueprint for AI",
-      "link": "https://bottbott.substack.com/p/how-to-turn-any-work-experience-into-ai-workflow-expertise",
-      "pubDate": "2026-03-01 13:03:17",
-      "excerpt": "How to turn any work experience into AI workflow expertise"
     }
   ],
-  "updated": "2026-04-17T07:22:48Z"
+  "updated": "2026-04-17T13:02:48Z"
 }
