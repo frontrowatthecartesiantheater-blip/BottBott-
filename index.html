@@ -6,13 +6,16 @@
   <title>BottBott Business Systems | Workflow Systems Architect</title>
   <meta name="description" content="I design workflow systems for founders and SMEs who are tired of being the bottleneck in their own business.">
   <link rel="canonical" href="https://www.bottbottgenai.com/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     
     :root {
       --primary: #1b3a55;
       --primary-light: #2a5a80;
-      --primary-dark: #0f1f2e;
+      --primary-dark: #0a1929;
       --accent: #4a8ebb;
       --accent-light: #7ec8e8;
       --grey-100: #f5f7f9;
@@ -24,8 +27,8 @@
       --white: #ffffff;
       --text-dark: #1a2a3a;
       --text-light: #ffffff;
-      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -204,167 +207,116 @@
     /* Hero */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #e8f4fc 0%, #d0e8f5 50%, #ffffff 100%);
+      background: linear-gradient(135deg, rgba(10, 25, 41, 0.92) 0%, rgba(27, 58, 85, 0.88) 100%), 
+                  url('hero-bg.jpg') center center / cover no-repeat;
+      background: linear-gradient(135deg, rgba(10, 25, 41, 0.92) 0%, rgba(27, 58, 85, 0.88) 100%), 
+                  url('hero-bg.webp') center center / cover no-repeat;
       padding: 140px 24px 80px;
       display: flex;
       align-items: center;
+      position: relative;
     }
 
     .hero-grid {
-      max-width: 1200px;
+      max-width: 900px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 60px;
-      align-items: center;
+      text-align: center;
       width: 100%;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .hero-badge {
       display: inline-block;
       padding: 8px 18px;
-      background: var(--white);
-      color: var(--primary);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--accent-light);
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       border-radius: 100px;
       margin-bottom: 24px;
-      box-shadow: 0 2px 12px rgba(27, 58, 85, 0.08);
+      backdrop-filter: blur(8px);
     }
 
     .hero-title {
       font-family: var(--font-heading);
-      font-size: clamp(38px, 5vw, 56px);
+      font-size: clamp(40px, 6vw, 64px);
       font-weight: 800;
       line-height: 1.1;
-      color: var(--primary);
+      color: var(--white);
       margin-bottom: 24px;
     }
 
     .hero-title-accent {
-      color: var(--accent);
+      color: var(--accent-light);
       display: block;
     }
 
     .hero-subtitle {
-      font-size: 18px;
+      font-size: 19px;
       line-height: 1.7;
-      color: var(--grey-600);
-      margin-bottom: 36px;
-      max-width: 500px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
+      justify-content: center;
     }
 
     .btn-primary {
       display: inline-block;
       padding: 16px 32px;
-      background: var(--primary);
-      color: var(--text-light);
+      background: var(--accent);
+      color: var(--white);
       font-size: 16px;
       font-weight: 600;
       text-decoration: none;
       border-radius: 12px;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(27, 58, 85, 0.2);
+      box-shadow: 0 4px 20px rgba(74, 142, 187, 0.3);
       transition: all 0.2s;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(27, 58, 85, 0.3);
+      box-shadow: 0 10px 30px rgba(74, 142, 187, 0.4);
+      background: var(--accent-light);
     }
 
     .btn-secondary {
       display: inline-block;
       padding: 16px 32px;
       background: transparent;
-      color: var(--primary);
+      color: var(--white);
       font-size: 16px;
       font-weight: 600;
       text-decoration: none;
       border-radius: 12px;
-      border: 2px solid var(--grey-300);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .btn-secondary:hover {
-      border-color: var(--primary);
+      border-color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .hero-visual {
-      position: relative;
-      height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-shape {
-      position: absolute;
-      border-radius: 30%;
-    }
-
-    .hero-shape-1 {
-      width: 180px;
-      height: 180px;
-      background: linear-gradient(135deg, rgba(74, 142, 187, 0.25), rgba(126, 200, 232, 0.12));
-      top: 10%;
-      right: 10%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .hero-shape-2 {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(27, 58, 85, 0.18), rgba(42, 90, 128, 0.09));
-      bottom: 20%;
-      left: 10%;
-      animation: float 8s ease-in-out infinite;
-      animation-delay: 1s;
-    }
-
-    .hero-shape-3 {
-      width: 80px;
-      height: 80px;
-      border-radius: 20%;
-      background: linear-gradient(135deg, rgba(126, 200, 232, 0.3), rgba(74, 142, 187, 0.12));
-      top: 50%;
-      left: 30%;
-      animation: float 7s ease-in-out infinite;
-      animation-delay: 2s;
-    }
-
-    .hero-shape-center {
-      width: 160px;
-      height: 160px;
-      border-radius: 24px;
-      background: var(--white);
-      box-shadow: 0 20px 60px rgba(27, 58, 85, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-icon {
-      font-size: 64px;
-      color: var(--primary);
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
+      display: none;
     }
 
     /* Clients */
@@ -533,9 +485,10 @@
     }
 
     .service-icon {
-      font-size: 36px;
-      color: var(--accent);
+      width: 56px;
+      height: 56px;
       margin-bottom: 16px;
+      object-fit: contain;
     }
 
     .service-meta {
@@ -964,8 +917,6 @@
 
     /* Responsive */
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
       .about-grid { grid-template-columns: 1fr; }
       .about-visual { position: static; margin-top: 40px; }
     }
@@ -1029,14 +980,6 @@
           <a href="#services" class="btn-secondary">Explore Services</a>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="hero-shape hero-shape-1"></div>
-        <div class="hero-shape hero-shape-2"></div>
-        <div class="hero-shape hero-shape-3"></div>
-        <div class="hero-shape-center">
-          <span class="hero-icon">⬡</span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1087,37 +1030,37 @@
     </div>
     <div class="services-grid">
       <div class="service-card">
-        <div class="service-icon">◎</div>
+        <img src="icon-strategy.png" alt="" class="service-icon">
         <div class="service-meta">60 minutes</div>
         <h3 class="service-title">Strategy Call</h3>
         <p class="service-desc">Your starting point. We diagnose your workflows, audit what is working and what is not, and map your first system improvement.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">⬡</div>
+        <img src="icon-workflow.png" alt="" class="service-icon">
         <div class="service-meta">Done-for-you</div>
         <h3 class="service-title">Workflow & Integration Build</h3>
         <p class="service-desc">Custom-built workflow systems — from process mapping to tool integration to automation pipelines.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">⬢</div>
+        <img src="icon-agent.png" alt="" class="service-icon">
         <div class="service-meta">Custom AI agent</div>
         <h3 class="service-title">Agent Build</h3>
         <p class="service-desc">Purpose-built AI agents that handle specific tasks autonomously — intake processing, document generation, lead qualification.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">◈</div>
+        <img src="icon-webapp.png" alt="" class="service-icon">
         <div class="service-meta">Concept to tool</div>
         <h3 class="service-title">Web App MVP Build</h3>
         <p class="service-desc">Functional internal tools and prototypes — dashboards, scoring systems, utilities. From idea to working product.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">◇</div>
+        <img src="icon-training.png" alt="" class="service-icon">
         <div class="service-meta">Live workshop</div>
         <h3 class="service-title">Team Fluency Training</h3>
         <p class="service-desc">For teams adopting new systems into daily operations. Fundamentals, workflow design, and an actionable playbook.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">○</div>
+        <img src="icon-support.png" alt="" class="service-icon">
         <div class="service-meta">Monthly retainer</div>
         <h3 class="service-title">Ongoing Systems Support</h3>
         <p class="service-desc">Continuous optimization — system reviews, troubleshooting, and expanding your library of repeatable processes.</p>
