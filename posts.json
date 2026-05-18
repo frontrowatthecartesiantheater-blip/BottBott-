@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "title": "The AI Wall Professional Services Firm Are Hitting, and the Only Way Through It",
+      "link": "https://bottbott.substack.com/p/the-ai-wall-professional-services",
+      "pubDate": "2026-05-18 11:03:39",
+      "excerpt": "The reasons why sending client data through a public API is a security risk and what a small firm can actually do about "
+    },
+    {
       "title": "Are You Renting a Template Or Building Infrastructure?",
       "link": "https://bottbott.substack.com/p/are-you-renting-a-template-or-building",
       "pubDate": "2026-04-17 11:03:49",
@@ -11,13 +17,7 @@
       "link": "https://bottbott.substack.com/p/the-slop-scapegoat",
       "pubDate": "2026-04-10 12:03:28",
       "excerpt": "The skill is in the architecture, not the output"
-    },
-    {
-      "title": "Stop Perfecting Your Prompts. Start Building Systems Around Them",
-      "link": "https://bottbott.substack.com/p/stop-perfecting-your-prompts-start-building-systems",
-      "pubDate": "2026-03-06 11:03:40",
-      "excerpt": "Why automations matter more than perfect prompts (and how to build both)"
     }
   ],
-  "updated": "2026-05-18T14:57:31Z"
+  "updated": "2026-05-18T19:28:18Z"
 }
