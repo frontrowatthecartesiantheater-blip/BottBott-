@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "title": "Weekly AI Briefing: Jun 8–13, 2026",
+      "link": "https://bottbott.substack.com/p/weekly-ai-briefing-jun-813-2026",
+      "pubDate": "2026-06-14 17:55:06",
+      "excerpt": "The Stack Is the Moat and Why I created This Automation"
+    },
+    {
       "title": "The AI Wall Professional Services Firm Are Hitting, and the Only Way Through It",
       "link": "https://bottbott.substack.com/p/the-ai-wall-professional-services",
       "pubDate": "2026-05-18 11:03:39",
@@ -11,13 +17,7 @@
       "link": "https://bottbott.substack.com/p/are-you-renting-a-template-or-building",
       "pubDate": "2026-04-17 11:03:49",
       "excerpt": "How to avoid being a founder who falls for convenience at the cost of control and ownership"
-    },
-    {
-      "title": "The ‘Slop’ Scapegoat",
-      "link": "https://bottbott.substack.com/p/the-slop-scapegoat",
-      "pubDate": "2026-04-10 12:03:28",
-      "excerpt": "The skill is in the architecture, not the output"
     }
   ],
-  "updated": "2026-06-14T13:45:38Z"
+  "updated": "2026-06-14T19:13:53Z"
 }
