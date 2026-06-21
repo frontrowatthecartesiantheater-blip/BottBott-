@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "title": "The Agent Runtime War Is Being Won Now",
+      "link": "https://bottbott.substack.com/p/the-agent-runtime-war-is-being-won",
+      "pubDate": "2026-06-21 15:28:17",
+      "excerpt": "Weekly Briefing: Jun 15–20, 2026"
+    },
+    {
       "title": "Weekly AI Briefing: Jun 8–13, 2026",
       "link": "https://bottbott.substack.com/p/weekly-ai-briefing-jun-813-2026",
       "pubDate": "2026-06-14 17:55:06",
@@ -11,13 +17,7 @@
       "link": "https://bottbott.substack.com/p/the-ai-wall-professional-services",
       "pubDate": "2026-05-18 11:03:39",
       "excerpt": "The reasons why sending client data through a public API is a security risk and what a small firm can actually do about "
-    },
-    {
-      "title": "Are You Renting a Template Or Building Infrastructure?",
-      "link": "https://bottbott.substack.com/p/are-you-renting-a-template-or-building",
-      "pubDate": "2026-04-17 11:03:49",
-      "excerpt": "How to avoid being a founder who falls for convenience at the cost of control and ownership"
     }
   ],
-  "updated": "2026-06-21T13:52:08Z"
+  "updated": "2026-06-21T19:19:19Z"
 }
