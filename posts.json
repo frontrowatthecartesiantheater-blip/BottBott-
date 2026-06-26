@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "title": "How To Set Up A Claude Project",
+      "link": "https://bottbott.substack.com/p/how-to-set-up-a-claude-project",
+      "pubDate": "2026-06-26 11:04:25",
+      "excerpt": "A Non-Technical Builder's Guide To Creating Token Efficient and Safety-First Claude Projects"
+    },
+    {
       "title": "Pivoting Focus Back to Builders",
       "link": "https://bottbott.substack.com/p/pivoting-focus-back-to-builders",
       "pubDate": "2026-06-22 11:04:05",
@@ -11,13 +17,7 @@
       "link": "https://bottbott.substack.com/p/the-agent-runtime-war-is-being-won",
       "pubDate": "2026-06-21 15:28:17",
       "excerpt": "Weekly Briefing: Jun 15–20, 2026"
-    },
-    {
-      "title": "Weekly AI Briefing: Jun 8–13, 2026",
-      "link": "https://bottbott.substack.com/p/weekly-ai-briefing-jun-813-2026",
-      "pubDate": "2026-06-14 17:55:06",
-      "excerpt": "The Stack Is the Moat and Why I created This Automation"
     }
   ],
-  "updated": "2026-06-26T14:08:14Z"
+  "updated": "2026-06-26T19:29:46Z"
 }
