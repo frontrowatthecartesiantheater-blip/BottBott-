@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "title": "Your Agents are in Production but is your Risk Model?",
+      "link": "https://bottbott.substack.com/p/your-agents-are-in-production-but",
+      "pubDate": "2026-06-28 15:55:00",
+      "excerpt": "Weekly Briefing: Jun 22–27, 2026"
+    },
+    {
       "title": "How To Set Up A Claude Project",
       "link": "https://bottbott.substack.com/p/how-to-set-up-a-claude-project",
       "pubDate": "2026-06-26 11:04:25",
@@ -11,13 +17,7 @@
       "link": "https://bottbott.substack.com/p/pivoting-focus-back-to-builders",
       "pubDate": "2026-06-22 11:04:05",
       "excerpt": "BottBott Lost Its Way, But Its Back On Track"
-    },
-    {
-      "title": "The Agent Runtime War Is Being Won Now",
-      "link": "https://bottbott.substack.com/p/the-agent-runtime-war-is-being-won",
-      "pubDate": "2026-06-21 15:28:17",
-      "excerpt": "Weekly Briefing: Jun 15–20, 2026"
     }
   ],
-  "updated": "2026-06-28T19:06:28Z"
+  "updated": "2026-06-29T02:45:42Z"
 }
