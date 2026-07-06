@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "title": "Is Coding Finally Dead?",
+      "link": "https://bottbott.substack.com/p/coding-is-finally-dead",
+      "pubDate": "2026-07-06 19:00:32",
+      "excerpt": "Computer Coding Course Enrollment Rates See a Massive Decline"
+    },
+    {
       "title": "How I Build Software in the Anthropic Ecosystem",
       "link": "https://bottbott.substack.com/p/how-to-build-software-with-claude",
       "pubDate": "2026-07-03 11:04:32",
@@ -11,13 +17,7 @@
       "link": "https://bottbott.substack.com/p/your-agents-are-in-production-but",
       "pubDate": "2026-06-28 15:55:00",
       "excerpt": "Weekly Briefing: Jun 22–27, 2026"
-    },
-    {
-      "title": "How To Set Up A Claude Project",
-      "link": "https://bottbott.substack.com/p/how-to-set-up-a-claude-project",
-      "pubDate": "2026-06-26 11:04:25",
-      "excerpt": "A Non-Technical Builder's Guide To Creating Token Efficient and Safety-First Claude Projects"
     }
   ],
-  "updated": "2026-07-06T15:16:07Z"
+  "updated": "2026-07-06T19:45:19Z"
 }
