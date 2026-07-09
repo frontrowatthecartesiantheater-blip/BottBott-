@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Recap · Gregg McElwee · BottBott Business Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy:       #0F172A;
+      --indigo:     #6366F1;
+      --indigo-dim: #818CF8;
+      --bg:         #F1F5F9;
+      --white:      #FFFFFF;
+      --border:     #E2E8F0;
+      --text:       #0F172A;
+      --muted:      #64748B;
+      --light:      #F8FAFC;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOP BAR ─────────────────────────── */
+    .topbar {
+      background: var(--navy);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .topbar-brand span { color: var(--indigo-dim); }
+
+    .topbar-tag {
+      font-size: 11px;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── HERO ────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      padding: 52px 24px 60px;
+      color: #fff;
+    }
+
+    .hero-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--indigo-dim);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 6vw, 46px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: #94A3B8;
+    }
+
+    /* ── STATS ───────────────────────────── */
+    .stats-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 560px) {
+      .stats-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .stat {
+      padding: 24px 20px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* border cleanup — 2-col mobile */
+    .stat:nth-child(2)                        { border-right: none; }
+    .stat:nth-child(3)                        { border-bottom: none; }
+    .stat:nth-child(4)                        { border-right: none; border-bottom: none; }
+
+    /* border cleanup — 4-col desktop */
+    @media (min-width: 560px) {
+      .stat                                   { border-bottom: none; }
+      .stat:nth-child(2)                      { border-right: 1px solid var(--border); }
+      .stat:nth-child(4)                      { border-right: none; }
+    }
+
+    .stat-val {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--indigo);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── MAIN ────────────────────────────── */
+    .main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* ── CARD ────────────────────────────── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .card-head {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .card-body { padding: 24px 28px; }
+
+    /* ── SUBSECTION ──────────────────────── */
+    .sub { margin-bottom: 22px; }
+    .sub:last-child { margin-bottom: 0; }
+
+    .sub-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* ── LIST ────────────────────────────── */
+    .items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .items li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .items li::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--indigo);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* ── DIVIDER ─────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* ── CALLOUT ─────────────────────────── */
+    .callout {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 18px;
+    }
+
+    .callout strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── FOOTER ──────────────────────────── */
+    .footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: #475569;
+    }
+
+    .footer a {
+      color: var(--indigo-dim);
+      text-decoration: none;
+    }
+
+    .footer p + p { margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-brand">BottBott <span>Business Systems</span></div>
+    <div class="topbar-tag">Client Report</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Project Recap &middot; June 4 – July 10, 2026</p>
+      <h1>Gregg McElwee<br>realestateandloans.com</h1>
+      <p class="hero-sub">Prepared by Simon Dauphinee &middot; BottBott Business Systems</p>
+    </div>
+  </section>
+
+  <div class="stats-wrap">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-val">C– → A–</div>
+        <div class="stat-lbl">SEO Rating at Launch</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">$200+/mo</div>
+        <div class="stat-lbl">SaaS Fees Eliminated</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">87k → 13.5k</div>
+        <div class="stat-lbl">Emails Cleared</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">58</div>
+        <div class="stat-lbl">Blog Topics Seeded</div>
+      </div>
+    </div>
+  </div>
+
+  <main class="main">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">01 · Website</div>
+        <h2 class="card-title">New Website — realestateandloans.com</h2>
+        <p class="card-desc">Rebuilt and launched in June. SEO rating jumped from C– to A– at launch. The remaining gap (thin content) is being addressed systematically by the content automation built alongside it.</p>
+      </div>
+      <div class="card-body">
+
+        <div class="sub">
+          <div class="sub-label">Search Visibility</div>
+          <ul class="items">
+            <li>Ranks #1 for "real estate and loans OC" — moved ahead of ochmloans.com last week</li>
+            <li>Ranks #2 for "gregg mcelwee" — directly under greggmcelwee.com, above Zillow (was previously third)</li>
+            <li>robots.txt with AEO/GEO directives and JSON-LD structured data throughout</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sub">
+          <div class="sub-label">Cost Impact</div>
+          <ul class="items">
+            <li>Migration off AgentElite: $200+/month in recurring SaaS fees eliminated</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sub">
+          <div class="sub-label">Site Contents</div>
+          <ul class="items">
+            <li>5 SEO-optimized pages + 1 Communities page linking back to greggmcelwee.com</li>
+            <li>Contact form → Google Sheet pipeline with built-in spam filter (keeping inbox clean; contacts accumulating)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">02 · Content</div>
+        <h2 class="card-title">Custom Autoblog Automation</h2>
+        <p class="card-desc">A fully custom, end-to-end content pipeline built from scratch. Gregg records a voice memo → system transcribes it, writes a full SEO blog post in his voice, and publishes it automatically every Wednesday via cron job.</p>
+      </div>
+      <div class="card-body">
+
+        <div class="sub">
+          <div class="sub-label">Per-Post Output</div>
+          <ul class="items">
+            <li>Blog post with topic-specific image and alt text</li>
+            <li>SEO metadata + JSON-LD schema</li>
+            <li>Internal and external link injection (EEAT + ranking signal)</li>
+            <li>LinkedIn caption + Facebook post drafted to a Google Sheet with the live URL, ready to share</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sub">
+          <div class="sub-label">Infrastructure</div>
+          <ul class="items">
+            <li>58 topics seeded in the content library (100 planned) with 1 image/post</li>
+            <li>Automated email reminder ladder — prompts Gregg ahead of each weekly recording window</li>
+            <li>Full documentation + one-page quick reference delivered</li>
+          </ul>
+        </div>
+
+        <div class="callout">
+          <strong>Running cost:</strong> ~$2–3/month (Anthropic API only — zero hosting or tooling fees)
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">03 · Operations</div>
+        <h2 class="card-title">Email Inbox Cleanup</h2>
+        <p class="card-desc">Inbox reduced from 87,000+ emails to ~13,500.</p>
+      </div>
+      <div class="card-body">
+        <ul class="items">
+          <li>Achieved via manual filtering passes and a custom Google AppScript</li>
+          <li>Script processes ~100 emails per run, every two hours, until all conditions are met</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">04 · Lead Generation</div>
+        <h2 class="card-title">Contact List Export and Outreach Build</h2>
+        <p class="card-desc">386 contacts exported from Realty Juggler. Custom outreach system in development to re-engage existing relationships and generate new leads.</p>
+      </div>
+      <div class="card-body">
+        <ul class="items">
+          <li>Full contact list exported and structured for outreach</li>
+          <li>System in development to surface re-engagement opportunities from Gregg's existing network</li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>Simon Dauphinee &middot; <a href="https://bottbottgenai.com">BottBott Business Systems</a></p>
+    <p>Engagement established via AI Architechs &middot; June–July 2026</p>
+  </footer>
+
+</body>
+</html>
