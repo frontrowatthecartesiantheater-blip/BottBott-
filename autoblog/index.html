@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Blog Automation for Business Owners | BottBott Autoblog System</title>
+  <meta name="description" content="Stop hiring writers that don't know your industry. The BottBott Autoblog turns a 2-minute voice memo into a published, SEO-optimized post in your voice. Every week, automatically.">
+  <link rel="canonical" href="https://www.bottbottgenai.com/autoblog/">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="AI blog automation, blog writing 2026, automated blog content, AI writing tool, EEAT content strategy, content marketing automation">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Blog Automation for Business Owners | BottBott Autoblog System">
+  <meta property="og:description" content="Stop hiring writers that don't know your industry. The BottBott Autoblog turns a 2-minute voice memo into a published, SEO-optimized post in your voice. Every week, automatically.">
+  <meta property="og:url" content="https://www.bottbottgenai.com/autoblog/">
+  <meta property="og:site_name" content="BottBott Business Systems">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Blog Automation for Business Owners | BottBott Autoblog System">
+  <meta name="twitter:description" content="Stop hiring writers that don't know your industry. The BottBott Autoblog turns a 2-minute voice memo into a published, SEO-optimized post in your voice. Every week, automatically.">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.bottbottgenai.com/autoblog/",
+        "url": "https://www.bottbottgenai.com/autoblog/",
+        "name": "AI Blog Automation for Business Owners | BottBott Autoblog System",
+        "description": "Stop hiring writers that don't know your industry. The BottBott Autoblog turns a 2-minute voice memo into a published, SEO-optimized post in your voice. Every week, automatically.",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bottbottgenai.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Autoblog System", "item": "https://www.bottbottgenai.com/autoblog/" }
+          ]
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://www.bottbottgenai.com/",
+          "name": "BottBott Business Systems"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "BottBott Autoblog System",
+        "description": "An automated blog content pipeline that turns a subject matter expert's voice memo into a published, SEO-optimized blog post in their voice, every week. Includes AI transcription, three-pass generation, editorial review, verified link injection, images with alt text, and social copy.",
+        "provider": {
+          "@type": "Organization",
+          "name": "BottBott Business Systems",
+          "url": "https://www.bottbottgenai.com/",
+          "email": "simon@bottbottgenai.com"
+        },
+        "serviceType": "AI Blog Automation",
+        "url": "https://www.bottbottgenai.com/autoblog/"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts — matching main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DESIGN TOKENS — EXACT MATCH TO MAIN SITE ── */
+    :root {
+      --primary:       #1b3a55;
+      --primary-light: #2a5a80;
+      --primary-dark:  #0a1929;
+      --accent:        #4a8ebb;
+      --accent-light:  #7ec8e8;
+      --grey-100:      #f5f7f9;
+      --grey-200:      #e5e9ed;
+      --grey-300:      #c8d0d8;
+      --grey-400:      #64748b;
+      --grey-500:      #475569;
+      --grey-600:      #334155;
+      --white:         #ffffff;
+      --text-dark:     #1a2a3a;
+      --text-light:    #ffffff;
+      --font-body:     'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--grey-200);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-dark);
+      flex-shrink: 0;
+    }
+
+    .logo-icon { width: 36px; height: 36px; }
+
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-sub {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey-400);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--grey-600);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a.active { color: var(--primary); font-weight: 600; }
+
+    .btn-nav {
+      background: var(--primary) !important;
+      color: var(--white) !important;
+      padding: 10px 20px !important;
+      border-radius: 8px !important;
+      font-weight: 600 !important;
+      margin-left: 8px;
+    }
+
+    .btn-nav:hover {
+      background: var(--primary-light) !important;
+      color: var(--white) !important;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 72px 0; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--primary-dark);
+      color: var(--text-light);
+      padding: 96px 0 88px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--primary-light); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: rgba(255,255,255,0.82);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.6);
+      color: var(--white);
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-size: 17px;
+      color: var(--grey-500);
+      max-width: 640px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    /* ── ALT BACKGROUNDS ── */
+    .section-alt { background: var(--grey-100); }
+
+    /* ── PROSE ── */
+    .prose {
+      font-size: 16px;
+      color: var(--grey-600);
+      line-height: 1.8;
+      max-width: 720px;
+    }
+
+    .prose p + p { margin-top: 16px; }
+
+    /* ── EEAT GRID ── */
+    .eeat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .eeat-card {
+      background: var(--white);
+      border: 1px solid var(--grey-200);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+
+    .eeat-letter {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .eeat-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .eeat-card p {
+      font-size: 14px;
+      color: var(--grey-500);
+      line-height: 1.65;
+    }
+
+    .eeat-summary {
+      margin-top: 32px;
+      font-size: 15px;
+      color: var(--grey-500);
+      max-width: 720px;
+      line-height: 1.75;
+    }
+
+    /* ── STEPS ── */
+    .steps-list {
+      list-style: none;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 15px;
+      color: var(--grey-500);
+      line-height: 1.7;
+    }
+
+    .step-note {
+      margin-top: 32px;
+      padding: 16px 20px;
+      background: var(--white);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      color: var(--grey-500);
+      line-height: 1.65;
+    }
+
+    .step-note strong { color: var(--primary-dark); }
+
+    /* ── BENEFITS ── */
+    .benefits-list {
+      list-style: none;
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .benefits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      color: var(--grey-600);
+      line-height: 1.55;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .cost-callout {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 12px 20px;
+      background: var(--grey-100);
+      border: 1px solid var(--grey-200);
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--grey-500);
+      line-height: 1.5;
+    }
+
+    .cost-callout strong { color: var(--primary); }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--primary-dark);
+      color: var(--text-light);
+      text-align: center;
+      padding: 96px 24px;
+    }
+
+    .cta-section h2 {
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.68);
+      font-size: 17px;
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      background: var(--white);
+      color: var(--primary);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn-white:hover { opacity: 0.9; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--primary-dark);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.9); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      section { padding: 56px 0; }
+      .hero { padding: 72px 0 64px; }
+      .cta-section { padding: 72px 24px; }
+
+      .nav-links a:not(.btn-nav) { display: none; }
+
+      .eeat-grid { grid-template-columns: 1fr 1fr; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+    }
+
+    @media (max-width: 480px) {
+      .eeat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER / NAV ══ -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="BottBott Business Systems home">
+      <!-- Concentric-circle logo matching main site -->
+      <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="18" cy="18" r="16.5" stroke="#1b3a55" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="11"   stroke="#1b3a55" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="5.5"  fill="#1b3a55"/>
+      </svg>
+      <div class="logo-text-wrap">
+        <span class="logo-name">BottBott</span>
+        <span class="logo-sub">Business Systems</span>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="Site navigation">
+      <a href="/#services">Services</a>
+      <a href="/#about">About</a>
+      <a href="/#posts">Posts</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min"
+         target="_blank" rel="noopener"
+         class="btn-nav">Book a Call</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">The Autoblog System</p>
+    <h1>Your Expertise Should Be Working for You Online</h1>
+    <p class="hero-sub">Most professionals spend a career building knowledge they never publish. The Autoblog System changes that.</p>
+    <div class="hero-actions">
+      <a href="https://calendly.com/simon-bottbottgenai/30min"
+         target="_blank" rel="noopener"
+         class="btn-primary">Book a Call</a>
+      <a href="#how-it-works" class="btn-ghost">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WHY BLOGS MATTER ══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">Why it still matters</p>
+    <h2>Blogs Matter More in 2026, Not Less</h2>
+    <div class="prose">
+      <p>The counterintuitive truth about AI: it has made genuine expertise more valuable, not less.</p>
+      <p>AI tools now generate content at industrial scale. The result is a web full of posts that cover the basics, hit the keyword targets, and say nothing useful. While Google does not actively penalize AI content, shallow content penalizes itself: no engagement, no backlinks, and no trust. It performs exactly as well as it deserves.</p>
+      <p>What ranks in 2026 is what has always ranked: content from someone who has actually done the work, knows the territory, and has opinions worth reading. That kind of content stands out now, because so little of what surrounds it does.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ EEAT ══ -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-eyebrow">The ranking framework</p>
+    <h2>What Google Is Looking For: EEAT</h2>
+    <p class="section-lead">Google evaluates content against four signals collectively known as EEAT. Understanding them is the difference between content that climbs and content that sits.</p>
+
+    <div class="eeat-grid">
+      <div class="eeat-card">
+        <div class="eeat-letter" aria-hidden="true">E</div>
+        <h3>Experience</h3>
+        <p>Has the author actually done this? Firsthand knowledge is weighted over paraphrased research. Lived experience is something AI cannot fabricate convincingly.</p>
+      </div>
+      <div class="eeat-card">
+        <div class="eeat-letter" aria-hidden="true">E</div>
+        <h3>Expertise</h3>
+        <p>Does the content go beyond the surface? Depth and specificity signal real knowledge. A post that only covers the obvious does not demonstrate expertise.</p>
+      </div>
+      <div class="eeat-card">
+        <div class="eeat-letter" aria-hidden="true">A</div>
+        <h3>Authority</h3>
+        <p>Is this a recognized voice in the field? Consistent, credible publishing builds authority over time. It is earned through volume and quality, not claimed.</p>
+      </div>
+      <div class="eeat-card">
+        <div class="eeat-letter" aria-hidden="true">T</div>
+        <h3>Trustworthiness</h3>
+        <p>Are the claims backed up? Sourcing and accuracy are measurable signals. Posts that cite real, verifiable sources score higher on this dimension.</p>
+      </div>
+    </div>
+
+    <p class="eeat-summary">
+      EEAT is not a checklist or a format. It is the underlying logic that separates a post that climbs to page one from one that sits at the bottom of page four. A subject matter expert with decades of real-world experience has more natural EEAT than any generalist writer or AI prompt could produce. The Autoblog System gets that expertise out of your head and onto the page, without anyone needing to write on your behalf.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══ THE PROBLEM ══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">The alternatives</p>
+    <h2>The Problem with Hiring Writers</h2>
+    <div class="prose">
+      <p>A content writer runs $300 to $2,000 per month. I know because I was one, and still am for a few clients. That is for someone who does not know your market, your niche, or how you talk. You spend the first month correcting facts and feeding them context they should have walked in with.</p>
+      <p>Doing it yourself is the other option, but most professionals who try stop by month two. Writing consistently is a skill that competes directly with every other demand on your time.</p>
+      <p>And neither option is sustainable at scale.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="section-alt" id="how-it-works">
+  <div class="container">
+    <p class="section-eyebrow">The solution</p>
+    <h2>The Autoblog System</h2>
+    <p class="section-lead">Two minutes of your voice. One published blog post. Every week.</p>
+
+    <ol class="steps-list" aria-label="How the Autoblog System works">
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div class="step-content">
+          <h3>Topics are scheduled in advance</h3>
+          <p>You always know what is coming and when, weeks ahead. No scrambling for ideas. No blank page.</p>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div class="step-content">
+          <h3>You get a reminder</h3>
+          <p>Three days before each post, you get an email with the topic and a direct link to your admin panel.</p>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div class="step-content">
+          <h3>You record two minutes</h3>
+          <p>Open the admin panel on your desktop or mobile. Guiding questions are there if you need them. Tap Record, speak naturally like you are talking to a client, and tap Stop.</p>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">4</div>
+        <div class="step-content">
+          <h3>Your voice becomes a post</h3>
+          <p>Whisper (OpenAI's transcription model) converts your recording to text. The system extracts the phrases, rhythms, and opinions that make your voice yours. Three AI calls run in sequence: a structure pass, a writing pass in your voice, and an SEO polish pass. The result is a 900 to 1,100-word post that reads like you wrote it, because the content came from you. A relevant image with descriptive alt text is selected and placed automatically.</p>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">5</div>
+        <div class="step-content">
+          <h3>You review and approve</h3>
+          <p>The draft lands in your admin panel. Read it, approve it, or flag it for adjustment. One click publishes it live to your site, with an optional toggle to bypass manual review when you are ready to run fully autonomous.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="step-note">
+      <strong>Miss a week?</strong> The system generates the post from its existing knowledge base of your content and voice profile. You never have a gap on your site.
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ LINK INJECTION ══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">Built-in credibility</p>
+    <h2>Every Post Is Backed by Real Sources</h2>
+    <div class="prose">
+      <p>After a draft is generated, a second pipeline runs automatically. It scans the post for claims worth citing, searches for credible external sources that actually support those specific claims, fetches each URL to confirm it is live, and injects it as a contextual link.</p>
+      <p>No links are fabricated. No URLs are written from memory. Every citation in a published post was found by a real search call, fetched, and verified. Competitors in your market are filtered out automatically. Low-quality domains are screened without requiring paid tools.</p>
+      <p>The result is a post that does not just say things. It backs them up, with real sources, on every publish.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ AEO / GEO ══ -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-eyebrow">The bigger picture</p>
+    <h2>What About AI Overviews and Chatbot Search?</h2>
+    <div class="prose">
+      <p>There is significant noise right now about AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization), the argument that Google is being replaced by chatbots and that traditional SEO no longer matters.</p>
+      <p>Here is what that framing misses: most AI search tools, including ChatGPT, Perplexity, and Google's AI Overviews, pull live web results as part of how they generate answers. They do not answer purely from training data. They search, retrieve, and synthesize. In practice, that process depends on the same core signals: indexed pages, domain authority, consistent publishing, and credible sourcing.</p>
+      <p>A blog that publishes weekly signals to Google and every tool that depends on its index that the site is active, current, and worth surfacing. The Autoblog System maintains that cadence automatically.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WHAT YOU GET ══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">What's included</p>
+    <h2>What You Get</h2>
+
+    <ul class="benefits-list">
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        A blog that publishes on a consistent schedule, in your voice, without you writing a word
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        No content writers, no monthly subscriptions, no gap weeks
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Posts that reflect your actual expertise, not a generic content baseline
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Verified external link injection on every post
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        A relevant image with descriptive alt text, selected and placed automatically
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        LinkedIn and Facebook drafts generated alongside each post
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        A system you own outright, not a platform you rent
+      </li>
+    </ul>
+
+    <p class="cost-callout">
+      AI running costs: approximately <strong>$0.75 per post</strong> (Whisper transcription + Claude API). You are billed only for what runs. No subscription.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══ CTA ══ -->
+<section class="cta-section">
+  <h2>Ready to build yours?</h2>
+  <p>Let's look at your content goals and map out what a system like this would look like for your business.</p>
+  <div class="cta-actions">
+    <a href="https://calendly.com/simon-bottbottgenai/30min"
+       target="_blank" rel="noopener"
+       class="btn-white">Book a Call</a>
+    <a href="/" class="btn-ghost">Back to Home</a>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">&copy; 2026 BottBott Business Systems. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="mailto:simon@bottbottgenai.com">simon@bottbottgenai.com</a>
+      <a href="https://bottbott.substack.com" target="_blank" rel="noopener">Substack</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
