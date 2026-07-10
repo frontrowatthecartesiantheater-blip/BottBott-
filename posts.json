@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "title": "AI IRL",
+      "link": "https://bottbott.substack.com/p/ai-irl",
+      "pubDate": "2026-07-10 16:57:17",
+      "excerpt": "Forget AGI hype. Discover a lean, local AI stack using Claude, Google Apps Script, and local hardware to build automated"
+    },
+    {
       "title": "Is Coding Finally Dead?",
       "link": "https://bottbott.substack.com/p/coding-is-finally-dead",
       "pubDate": "2026-07-06 19:00:32",
@@ -11,13 +17,7 @@
       "link": "https://bottbott.substack.com/p/how-to-build-software-with-claude",
       "pubDate": "2026-07-03 11:04:32",
       "excerpt": "Learn how non-technical builders can design and execute software using the Claude AI ecosystem and a powerful multi-mode"
-    },
-    {
-      "title": "Your Agents are in Production but is your Risk Model?",
-      "link": "https://bottbott.substack.com/p/your-agents-are-in-production-but",
-      "pubDate": "2026-06-28 15:55:00",
-      "excerpt": "Weekly Briefing: Jun 22–27, 2026"
     }
   ],
-  "updated": "2026-07-10T14:04:53Z"
+  "updated": "2026-07-10T19:18:14Z"
 }
