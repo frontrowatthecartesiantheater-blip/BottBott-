@@ -4,39 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BottBott Business Systems | Workflow Systems Architect</title>
-  <meta name="description" content="I design workflow systems for founders and SMEs who are tired of being the bottleneck in their own business.">
+  <meta name="description" content="Bespoke workflow systems for founders and SMEs, built to scale operations without adding headcount.">
   <link rel="canonical" href="https://www.bottbottgenai.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.bottbottgenai.com/#website",
+        "url": "https://www.bottbottgenai.com/",
+        "name": "BottBott Business Systems"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.bottbottgenai.com/",
+        "url": "https://www.bottbottgenai.com/",
+        "name": "BottBott Business Systems | Workflow Systems Architect",
+        "description": "Bespoke workflow systems for founders and SMEs, built to scale operations without adding headcount.",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bottbottgenai.com/" }
+          ]
+        },
+        "isPartOf": { "@id": "https://www.bottbottgenai.com/#website" },
+        "mainEntity": { "@id": "https://www.bottbottgenai.com/#organization" }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.bottbottgenai.com/#organization",
+        "name": "BottBott Business Systems",
+        "url": "https://www.bottbottgenai.com/",
+        "logo": "https://www.bottbottgenai.com/BottBott.svg",
+        "email": "simon@bottbottgenai.com",
+        "description": "AI workflow automation and bespoke business systems for professional services founders and SMEs who want to scale operations without scaling headcount.",
+        "areaServed": "Worldwide",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "BZ"
+        },
+        "founder": {
+          "@type": "Person",
+          "@id": "https://www.bottbottgenai.com/about/#person",
+          "name": "Simon Dauphinee",
+          "alternateName": "Simo",
+          "jobTitle": "Workflow Systems Architect",
+          "description": "Founder of BottBott Business Systems. Helps owner-operated businesses eliminate manual bottlenecks with bespoke, owned-outright AI systems. Formerly 20 years in construction. HGTV alumni, award-winning author, and podcast host.",
+          "image": "https://www.bottbottgenai.com/simon-dauphinee.webp",
+          "email": "simon@bottbottgenai.com",
+          "homeLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "BZ"
+            }
+          },
+          "sameAs": [
+            "https://bottbott.substack.com",
+            "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change"
+          ]
+        },
+        "sameAs": [
+          "https://bottbott.substack.com",
+          "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change"
+        ]
+      }
+    ]
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     :root {
-      --primary: #1b3a55;
-      --primary-light: #2a5a80;
-      --primary-dark: #0a1929;
-      --accent: #4a8ebb;
-      --accent-light: #7ec8e8;
-      --grey-100: #f5f7f9;
-      --grey-200: #e5e9ed;
-      --grey-300: #c8d0d8;
-      --grey-400: #64748b;
-      --grey-500: #475569;
-      --grey-600: #334155;
-      --white: #ffffff;
-      --text-dark: #1a2a3a;
-      --text-light: #ffffff;
+      --bg:            #0f1923;
+      --bg-alt:        #131f2b;
+      --bg-card:       #17232f;
+      --bg-card-hover: #1c2b39;
+      --primary-dark:  #0a141d;
+      --gold:          #C4923A;
+      --gold-light:    #d9ad5f;
+      --gold-dim:      rgba(196, 146, 58, 0.6);
+      --gold-faint:    rgba(196, 146, 58, 0.12);
+      --on-gold:       #0f1923;
+      --text-light:    #f5f7f9;
+      --text-dim:      #9fb0c0;
+      --text-dimmer:   #6f8294;
+      --white:         #ffffff;
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
-    
+
     body {
       font-family: var(--font-body);
-      color: var(--text-dark);
-      background: var(--white);
+      font-weight: 500;
+      color: var(--text-light);
+      background: var(--bg);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -47,9 +118,9 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(255,255,255,0.95);
+      background: rgba(15, 25, 35, 0.92);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--grey-200);
+      border-bottom: 1px solid var(--gold-dim);
       z-index: 1000;
     }
 
@@ -70,51 +141,18 @@
       text-decoration: none;
     }
 
-    .logo-mark {
-      position: relative;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-ring {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 2.5px solid var(--primary);
-      border-radius: 50%;
-    }
-
-    .logo-dot {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 10px;
-      height: 10px;
-      background: var(--primary);
-      border-radius: 50%;
-      animation: ping-dot 2s ease-in-out infinite;
-    }
-
-    @keyframes ping-dot {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.4);
-        opacity: 0.7;
-        box-shadow: 0 0 8px rgba(74, 142, 187, 0.6);
-      }
+    .logo-mark-img {
+      width: 30px;
+      height: 30px;
+      display: block;
+      flex-shrink: 0;
     }
 
     .logo-text {
       font-family: var(--font-heading);
       font-size: 22px;
-      font-weight: 700;
-      color: var(--primary);
+      font-weight: 800;
+      color: var(--text-light);
     }
 
     .logo-lockup {
@@ -129,7 +167,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--grey-500);
+      color: var(--text-dim);
       margin-top: 3px;
       white-space: nowrap;
     }
@@ -145,34 +183,35 @@
       border: none;
       padding: 10px 18px;
       font-size: 15px;
-      font-weight: 500;
-      color: var(--grey-500);
+      font-weight: 600;
+      color: var(--text-dim);
       cursor: pointer;
-      border-radius: 8px;
+      border-radius: 4px;
       transition: all 0.2s;
       text-decoration: none;
     }
 
     .nav-link:hover, .nav-link.active {
-      color: var(--primary);
-      background: var(--grey-100);
+      color: var(--gold-light);
+      background: var(--gold-faint);
     }
 
     .nav-cta {
       margin-left: 16px;
       padding: 12px 24px;
-      background: var(--primary);
-      color: var(--text-light);
+      background: var(--gold);
+      color: var(--on-gold);
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 10px;
+      border-radius: 4px;
       transition: all 0.2s;
     }
 
     .nav-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(27, 58, 85, 0.25);
+      background: var(--gold-light);
+      box-shadow: 0 8px 24px rgba(196, 146, 58, 0.35);
     }
 
     .mobile-menu-btn {
@@ -181,7 +220,7 @@
       border: none;
       font-size: 24px;
       cursor: pointer;
-      color: var(--primary);
+      color: var(--gold);
     }
 
     .mobile-menu {
@@ -189,7 +228,7 @@
       padding: 16px 24px 24px;
       flex-direction: column;
       gap: 8px;
-      border-top: 1px solid var(--grey-200);
+      border-top: 1px solid var(--gold-dim);
     }
 
     .mobile-menu.open { display: flex; }
@@ -199,11 +238,11 @@
       border: none;
       padding: 12px 0;
       font-size: 16px;
-      font-weight: 500;
-      color: var(--grey-600);
+      font-weight: 600;
+      color: var(--text-dim);
       text-align: left;
       cursor: pointer;
-      border-bottom: 1px solid var(--grey-100);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       text-decoration: none;
       display: block;
     }
@@ -211,12 +250,12 @@
     .mobile-nav-cta {
       margin-top: 8px;
       padding: 14px 20px;
-      background: var(--primary);
-      color: var(--text-light);
+      background: var(--gold);
+      color: var(--on-gold);
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 10px;
+      border-radius: 4px;
       text-align: center;
       display: block;
     }
@@ -224,9 +263,9 @@
     /* Hero */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, rgba(10, 25, 41, 0.92) 0%, rgba(27, 58, 85, 0.88) 100%), 
+      background: linear-gradient(135deg, rgba(10, 20, 29, 0.94) 0%, rgba(15, 25, 35, 0.9) 100%),
                   url('hero-bg.jpg') center center / cover no-repeat;
-      background: linear-gradient(135deg, rgba(10, 25, 41, 0.92) 0%, rgba(27, 58, 85, 0.88) 100%), 
+      background: linear-gradient(135deg, rgba(10, 20, 29, 0.94) 0%, rgba(15, 25, 35, 0.9) 100%),
                   url('hero-bg.webp') center center / cover no-repeat;
       padding: 140px 24px 80px;
       display: flex;
@@ -249,11 +288,11 @@
     .hero-badge {
       display: inline-block;
       padding: 8px 18px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: var(--accent-light);
+      background: var(--gold-faint);
+      border: 1px solid var(--gold-dim);
+      color: var(--gold-light);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       border-radius: 100px;
@@ -266,19 +305,19 @@
       font-size: clamp(40px, 6vw, 64px);
       font-weight: 800;
       line-height: 1.1;
-      color: var(--white);
+      color: var(--text-light);
       margin-bottom: 24px;
     }
 
     .hero-title-accent {
-      color: var(--accent-light);
+      color: var(--gold-light);
       display: block;
     }
 
     .hero-subtitle {
       font-size: 19px;
       line-height: 1.7;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(245, 247, 249, 0.78);
       margin-bottom: 40px;
       max-width: 600px;
       margin-left: auto;
@@ -295,41 +334,41 @@
     .btn-primary {
       display: inline-block;
       padding: 16px 32px;
-      background: var(--accent);
-      color: var(--white);
+      background: var(--gold);
+      color: var(--on-gold);
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 4px;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(74, 142, 187, 0.3);
+      box-shadow: 0 4px 20px rgba(196, 146, 58, 0.3);
       transition: all 0.2s;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(74, 142, 187, 0.4);
-      background: var(--accent-light);
+      box-shadow: 0 10px 30px rgba(196, 146, 58, 0.4);
+      background: var(--gold-light);
     }
 
     .btn-secondary {
       display: inline-block;
       padding: 16px 32px;
       background: transparent;
-      color: var(--white);
+      color: var(--text-light);
       font-size: 16px;
       font-weight: 600;
       text-decoration: none;
-      border-radius: 12px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      border: 1px solid var(--gold-dim);
       cursor: pointer;
       transition: all 0.2s;
     }
 
     .btn-secondary:hover {
-      border-color: var(--white);
-      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--gold);
+      background: var(--gold-faint);
     }
 
     .hero-visual {
@@ -339,8 +378,12 @@
     /* Clients */
     .clients {
       padding: 48px 24px;
-      background: var(--white);
-      border-bottom: 1px solid var(--grey-200);
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid var(--gold-dim);
     }
 
     .clients-inner {
@@ -351,8 +394,8 @@
 
     .clients-label {
       font-size: 13px;
-      font-weight: 600;
-      color: var(--grey-500);
+      font-weight: 700;
+      color: var(--text-dimmer);
       text-transform: uppercase;
       letter-spacing: 0.15em;
       margin-bottom: 28px;
@@ -368,7 +411,7 @@
     }
 
     .client-logo {
-      opacity: 0.7;
+      opacity: 0.75;
       transition: opacity 0.2s;
     }
 
@@ -378,21 +421,25 @@
       font-family: var(--font-heading);
       font-size: 20px;
       font-weight: 700;
-      color: var(--grey-600);
+      color: var(--text-dim);
       letter-spacing: 0.02em;
     }
 
-    .client-text-accent { color: #8a5a2f; }
+    .client-text-accent { color: var(--gold-light); }
 
     .client-text-caps {
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.15em;
     }
 
     /* Stats */
     .stats {
       padding: 60px 24px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .stats-inner {
@@ -421,16 +468,17 @@
 
     .stat-label {
       font-size: 15px;
-      color: var(--accent-light);
+      color: var(--gold-light);
       max-width: 200px;
       margin: 0 auto;
       line-height: 1.5;
+      font-weight: 500;
     }
 
     .stat-divider {
       width: 1px;
       height: 80px;
-      background: rgba(255,255,255,0.2);
+      background: var(--gold-dim);
     }
 
     /* Section Header */
@@ -443,8 +491,8 @@
     .section-label {
       display: inline-block;
       padding: 6px 16px;
-      background: var(--primary);
-      color: var(--text-light);
+      background: var(--gold);
+      color: var(--on-gold);
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -454,15 +502,15 @@
     }
 
     .section-label-dark {
-      background: rgba(255,255,255,0.15);
-      color: var(--accent-light);
+      background: var(--gold-faint);
+      color: var(--gold-light);
     }
 
     .section-title {
       font-family: var(--font-heading);
       font-size: clamp(32px, 5vw, 44px);
       font-weight: 700;
-      color: var(--primary);
+      color: var(--text-light);
       margin-bottom: 16px;
     }
 
@@ -471,13 +519,17 @@
     .section-subtitle {
       font-size: 18px;
       line-height: 1.6;
-      color: var(--grey-500);
+      color: var(--text-dim);
     }
 
     /* Services */
     .services {
       padding: 100px 24px;
-      background: var(--grey-100);
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .services-grid {
@@ -490,16 +542,16 @@
 
     .service-card {
       padding: 36px;
-      background: var(--white);
-      border-radius: 20px;
-      border: 1px solid var(--grey-200);
+      background: var(--bg-card);
+      border-radius: 4px;
+      border: 1px solid var(--gold-dim);
       transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
     }
 
     .service-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(27, 58, 85, 0.15);
+      box-shadow: 0 20px 50px rgba(196, 146, 58, 0.15);
     }
 
     .service-content {
@@ -517,8 +569,8 @@
 
     .service-meta {
       font-size: 12px;
-      font-weight: 600;
-      color: var(--grey-500);
+      font-weight: 700;
+      color: var(--text-dimmer);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 8px;
@@ -529,7 +581,7 @@
       font-family: var(--font-heading);
       font-size: 22px;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--text-light);
       margin-bottom: 12px;
       max-width: calc(100% - 90px);
     }
@@ -537,13 +589,17 @@
     .service-desc {
       font-size: 15px;
       line-height: 1.6;
-      color: var(--grey-500);
+      color: var(--text-dim);
     }
 
     /* About */
     .about {
       padding: 100px 24px;
-      background: var(--white);
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .about-grid {
@@ -559,19 +615,19 @@
       font-family: var(--font-heading);
       font-size: clamp(28px, 4vw, 38px);
       font-weight: 700;
-      color: var(--primary);
+      color: var(--text-light);
       line-height: 1.2;
       margin-bottom: 28px;
     }
 
     .about-title-accent {
-      color: var(--grey-500);
+      color: var(--text-dim);
       display: block;
       font-weight: 400;
     }
 
     .about-text {
-      color: var(--grey-600);
+      color: var(--text-dim);
       line-height: 1.75;
     }
 
@@ -585,7 +641,7 @@
       gap: 24px;
       margin-top: 32px;
       padding-top: 28px;
-      border-top: 1px solid var(--grey-200);
+      border-top: 1px solid var(--gold-dim);
     }
 
     .credit-item {
@@ -593,12 +649,12 @@
       align-items: center;
       gap: 10px;
       font-size: 14px;
-      font-weight: 500;
-      color: var(--grey-500);
+      font-weight: 600;
+      color: var(--text-dim);
     }
 
     .credit-icon {
-      color: var(--accent);
+      color: var(--gold);
     }
 
     .about-visual {
@@ -606,21 +662,22 @@
     }
 
     .about-quote {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--bg-card) 100%);
+      border: 1px solid var(--gold-dim);
       padding: 48px;
-      border-radius: 24px;
+      border-radius: 4px;
       position: relative;
     }
 
     .quote-icon {
       font-family: Georgia, serif;
       font-size: 80px;
-      color: var(--accent);
+      color: var(--gold);
       line-height: 1;
       position: absolute;
       top: 20px;
       left: 32px;
-      opacity: 0.3;
+      opacity: 0.4;
     }
 
     .quote-text {
@@ -635,17 +692,21 @@
     /* Featured */
     .featured {
       padding: 100px 24px;
-      background: var(--grey-100);
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .featured-video {
       max-width: 800px;
       margin: 0 auto;
       aspect-ratio: 16 / 9;
-      border-radius: 20px;
+      border-radius: 4px;
       overflow: hidden;
-      border: 1px solid var(--grey-200);
-      box-shadow: 0 20px 50px rgba(27, 58, 85, 0.15);
+      border: 1px solid var(--gold-dim);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
       background: var(--primary-dark);
     }
 
@@ -659,7 +720,11 @@
     /* Testimonials */
     .testimonials {
       padding: 100px 24px;
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .testimonials-grid {
@@ -671,17 +736,16 @@
     }
 
     .testimonial-card {
-      background: rgba(255,255,255,0.08);
+      background: var(--bg-card);
       padding: 40px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      border: 1px solid var(--gold-dim);
     }
 
     .testimonial-quote {
       font-family: Georgia, serif;
       font-size: 60px;
-      color: var(--accent);
+      color: var(--gold);
       line-height: 0.5;
       margin-bottom: 16px;
     }
@@ -696,7 +760,11 @@
     /* FAQ */
     .faq {
       padding: 100px 24px;
-      background: var(--white);
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .faq-grid {
@@ -708,9 +776,9 @@
     }
 
     .faq-item {
-      background: var(--grey-100);
-      border-radius: 16px;
-      border: 1px solid var(--grey-200);
+      background: var(--bg-card);
+      border-radius: 4px;
+      border: 1px solid var(--gold-dim);
       overflow: hidden;
     }
 
@@ -727,17 +795,17 @@
       gap: 16px;
       font-family: var(--font-heading);
       font-size: 18px;
-      font-weight: 600;
-      color: var(--primary);
+      font-weight: 700;
+      color: var(--text-light);
     }
 
     .faq-question:hover {
-      background: var(--grey-200);
+      background: var(--bg-card-hover);
     }
 
     .faq-icon {
       font-size: 24px;
-      color: var(--accent);
+      color: var(--gold);
       transition: transform 0.3s;
       flex-shrink: 0;
     }
@@ -760,13 +828,17 @@
       padding: 0 32px 24px;
       font-size: 16px;
       line-height: 1.7;
-      color: var(--grey-500);
+      color: var(--text-dim);
     }
 
     /* Posts */
     .posts {
       padding: 100px 24px;
-      background: var(--grey-100);
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .posts-grid {
@@ -779,23 +851,23 @@
 
     .post-card {
       padding: 32px;
-      background: var(--white);
-      border-radius: 16px;
+      background: var(--bg-card);
+      border-radius: 4px;
       text-decoration: none;
-      border: 1px solid var(--grey-200);
+      border: 1px solid var(--gold-dim);
       transition: transform 0.3s, box-shadow 0.3s;
       display: block;
     }
 
     .post-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(27, 58, 85, 0.12);
+      box-shadow: 0 12px 40px rgba(196, 146, 58, 0.12);
     }
 
     .post-meta {
       font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
+      font-weight: 700;
+      color: var(--gold-light);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 12px;
@@ -805,7 +877,7 @@
       font-family: var(--font-heading);
       font-size: 20px;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--text-light);
       margin-bottom: 12px;
       line-height: 1.3;
     }
@@ -813,20 +885,57 @@
     .post-excerpt {
       font-size: 15px;
       line-height: 1.6;
-      color: var(--grey-500);
+      color: var(--text-dim);
       margin-bottom: 16px;
     }
 
     .post-link {
       font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    /* Post skeleton loading state */
+    .post-skeleton {
+      cursor: default;
+    }
+
+    .post-skeleton:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .skeleton-bar {
+      height: 14px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--bg-card-hover) 25%, rgba(196, 146, 58, 0.18) 50%, var(--bg-card-hover) 75%);
+      background-size: 200% 100%;
+      animation: skeleton-pulse 1.6s ease-in-out infinite;
+      margin-bottom: 12px;
+    }
+
+    .skeleton-meta { width: 40%; height: 12px; }
+    .skeleton-title { width: 90%; height: 20px; }
+    .skeleton-excerpt { width: 100%; height: 14px; }
+    .skeleton-link { width: 35%; height: 14px; margin-top: 4px; margin-bottom: 0; }
+
+    @keyframes skeleton-pulse {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skeleton-bar { animation: none; }
     }
 
     /* Projects */
     .projects {
       padding: 100px 24px;
-      background: var(--white);
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .projects-grid {
@@ -839,24 +948,24 @@
 
     .project-card {
       padding: 36px;
-      background: var(--grey-100);
-      border-radius: 20px;
+      background: var(--bg-card);
+      border-radius: 4px;
       text-decoration: none;
-      border: 1px solid var(--grey-200);
+      border: 1px solid var(--gold-dim);
       transition: transform 0.3s, box-shadow 0.3s;
       display: block;
     }
 
     .project-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(27, 58, 85, 0.12);
-      border-color: var(--accent);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      border-color: var(--gold);
     }
 
     .project-logo {
       width: 56px;
       height: 56px;
-      border-radius: 14px;
+      border-radius: 4px;
       overflow: hidden;
       margin-bottom: 20px;
     }
@@ -871,27 +980,33 @@
       font-family: var(--font-heading);
       font-size: 22px;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--text-light);
       margin-bottom: 10px;
     }
 
     .project-desc {
       font-size: 15px;
       line-height: 1.6;
-      color: var(--grey-500);
+      color: var(--text-dim);
       margin-bottom: 20px;
     }
 
     .project-link {
       font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
+      font-weight: 700;
+      color: var(--gold-light);
     }
 
     /* CTA Banner */
     .cta-banner {
       padding: 80px 24px;
-      background: var(--primary);
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top: 1px solid var(--gold-dim);
+      border-bottom: 1px solid var(--gold-dim);
     }
 
     .cta-banner-content {
@@ -912,25 +1027,30 @@
 
     .cta-banner-btn {
       padding: 18px 36px;
-      background: var(--white);
-      color: var(--primary);
+      background: var(--gold);
+      color: var(--on-gold);
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 4px;
       white-space: nowrap;
       transition: all 0.2s;
     }
 
     .cta-banner-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      background: var(--gold-light);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
     /* Contact */
     .contact {
       padding: 100px 24px;
-      background: var(--white);
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .contact-content {
@@ -943,14 +1063,14 @@
       font-family: var(--font-heading);
       font-size: 40px;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--text-light);
       margin-bottom: 16px;
     }
 
     .contact-subtitle {
       font-size: 18px;
       line-height: 1.6;
-      color: var(--grey-500);
+      color: var(--text-dim);
       margin-bottom: 40px;
     }
 
@@ -963,30 +1083,31 @@
 
     .contact-btn {
       padding: 18px 40px;
-      background: var(--primary);
-      color: var(--text-light);
+      background: var(--gold);
+      color: var(--on-gold);
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 4px;
       transition: all 0.2s;
     }
 
     .contact-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(27, 58, 85, 0.25);
+      background: var(--gold-light);
+      box-shadow: 0 10px 30px rgba(196, 146, 58, 0.3);
     }
 
     .contact-or {
       font-size: 14px;
-      color: var(--grey-400);
+      color: var(--text-dimmer);
     }
 
     .contact-email {
       font-size: 18px;
-      color: var(--primary);
+      color: var(--gold-light);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .contact-email:hover { text-decoration: underline; }
@@ -994,7 +1115,12 @@
     /* Footer */
     .footer {
       padding: 48px 24px;
-      background: var(--primary-dark);
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top: 1px solid var(--gold-dim);
     }
 
     .footer-content {
@@ -1007,8 +1133,6 @@
       gap: 24px;
     }
 
-    .footer .logo-ring { border-color: var(--accent); }
-    .footer .logo-dot { background: var(--accent); }
     .footer .logo-text { color: var(--text-light); }
 
     .footer-links {
@@ -1018,21 +1142,22 @@
 
     .footer-link {
       font-size: 15px;
-      color: #a0aec0;
+      font-weight: 500;
+      color: var(--text-dim);
       text-decoration: none;
       transition: color 0.2s;
     }
 
-    .footer-link:hover { color: var(--text-light); }
+    .footer-link:hover { color: var(--gold-light); }
 
     .footer-copy {
       font-size: 14px;
-      color: #8899a8;
+      color: var(--text-dimmer);
       width: 100%;
       text-align: center;
       margin-top: 24px;
       padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
     /* Responsive */
@@ -1058,10 +1183,7 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="#hero" class="logo">
-        <span class="logo-mark">
-          <span class="logo-ring"></span>
-          <span class="logo-dot"></span>
-        </span>
+        <img src="BottBott.svg" alt="BottBott" class="logo-mark-img">
         <span class="logo-lockup">
           <span class="logo-text">BottBott</span>
           <span class="logo-subtext">Business Systems</span>
@@ -1069,17 +1191,18 @@
       </a>
       <div class="nav-links">
         <a href="#services" class="nav-link">Services</a>
-        <a href="#about" class="nav-link">About</a>
+        <a href="/solutions/" class="nav-link">Solutions</a>
+        <a href="/about/" class="nav-link">About</a>
         <a href="#posts" class="nav-link">Posts</a>
         <a href="#contact" class="nav-link">Contact</a>
-        <a href="/autoblog/" class="nav-link">Autoblog</a>
         <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="nav-cta">Book a Call</a>
       </div>
       <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
       <a href="#services" class="mobile-nav-link" onclick="closeMenu()">Services</a>
-      <a href="#about" class="mobile-nav-link" onclick="closeMenu()">About</a>
+      <a href="/solutions/" class="mobile-nav-link" onclick="closeMenu()">Solutions</a>
+      <a href="/about/" class="mobile-nav-link" onclick="closeMenu()">About</a>
       <a href="#posts" class="mobile-nav-link" onclick="closeMenu()">Posts</a>
       <a href="#contact" class="mobile-nav-link" onclick="closeMenu()">Contact</a>
       <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="mobile-nav-cta">Book a Call →</a>
@@ -1093,11 +1216,11 @@
       <div class="hero-content">
         <div class="hero-badge">Workflow Systems Architect</div>
         <h1 class="hero-title">
-          Build systems that
-          <span class="hero-title-accent">work while you do not</span>
+          Systems that work.
+          <span class="hero-title-accent">So you don't have to.</span>
         </h1>
         <p class="hero-subtitle">
-          I design bespoke workflow systems for founders and SMEs who are tired of being the bottleneck in their own business. Your operations should scale — without scaling your headcount.
+          Bespoke workflow systems for founders and SMEs, built to scale operations without adding headcount.
         </p>
         <div class="hero-actions">
           <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="btn-primary">Book a Strategy Call</a>
@@ -1159,7 +1282,7 @@
           <h3 class="service-title">Strategy Call</h3>
           <p class="service-desc">Your starting point. We diagnose your workflows, audit what is working and what is not, and map your first system improvement.</p>
         </div>
-        <img src="Strategy%20Call.png" alt="" class="service-icon">
+        <img src="Strategy%20Call.svg" alt="" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1167,7 +1290,7 @@
           <h3 class="service-title">Workflow & Integration Build</h3>
           <p class="service-desc">Custom-built workflow systems — from process mapping to tool integration to automation pipelines.</p>
         </div>
-        <img src="Workflow%20%26%20Integration%20Build.png" alt="" class="service-icon">
+        <img src="Workflow%20%26%20Integration%20Build.svg" alt="" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1175,7 +1298,7 @@
           <h3 class="service-title">Agent Build</h3>
           <p class="service-desc">Purpose-built AI agents that handle specific tasks autonomously — intake processing, document generation, lead qualification.</p>
         </div>
-        <img src="Agent%20Build.png" alt="" class="service-icon">
+        <img src="Agent%20Build.svg" alt="" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1183,7 +1306,7 @@
           <h3 class="service-title">Web App MVP Build</h3>
           <p class="service-desc">Functional internal tools and prototypes — dashboards, scoring systems, utilities. From idea to working product.</p>
         </div>
-        <img src="Web%20App%20MVP%20Build.png" alt="" class="service-icon">
+        <img src="Web%20App%20MVP%20Build.svg" alt="" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1191,7 +1314,7 @@
           <h3 class="service-title">Team Fluency Training</h3>
           <p class="service-desc">For teams adopting new systems into daily operations. Fundamentals, workflow design, and an actionable playbook.</p>
         </div>
-        <img src="Team%20Fluency%20Training.png" alt="" class="service-icon">
+        <img src="Team%20Fluency%20Training.svg" alt="" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1199,7 +1322,7 @@
           <h3 class="service-title">Ongoing Systems Support</h3>
           <p class="service-desc">Continuous optimization — system reviews, troubleshooting, and expanding your library of repeatable processes.</p>
         </div>
-        <img src="Ongoing%20Systems%20Support.png" alt="" class="service-icon">
+        <img src="Ongoing%20Systems%20Support.svg" alt="" class="service-icon">
       </div>
     </div>
   </section>
@@ -1223,6 +1346,9 @@
           <div class="credit-item"><span class="credit-icon">◈</span><span>HGTV Alumni</span></div>
           <div class="credit-item"><span class="credit-icon">◈</span><span>Award-Winning Author</span></div>
           <div class="credit-item"><span class="credit-icon">◈</span><span>Foreign Radio Podcast Host</span></div>
+        </div>
+        <div class="about-credits" style="border-top: none; padding-top: 0; margin-top: 20px;">
+          <a href="/about/" class="footer-link" style="color: var(--gold-light); font-weight: 600;">Read the full story →</a>
         </div>
       </div>
       <div class="about-visual">
@@ -1332,13 +1458,31 @@
       <p class="section-subtitle">Practical guidance. No hype, no fluff — just what works.</p>
     </div>
     <div class="posts-grid" id="postsGrid">
-      <!-- Fallback content shown until JS loads cached/fresh posts -->
-      <a href="https://bottbott.substack.com" target="_blank" rel="noopener" class="post-card">
-        <div class="post-meta">Latest</div>
-        <h3 class="post-title">Read the BottBott Newsletter</h3>
-        <p class="post-excerpt">Practical guidance on workflow systems, automation, and building infrastructure that scales.</p>
-        <span class="post-link">Visit Substack →</span>
-      </a>
+      <!-- Skeleton loading state shown until JS loads cached/fresh posts -->
+      <div class="post-card post-skeleton" aria-hidden="true">
+        <div class="skeleton-bar skeleton-meta"></div>
+        <div class="skeleton-bar skeleton-title"></div>
+        <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
+        <div class="skeleton-bar skeleton-excerpt"></div>
+        <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
+        <div class="skeleton-bar skeleton-link"></div>
+      </div>
+      <div class="post-card post-skeleton" aria-hidden="true">
+        <div class="skeleton-bar skeleton-meta"></div>
+        <div class="skeleton-bar skeleton-title"></div>
+        <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
+        <div class="skeleton-bar skeleton-excerpt"></div>
+        <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
+        <div class="skeleton-bar skeleton-link"></div>
+      </div>
+      <div class="post-card post-skeleton" aria-hidden="true">
+        <div class="skeleton-bar skeleton-meta"></div>
+        <div class="skeleton-bar skeleton-title"></div>
+        <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
+        <div class="skeleton-bar skeleton-excerpt"></div>
+        <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
+        <div class="skeleton-bar skeleton-link"></div>
+      </div>
     </div>
   </section>
 
@@ -1411,13 +1555,12 @@
   <footer class="footer">
     <div class="footer-content">
       <a href="#hero" class="logo">
-        <span class="logo-mark">
-          <span class="logo-ring"></span>
-          <span class="logo-dot"></span>
-        </span>
+        <img src="BottBott.svg" alt="BottBott" class="logo-mark-img">
         <span class="logo-text">BottBott</span>
       </a>
       <div class="footer-links">
+        <a href="/solutions/" class="footer-link">Solutions</a>
+        <a href="/about/" class="footer-link">About</a>
         <a href="https://bottbott.substack.com" target="_blank" class="footer-link">Substack</a>
         <a href="https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change" target="_blank" class="footer-link">LinkedIn</a>
         <a href="mailto:simon@bottbottgenai.com" class="footer-link">Email</a>
@@ -1448,14 +1591,24 @@
       item.classList.toggle('open');
     }
 
+    // Shown if the fetch fails or returns no posts
+    const POSTS_FALLBACK_HTML = `
+      <a href="https://bottbott.substack.com" target="_blank" rel="noopener" class="post-card">
+        <div class="post-meta">Latest</div>
+        <h3 class="post-title">Read the BottBott Newsletter</h3>
+        <p class="post-excerpt">Practical guidance on workflow systems, automation, and building infrastructure that scales.</p>
+        <span class="post-link">Visit Substack →</span>
+      </a>
+    `;
+
     // Fetch posts from local JSON (updated by GitHub Action)
     async function fetchPosts() {
       const postsGrid = document.getElementById('postsGrid');
-      
+
       try {
         const response = await fetch('posts.json');
         const data = await response.json();
-        
+
         if (data.posts && data.posts.length > 0) {
           postsGrid.innerHTML = data.posts.map(post => {
             const date = new Date(post.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -1468,10 +1621,13 @@
               </a>
             `;
           }).join('');
+        } else {
+          postsGrid.innerHTML = POSTS_FALLBACK_HTML;
         }
       } catch (error) {
-        // Fetch failed, keep fallback content
+        // Fetch failed, show fallback newsletter card
         console.error('Failed to fetch posts:', error);
+        postsGrid.innerHTML = POSTS_FALLBACK_HTML;
       }
     }
 
@@ -1479,14 +1635,14 @@
     function updateActiveNav() {
       const sections = ['hero', 'services', 'about', 'posts', 'contact'];
       const scrollPos = window.scrollY + 150;
-      
+
       sections.forEach(id => {
         const section = document.getElementById(id);
         if (section) {
           const top = section.offsetTop;
           const height = section.offsetHeight;
           const link = document.querySelector(`.nav-link[href="#${id}"]`);
-          
+
           if (scrollPos >= top && scrollPos < top + height) {
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             if (link) link.classList.add('active');

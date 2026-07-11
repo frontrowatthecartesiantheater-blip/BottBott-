@@ -2,7 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.bottbottgenai.com/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-07-11</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.bottbottgenai.com/solutions/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.bottbottgenai.com/autoblog/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.bottbottgenai.com/podcast-pitching/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.bottbottgenai.com/about/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>

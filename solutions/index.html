@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions | BottBott Business Systems</title>
+  <meta name="description" content="Explore BottBott's productized AI systems — from the Autoblog System to the Pitch Perfect Podcast Placement Agent. Built once, owned outright, no subscriptions.">
+  <link rel="canonical" href="https://www.bottbottgenai.com/solutions/">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Solutions | BottBott Business Systems">
+  <meta property="og:description" content="Explore BottBott's productized AI systems — from the Autoblog System to the Pitch Perfect Podcast Placement Agent.">
+  <meta property="og:url" content="https://www.bottbottgenai.com/solutions/">
+  <meta property="og:site_name" content="BottBott Business Systems">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Solutions | BottBott Business Systems">
+  <meta name="twitter:description" content="Explore BottBott's productized AI systems — from the Autoblog System to the Pitch Perfect Podcast Placement Agent.">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.bottbottgenai.com/solutions/",
+        "url": "https://www.bottbottgenai.com/solutions/",
+        "name": "Solutions | BottBott Business Systems",
+        "description": "Explore BottBott's productized AI systems — from the Autoblog System to the Pitch Perfect Podcast Placement Agent.",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bottbottgenai.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.bottbottgenai.com/solutions/" }
+          ]
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://www.bottbottgenai.com/",
+          "name": "BottBott Business Systems"
+        },
+        "mainEntity": { "@id": "https://www.bottbottgenai.com/solutions/#itemlist" }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://www.bottbottgenai.com/solutions/#itemlist",
+        "name": "BottBott Solutions",
+        "numberOfItems": 2,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Service",
+              "name": "BottBott Autoblog System",
+              "url": "https://www.bottbottgenai.com/autoblog/",
+              "description": "An automated blog content pipeline that turns a subject matter expert's voice memo into a published, SEO-optimized blog post in their voice, every week.",
+              "provider": {
+                "@type": "Organization",
+                "@id": "https://www.bottbottgenai.com/#organization",
+                "name": "BottBott Business Systems",
+                "url": "https://www.bottbottgenai.com/",
+                "email": "simon@bottbottgenai.com",
+                "sameAs": [
+                  "https://bottbott.substack.com",
+                  "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change"
+                ]
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Service",
+              "name": "Pitch Perfect Podcast Placement Agent",
+              "url": "https://www.bottbottgenai.com/podcast-pitching/",
+              "description": "An AI-driven podcast guesting service that scans multiple podcast databases, scores shows for fit, and drafts personalized pitch emails in the client's voice for review before sending.",
+              "provider": {
+                "@type": "Organization",
+                "@id": "https://www.bottbottgenai.com/#organization",
+                "name": "BottBott Business Systems",
+                "url": "https://www.bottbottgenai.com/",
+                "email": "simon@bottbottgenai.com",
+                "sameAs": [
+                  "https://bottbott.substack.com",
+                  "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts — matching main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DESIGN TOKENS — EXACT MATCH TO MAIN SITE ── */
+    :root {
+      --bg:            #0f1923;
+      --bg-alt:        #131f2b;
+      --bg-card:       #17232f;
+      --bg-card-hover: #1c2b39;
+      --primary-dark:  #0a141d;
+      --gold:          #C4923A;
+      --gold-light:    #d9ad5f;
+      --gold-dim:      rgba(196, 146, 58, 0.6);
+      --gold-faint:    rgba(196, 146, 58, 0.12);
+      --on-gold:       #0f1923;
+      --text-light:    #f5f7f9;
+      --text-dim:      #9fb0c0;
+      --text-dimmer:   #6f8294;
+      --white:         #ffffff;
+      --font-body:     'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--text-light);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 25, 35, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-light);
+      flex-shrink: 0;
+    }
+
+    .logo-icon { width: 36px; height: 36px; }
+
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-sub {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a.active { color: var(--gold-light); font-weight: 700; }
+
+    .btn-nav {
+      background: var(--gold) !important;
+      color: var(--on-gold) !important;
+      padding: 10px 20px !important;
+      border-radius: 4px !important;
+      font-weight: 700 !important;
+      margin-left: 8px;
+    }
+
+    .btn-nav:hover {
+      background: var(--gold-light) !important;
+      color: var(--on-gold) !important;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--text-light);
+      padding: 96px 0 80px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin: 0 auto 20px;
+      max-width: 700px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(245,247,249,0.72);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ── SOLUTIONS GRID ── */
+    .solutions {
+      padding: 96px 24px;
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 32px;
+    }
+
+    .solution-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-dim);
+      border-radius: 4px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .solution-card.live:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(196, 146, 58, 0.15);
+    }
+
+    .solution-status {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .status-live {
+      background: var(--gold-faint);
+      color: var(--gold-light);
+      border: 1px solid var(--gold-dim);
+    }
+
+    .solution-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    .solution-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+
+    .solution-link {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gold);
+      color: var(--on-gold);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+
+    .solution-link:hover { background: var(--gold-light); }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--text-light);
+      text-align: center;
+      padding: 96px 24px;
+      border-top: 1px solid var(--gold-dim);
+    }
+
+    .cta-section h2 {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: rgba(245,247,249,0.68);
+      font-size: 17px;
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gold);
+      color: var(--on-gold);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-white:hover { background: var(--gold-light); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: rgba(245,247,249,0.82);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1px solid var(--gold-dim);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--text-light);
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top: 1px solid var(--gold-dim);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-dimmer);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { padding: 72px 0 64px; }
+      .solutions { padding: 64px 24px; }
+      .cta-section { padding: 72px 24px; }
+      .nav-links a:not(.btn-nav) { display: none; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER / NAV ══ -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="BottBott Business Systems home">
+      <img src="/BottBott.svg" alt="BottBott" class="logo-icon">
+      <div class="logo-text-wrap">
+        <span class="logo-name">BottBott</span>
+        <span class="logo-sub">Business Systems</span>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="Site navigation">
+      <a href="/solutions/" class="active">Solutions</a>
+      <a href="/about/">About</a>
+      <a href="/#posts">Posts</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min"
+         target="_blank" rel="noopener"
+         class="btn-nav">Book a Call</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Solutions</p>
+    <h1>Productized systems, built once, owned outright</h1>
+    <p class="hero-sub">Beyond bespoke builds, BottBott maintains a growing set of packaged AI systems — ready to deploy, no subscriptions, no vendor lock-in.</p>
+  </div>
+</section>
+
+
+<!-- ══ SOLUTIONS GRID ══ -->
+<section class="solutions">
+  <div class="container">
+    <div class="solutions-grid">
+      <div class="solution-card live">
+        <span class="solution-status status-live">Live</span>
+        <h2 class="solution-name">Autoblog System</h2>
+        <p class="solution-desc">Turn a 2-minute voice memo into a published, SEO-optimized blog post in your voice. Every week, automatically — no content writers, no subscriptions.</p>
+        <a href="/autoblog/" class="solution-link">See How It Works →</a>
+      </div>
+      <div class="solution-card live">
+        <span class="solution-status status-live">Live</span>
+        <h2 class="solution-name">Your Next Client Is Already Listening to a Podcast</h2>
+        <p class="solution-desc">The question is whether you're the guest being introduced. Pitch Perfect finds the right shows, scores them for fit, and writes personalized pitches in your voice — you review, you send.</p>
+        <a href="/podcast-pitching/" class="solution-link">See How It Works →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CTA ══ -->
+<section class="cta-section">
+  <h2>Have something specific in mind?</h2>
+  <p>If none of these fit exactly, that is normal — most of what I build starts as a custom system for one client first.</p>
+  <div class="cta-actions">
+    <a href="https://calendly.com/simon-bottbottgenai/30min"
+       target="_blank" rel="noopener"
+       class="btn-white">Book a Call</a>
+    <a href="/" class="btn-ghost">Back to Home</a>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">&copy; 2026 BottBott Business Systems. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="/about/">About</a>
+      <a href="mailto:simon@bottbottgenai.com">simon@bottbottgenai.com</a>
+      <a href="https://bottbott.substack.com" target="_blank" rel="noopener">Substack</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
