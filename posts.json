@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "title": "The Stack Closes While Governance Falls Behind",
+      "link": "https://bottbott.substack.com/p/the-stack-closes-while-governance",
+      "pubDate": "2026-07-13 16:46:48",
+      "excerpt": "One company now controls the frontier model, the IDE, and the infrastructure. What last week's AI announcements actually"
+    },
+    {
       "title": "AI IRL",
       "link": "https://bottbott.substack.com/p/ai-irl",
       "pubDate": "2026-07-10 16:57:17",
@@ -11,13 +17,7 @@
       "link": "https://bottbott.substack.com/p/coding-is-finally-dead",
       "pubDate": "2026-07-06 19:00:32",
       "excerpt": "Computer Coding Course Enrollment Rates See a Massive Decline"
-    },
-    {
-      "title": "How I Build Software in the Anthropic Ecosystem",
-      "link": "https://bottbott.substack.com/p/how-to-build-software-with-claude",
-      "pubDate": "2026-07-03 11:04:32",
-      "excerpt": "Learn how non-technical builders can design and execute software using the Claude AI ecosystem and a powerful multi-mode"
     }
   ],
-  "updated": "2026-07-13T14:14:28Z"
+  "updated": "2026-07-13T19:15:11Z"
 }
