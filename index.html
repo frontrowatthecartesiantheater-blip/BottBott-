@@ -4,11 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BottBott Business Systems | Workflow Systems Architect</title>
-  <meta name="description" content="Bespoke workflow systems for founders and SMEs, built to scale operations without adding headcount.">
+  <meta name="description" content="Bespoke, AI-powered workflow systems for founders and SMEs, built to scale operations without adding headcount. Own your systems outright — no subscriptions, no vendor lock-in.">
   <link rel="canonical" href="https://www.bottbottgenai.com/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BottBott Business Systems | Workflow Systems Architect">
+  <meta property="og:description" content="Bespoke, AI-powered workflow systems for founders and SMEs, built to scale operations without adding headcount. Own your systems outright — no subscriptions, no vendor lock-in.">
+  <meta property="og:url" content="https://www.bottbottgenai.com/">
+  <meta property="og:site_name" content="BottBott Business Systems">
+  <meta property="og:image" content="https://www.bottbottgenai.com/BottBott.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BottBott Business Systems | Workflow Systems Architect">
+  <meta name="twitter:description" content="Bespoke, AI-powered workflow systems for founders and SMEs, built to scale operations without adding headcount. Own your systems outright — no subscriptions, no vendor lock-in.">
+  <meta name="twitter:image" content="https://www.bottbottgenai.com/BottBott.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -708,6 +726,8 @@
       border: 1px solid var(--gold-dim);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
       background: var(--primary-dark);
+      position: relative;
+      cursor: pointer;
     }
 
     .featured-video iframe {
@@ -715,6 +735,48 @@
       height: 100%;
       border: 0;
       display: block;
+    }
+
+    .video-facade-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: rgba(15, 25, 35, 0.75);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .video-play-btn::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 14px 0 14px 22px;
+      border-color: transparent transparent transparent var(--gold);
+      margin-left: 6px;
+    }
+
+    .featured-video:hover .video-play-btn {
+      background: var(--gold);
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .featured-video:hover .video-play-btn::after {
+      border-color: transparent transparent transparent var(--on-gold);
     }
 
     /* Testimonials */
@@ -1195,7 +1257,7 @@
         <a href="/about/" class="nav-link">About</a>
         <a href="#posts" class="nav-link">Posts</a>
         <a href="#contact" class="nav-link">Contact</a>
-        <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="nav-cta">Book a Call</a>
+        <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Call</a>
       </div>
       <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
     </div>
@@ -1205,7 +1267,7 @@
       <a href="/about/" class="mobile-nav-link" onclick="closeMenu()">About</a>
       <a href="#posts" class="mobile-nav-link" onclick="closeMenu()">Posts</a>
       <a href="#contact" class="mobile-nav-link" onclick="closeMenu()">Contact</a>
-      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="mobile-nav-cta">Book a Call →</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">Book a Call →</a>
     </div>
   </nav>
 
@@ -1223,7 +1285,7 @@
           Bespoke workflow systems for founders and SMEs, built to scale operations without adding headcount.
         </p>
         <div class="hero-actions">
-          <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="btn-primary">Book a Strategy Call</a>
+          <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a Strategy Call</a>
           <a href="#services" class="btn-secondary">Explore Services</a>
         </div>
       </div>
@@ -1282,7 +1344,7 @@
           <h3 class="service-title">Strategy Call</h3>
           <p class="service-desc">Your starting point. We diagnose your workflows, audit what is working and what is not, and map your first system improvement.</p>
         </div>
-        <img src="Strategy%20Call.svg" alt="" class="service-icon">
+        <img src="Strategy%20Call.svg" alt="Strategy Call service icon" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1290,7 +1352,7 @@
           <h3 class="service-title">Workflow & Integration Build</h3>
           <p class="service-desc">Custom-built workflow systems — from process mapping to tool integration to automation pipelines.</p>
         </div>
-        <img src="Workflow%20%26%20Integration%20Build.svg" alt="" class="service-icon">
+        <img src="Workflow%20%26%20Integration%20Build.svg" alt="Workflow and Integration Build service icon" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1298,7 +1360,7 @@
           <h3 class="service-title">Agent Build</h3>
           <p class="service-desc">Purpose-built AI agents that handle specific tasks autonomously — intake processing, document generation, lead qualification.</p>
         </div>
-        <img src="Agent%20Build.svg" alt="" class="service-icon">
+        <img src="Agent%20Build.svg" alt="Agent Build service icon" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1306,7 +1368,7 @@
           <h3 class="service-title">Web App MVP Build</h3>
           <p class="service-desc">Functional internal tools and prototypes — dashboards, scoring systems, utilities. From idea to working product.</p>
         </div>
-        <img src="Web%20App%20MVP%20Build.svg" alt="" class="service-icon">
+        <img src="Web%20App%20MVP%20Build.svg" alt="Web App MVP Build service icon" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1314,7 +1376,7 @@
           <h3 class="service-title">Team Fluency Training</h3>
           <p class="service-desc">For teams adopting new systems into daily operations. Fundamentals, workflow design, and an actionable playbook.</p>
         </div>
-        <img src="Team%20Fluency%20Training.svg" alt="" class="service-icon">
+        <img src="Team%20Fluency%20Training.svg" alt="Team Fluency Training service icon" class="service-icon">
       </div>
       <div class="service-card">
         <div class="service-content">
@@ -1322,7 +1384,7 @@
           <h3 class="service-title">Ongoing Systems Support</h3>
           <p class="service-desc">Continuous optimization — system reviews, troubleshooting, and expanding your library of repeatable processes.</p>
         </div>
-        <img src="Ongoing%20Systems%20Support.svg" alt="" class="service-icon">
+        <img src="Ongoing%20Systems%20Support.svg" alt="Ongoing Systems Support service icon" class="service-icon">
       </div>
     </div>
   </section>
@@ -1366,14 +1428,9 @@
       <span class="section-label">Featured</span>
       <h2 class="section-title">Featured on the AI DIY Podcast</h2>
     </div>
-    <div class="featured-video">
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/EPqU1y5keOU"
-        title="Simon Dauphinee on the AI DIY Podcast"
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
+    <div class="featured-video" id="videoFacade" role="button" tabindex="0" aria-label="Play video: Simon Dauphinee on the AI DIY Podcast">
+      <img src="https://i.ytimg.com/vi/EPqU1y5keOU/maxresdefault.jpg" alt="Simon Dauphinee on the AI DIY Podcast — video thumbnail" class="video-facade-img" loading="lazy">
+      <div class="video-play-btn" aria-hidden="true"></div>
     </div>
   </section>
 
@@ -1502,7 +1559,7 @@
         <p class="project-desc">Turn a 2-minute voice memo into a published, SEO-optimized blog post in your voice. Every week, automatically, no content writers, no subscriptions.</p>
         <span class="project-link">See How It Works →</span>
       </a>
-      <a href="https://movesmart.world/" target="_blank" rel="noopener" class="project-card">
+      <a href="https://movesmart.world/" target="_blank" rel="noopener noreferrer" class="project-card">
         <div class="project-logo">
           <img src="icon-movesmart.png" alt="MoveSmart icon">
         </div>
@@ -1510,7 +1567,7 @@
         <p class="project-desc">Takes the guesswork out of your international move. Creates a personalized relocation plan tailored to your timeline, budget, and family needs.</p>
         <span class="project-link">Visit MoveSmart →</span>
       </a>
-      <a href="https://substackanalyzer.app" target="_blank" rel="noopener" class="project-card">
+      <a href="https://substackanalyzer.app" target="_blank" rel="noopener noreferrer" class="project-card">
         <div class="project-logo">
           <img src="icon-substackanalyzer.png" alt="Substack Analyzer icon">
         </div>
@@ -1518,7 +1575,7 @@
         <p class="project-desc">Cut through newsletter fatigue. Score Substack posts in seconds so you can focus on the best and skip the rest.</p>
         <span class="project-link">Visit Substack Analyzer →</span>
       </a>
-      <a href="https://topainews.today" target="_blank" rel="noopener" class="project-card">
+      <a href="https://topainews.today" target="_blank" rel="noopener noreferrer" class="project-card">
         <div class="project-logo">
           <img src="icon-topainew.png" alt="Top AI News Today icon">
         </div>
@@ -1533,7 +1590,7 @@
   <section class="cta-banner">
     <div class="cta-banner-content">
       <h2 class="cta-banner-title">Ready to stop being the bottleneck?</h2>
-      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="cta-banner-btn">Book Your Free Strategy Call</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer" class="cta-banner-btn">Book Your Free Strategy Call</a>
     </div>
   </section>
 
@@ -1543,9 +1600,9 @@
       <h2 class="contact-title">Let us Talk</h2>
       <p class="contact-subtitle">Book a free 30-minute strategy call. We will diagnose your biggest workflow pain point and see if there is a fit.</p>
       <div class="contact-actions">
-        <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" class="contact-btn">Book Your Call</a>
+        <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer" class="contact-btn">Book Your Call</a>
         <div class="contact-or">or email directly</div>
-        <a href="mailto:simon@bottbottgenai.com" class="contact-email">simon@bottbottgenai.com</a>
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;" class="contact-email">&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;</a>
       </div>
     </div>
   </section>
@@ -1561,9 +1618,9 @@
       <div class="footer-links">
         <a href="/solutions/" class="footer-link">Solutions</a>
         <a href="/about/" class="footer-link">About</a>
-        <a href="https://bottbott.substack.com" target="_blank" class="footer-link">Substack</a>
-        <a href="https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change" target="_blank" class="footer-link">LinkedIn</a>
-        <a href="mailto:simon@bottbottgenai.com" class="footer-link">Email</a>
+        <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer" class="footer-link">Substack</a>
+        <a href="https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;" class="footer-link">Email</a>
       </div>
       <div class="footer-copy">© 2026 BottBott Business Systems. All rights reserved.</div>
     </div>
@@ -1593,7 +1650,7 @@
 
     // Shown if the fetch fails or returns no posts
     const POSTS_FALLBACK_HTML = `
-      <a href="https://bottbott.substack.com" target="_blank" rel="noopener" class="post-card">
+      <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer" class="post-card">
         <div class="post-meta">Latest</div>
         <h3 class="post-title">Read the BottBott Newsletter</h3>
         <p class="post-excerpt">Practical guidance on workflow systems, automation, and building infrastructure that scales.</p>
@@ -1613,7 +1670,7 @@
           postsGrid.innerHTML = data.posts.map(post => {
             const date = new Date(post.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             return `
-              <a href="${post.link}" target="_blank" rel="noopener" class="post-card">
+              <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="post-card">
                 <div class="post-meta">${date}</div>
                 <h3 class="post-title">${post.title}</h3>
                 <p class="post-excerpt">${post.excerpt}...</p>
@@ -1651,10 +1708,36 @@
       });
     }
 
+    // YouTube facade — load the real iframe only when clicked
+    function initVideoFacade() {
+      const facade = document.getElementById('videoFacade');
+      if (!facade) return;
+
+      function playVideo() {
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/EPqU1y5keOU?autoplay=1';
+        iframe.title = 'Simon Dauphinee on the AI DIY Podcast';
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        facade.innerHTML = '';
+        facade.appendChild(iframe);
+      }
+
+      facade.addEventListener('click', playVideo);
+      facade.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          playVideo();
+        }
+      });
+    }
+
     window.addEventListener('scroll', updateActiveNav);
     document.addEventListener('DOMContentLoaded', () => {
       updateActiveNav();
       fetchPosts();
+      initVideoFacade();
     });
   </script>
 </body>
