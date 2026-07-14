@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Outreach Pipeline | AI-Assisted Prospecting | BottBott</title>
+  <meta name="description" content="Stop researching prospects manually. The LinkedIn Outreach Pipeline scores your contacts, builds research briefs, and drafts personalized messages in your voice, in a fraction of the time.">
+  <link rel="canonical" href="https://www.bottbottgenai.com/linkedin-outreach-pipeline/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LinkedIn Outreach Pipeline | AI-Assisted Prospecting | BottBott">
+  <meta property="og:description" content="Stop researching prospects manually. The LinkedIn Outreach Pipeline scores your contacts, builds research briefs, and drafts personalized messages in your voice, in a fraction of the time.">
+  <meta property="og:url" content="https://www.bottbottgenai.com/linkedin-outreach-pipeline/">
+  <meta property="og:site_name" content="BottBott Business Systems">
+  <meta property="og:image" content="https://www.bottbottgenai.com/BottBott.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LinkedIn Outreach Pipeline | AI-Assisted Prospecting | BottBott">
+  <meta name="twitter:description" content="Stop researching prospects manually. The LinkedIn Outreach Pipeline scores your contacts, builds research briefs, and drafts personalized messages in your voice, in a fraction of the time.">
+  <meta name="twitter:image" content="https://www.bottbottgenai.com/BottBott.png">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.bottbottgenai.com/linkedin-outreach-pipeline/",
+        "url": "https://www.bottbottgenai.com/linkedin-outreach-pipeline/",
+        "name": "LinkedIn Outreach Pipeline | AI-Assisted Prospecting | BottBott",
+        "description": "Stop researching prospects manually. The LinkedIn Outreach Pipeline scores your contacts, builds research briefs, and drafts personalized messages in your voice, in a fraction of the time.",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bottbottgenai.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.bottbottgenai.com/solutions/" },
+            { "@type": "ListItem", "position": 3, "name": "LinkedIn Outreach Pipeline", "item": "https://www.bottbottgenai.com/linkedin-outreach-pipeline/" }
+          ]
+        },
+        "isPartOf": { "@id": "https://www.bottbottgenai.com/#website" }
+      },
+      {
+        "@type": "Service",
+        "name": "LinkedIn Outreach Pipeline",
+        "description": "A semi-custom AI-assisted prospecting system that scores LinkedIn contacts against an ICP rubric, builds evidence-based research briefs on priority contacts, and drafts personalized outreach messages in the client's voice for manual review and send.",
+        "areaServed": "Worldwide",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://www.bottbottgenai.com/#organization",
+          "name": "BottBott Business Systems",
+          "url": "https://www.bottbottgenai.com/",
+          "email": "simon@bottbottgenai.com",
+          "sameAs": [
+            "https://bottbott.substack.com",
+            "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change"
+          ]
+        },
+        "serviceType": "AI-Assisted LinkedIn Prospecting",
+        "url": "https://www.bottbottgenai.com/linkedin-outreach-pipeline/"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts — matching main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DESIGN TOKENS — EXACT MATCH TO MAIN SITE ── */
+    :root {
+      --bg:            #0f1923;
+      --bg-alt:        #131f2b;
+      --bg-card:       #17232f;
+      --bg-card-hover: #1c2b39;
+      --primary-dark:  #0a141d;
+      --gold:          #C4923A;
+      --gold-light:    #d9ad5f;
+      --gold-dim:      rgba(196, 146, 58, 0.6);
+      --gold-faint:    rgba(196, 146, 58, 0.12);
+      --on-gold:       #0f1923;
+      --text-light:    #f5f7f9;
+      --text-dim:      #9fb0c0;
+      --text-dimmer:   #6f8294;
+      --white:         #ffffff;
+      --font-body:     'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--text-light);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 25, 35, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-light);
+      flex-shrink: 0;
+    }
+
+    .logo-icon { width: 36px; height: 36px; }
+
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-sub {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a.active { color: var(--gold-light); font-weight: 700; }
+
+    .btn-nav {
+      background: var(--gold) !important;
+      color: var(--on-gold) !important;
+      padding: 10px 20px !important;
+      border-radius: 4px !important;
+      font-weight: 700 !important;
+      margin-left: 8px;
+    }
+
+    .btn-nav:hover {
+      background: var(--gold-light) !important;
+      color: var(--on-gold) !important;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 72px 0;
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--text-light);
+      padding: 96px 0 88px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(245,247,249,0.72);
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gold);
+      color: var(--on-gold);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: rgba(245,247,249,0.82);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1px solid var(--gold-dim);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--text-light);
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-size: 17px;
+      color: var(--text-dim);
+      max-width: 640px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    /* ── ALT BACKGROUNDS ── */
+    .section-alt {
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* ── PROSE ── */
+    .prose {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      max-width: 720px;
+    }
+
+    .prose p + p { margin-top: 16px; }
+    .prose strong { color: var(--text-light); }
+
+    /* ── STEPS ── */
+    .steps-list {
+      list-style: none;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--on-gold);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    /* ── BENEFITS ── */
+    .benefits-list {
+      list-style: none;
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .benefits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--on-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--text-light);
+      text-align: center;
+      padding: 96px 24px;
+      border-top: 1px solid var(--gold-dim);
+    }
+
+    .cta-section h2 {
+      color: var(--text-light);
+      margin: 0 auto 36px;
+      max-width: 560px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gold);
+      color: var(--on-gold);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-white:hover { background: var(--gold-light); }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top: 1px solid var(--gold-dim);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-dimmer);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      section { padding: 56px 0; }
+      .hero { padding: 72px 0 64px; }
+      .cta-section { padding: 72px 24px; }
+
+      .nav-links a:not(.btn-nav) { display: none; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER / NAV ══ -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="BottBott Business Systems home">
+      <img src="/BottBott.svg" alt="BottBott" class="logo-icon">
+      <div class="logo-text-wrap">
+        <span class="logo-name">BottBott</span>
+        <span class="logo-sub">Business Systems</span>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="Site navigation">
+      <a href="/solutions/">Solutions</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-work/">How We Work</a>
+      <a href="/#posts">Posts</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-nav">Book a Call</a>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">The LinkedIn Outreach Pipeline</p>
+    <h1>Your Best Prospects Deserve More Than a Template</h1>
+    <p class="hero-sub">Most LinkedIn outreach fails before you hit send. It's not that your offer is bad, but that the necessary research never happened.</p>
+    <div class="hero-actions">
+      <a href="https://calendly.com/simon-bottbottgenai/30min"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-primary">Book a Call</a>
+      <a href="#pipeline" class="btn-ghost">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WHY LINKEDIN OUTREACH FAILS ══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">The problem</p>
+    <h2>Why LinkedIn Outreach Fails</h2>
+    <div class="prose">
+      <p>The default playbook is volume: Connect with enough people, send enough messages, and the law of large numbers eventually works in your favor.</p>
+      <p>The problem is that LinkedIn is a human-first platform, and the people on it have learned to recognize the formula. Generic opener. Vague value prop. Hard ask. Delete.</p>
+      <p>The people worth talking to — founders, principals, operators running lean professional services firms — are exactly the people who will not respond to a template. They receive enough of them. What they respond to is evidence that you actually looked.</p>
+      <p>Most people skip the research because it takes too long. An hour per contact is not a sustainable model when you have thirty names in a list. The LinkedIn Outreach Pipeline solves the research problem, which in turn solves the bland messaging problem.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PERSONALIZATION IS NOT A FIRST NAME ══ -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-eyebrow">The distinction</p>
+    <h2>Personalization Is Not a First Name</h2>
+    <div class="prose">
+      <p>"Hi [First Name], I came across your profile..." is not personalization; it's a mail merge.</p>
+      <p>Real personalization means walking into a conversation knowing what someone's workflow probably looks like, where the friction likely lives, and what you can say that is specific enough to prove you actually thought about them. That takes research. And research, at scale, is something AI is genuinely good at.</p>
+      <p><strong>While the pipeline writes your outreach for you, it more importantly builds the foundation that makes good outreach possible.</strong></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ THE PIPELINE ══ -->
+<section id="pipeline">
+  <div class="container">
+    <p class="section-eyebrow">The solution</p>
+    <h2>The LinkedIn Outreach Pipeline</h2>
+    <p class="section-lead">Three stages. One system. Built on Google Sheets, Apps Script, and the Claude API, connected to your Gmail and calendar.</p>
+
+    <ol class="steps-list" aria-label="How the LinkedIn Outreach Pipeline works">
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div class="step-content">
+          <h3>Score</h3>
+          <p>You import your LinkedIn connections from a CSV export or acceptance emails. The scoring layer evaluates each contact against a rubric: role, company size, industry, tenure, and relationship signals, plus a technical self-sufficiency penalty that filters out anyone who does what you do. Every contact gets a numerical score and a priority tier. You work the top of the list.</p>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div class="step-content">
+          <h3>Deep Research</h3>
+          <p>Flagged contacts move to a research queue. The system fetches their website and available public content, then runs it through Claude with a structured research prompt. What comes back: a profile summary, inferred workflow, hypothesized pain points with evidence for each inference, solution angles specific to their business model, and a suggested outreach hook. Not generic. Grounded in how that specific person likely operates.</p>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div class="step-content">
+          <h3>Draft and Send</h3>
+          <p>The research feeds a final drafting pass. The system generates a personalized message, under 150 words, in your voice, with a low-pressure close. You review it in the pipeline, adjust the hook if you want, copy it, and send it from LinkedIn messenger.</p>
+        </div>
+      </li>
+    </ol>
+
+    <p class="prose" style="margin-top: 32px;"><strong>One pass of your judgment. The rest is already done.</strong></p>
+  </div>
+</section>
+
+
+<!-- ══ WHAT'S AUTOMATED AND WHAT'S YOURS ══ -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-eyebrow">Where the line is</p>
+    <h2>What's Automated and What's Yours</h2>
+    <div class="prose">
+      <p>LinkedIn does not allow direct message automation, and for good reason. The platform runs on human credibility. Every message goes out as you, and it should.</p>
+      <p>What the pipeline handles is everything that happens before you open LinkedIn: the scoring, the research synthesis, the first-draft thinking. By the time you are looking at a prospect's name, you already know who they are, what their operation probably looks like, and what you are going to say.</p>
+      <p><strong>You decide what gets sent. The system makes sure that decision is an informed one.</strong></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WHAT YOU GET ══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">What's included</p>
+    <h2>What You Get</h2>
+
+    <ul class="benefits-list">
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        A scored contact list, ranked by ICP fit, built from your existing LinkedIn network
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Deep research briefs on every priority contact: workflow, pain points, and evidence-based inferences
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Personalized draft messages ready to review and send
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Follow-up generation based on reply context
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Meeting prep layer with intake form, discovery questions, and Calendly integration
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        A system configured around your ICP, your voice, and your offer
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ══ HOW IT'S DELIVERED ══ -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-eyebrow">The delivery model</p>
+    <h2>How It's Delivered</h2>
+    <div class="prose">
+      <p>This is not a SaaS subscription. It is a semi-custom build, handed off to you.</p>
+      <p>The pipeline is configured around your target profile: your ICP criteria, your scoring rubric, your tone of voice, your offer. It runs inside your own Google account, connected to your Gmail and calendar. You own it outright. No recurring platform fees, nothing that stops working if a vendor changes their pricing.</p>
+      <p>Setup takes a few working sessions. After that, you have a system that runs every time you want to work a list.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CTA ══ -->
+<section class="cta-section">
+  <h2>Want to see how it would be configured for your pipeline?</h2>
+  <div class="cta-actions">
+    <a href="https://calendly.com/simon-bottbottgenai/30min"
+       target="_blank" rel="noopener noreferrer"
+       class="btn-white">Book a Call</a>
+    <a href="/autoblog/" class="btn-ghost">See the Autoblog System</a>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">&copy; 2026 BottBott Business Systems. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="/solutions/">Solutions</a>
+      <a href="/about/">About</a>
+      <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;">&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;</a>
+      <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer">Substack</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+      <a href="/privacy/">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

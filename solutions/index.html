@@ -52,7 +52,7 @@
         "@type": "ItemList",
         "@id": "https://www.bottbottgenai.com/solutions/#itemlist",
         "name": "BottBott Solutions",
-        "numberOfItems": 2,
+        "numberOfItems": 3,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -83,6 +83,27 @@
               "name": "Pitch Perfect Podcast Placement Agent",
               "url": "https://www.bottbottgenai.com/podcast-pitching/",
               "description": "An AI-driven podcast guesting service that scans multiple podcast databases, scores shows for fit, and drafts personalized pitch emails in the client's voice for review before sending.",
+              "provider": {
+                "@type": "Organization",
+                "@id": "https://www.bottbottgenai.com/#organization",
+                "name": "BottBott Business Systems",
+                "url": "https://www.bottbottgenai.com/",
+                "email": "simon@bottbottgenai.com",
+                "sameAs": [
+                  "https://bottbott.substack.com",
+                  "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change"
+                ]
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Service",
+              "name": "LinkedIn Outreach Pipeline",
+              "url": "https://www.bottbottgenai.com/linkedin-outreach-pipeline/",
+              "description": "A semi-custom AI-assisted prospecting system that scores LinkedIn contacts against an ICP rubric, builds evidence-based research briefs, and drafts personalized outreach messages for manual review and send.",
               "provider": {
                 "@type": "Organization",
                 "@id": "https://www.bottbottgenai.com/#organization",
@@ -284,7 +305,7 @@
 
     .solutions-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 32px;
     }
 
@@ -527,6 +548,12 @@
         <h2 class="solution-name">Your Next Client Is Already Listening to a Podcast</h2>
         <p class="solution-desc">The question is whether you're the guest being introduced. Pitch Perfect finds the right shows, scores them for fit, and writes personalized pitches in your voice — you review, you send.</p>
         <a href="/podcast-pitching/" class="solution-link">See How It Works →</a>
+      </div>
+      <div class="solution-card live">
+        <span class="solution-status status-live">Live</span>
+        <h2 class="solution-name">Your Best Prospects Deserve More Than a Template</h2>
+        <p class="solution-desc">Most LinkedIn outreach fails before you hit send. The Outreach Pipeline scores your contacts, builds research briefs, and drafts personalized messages in your voice — in a fraction of the time.</p>
+        <a href="/linkedin-outreach-pipeline/" class="solution-link">See How It Works →</a>
       </div>
     </div>
   </div>
