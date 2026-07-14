@@ -91,7 +91,20 @@
         "sameAs": [
           "https://bottbott.substack.com",
           "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change"
-        ]
+        ],
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "James Colistra"
+          },
+          "reviewBody": "Simon transformed one of our most time-consuming onboarding processes into an AI-powered workflow that saves us hours every week. Instead of juggling prompts and manual editing, we now have a repeatable system that produces high-quality podcast pitches quickly and consistently. It's become a core part of how Wonderfish operates."
+        }
       }
     ]
   }
@@ -790,7 +803,7 @@
     }
 
     .testimonials-grid {
-      max-width: 900px;
+      max-width: 640px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -817,6 +830,22 @@
       font-size: 18px;
       line-height: 1.7;
       font-style: italic;
+    }
+
+    .testimonial-author {
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+
+    .testimonial-author a {
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+
+    .testimonial-author a:hover {
+      text-decoration: underline;
     }
 
     /* FAQ */
@@ -1445,11 +1474,8 @@
     <div class="testimonials-grid">
       <div class="testimonial-card">
         <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">This is phenomenal!! Seriously it is above and behind what I was expecting.</p>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">I completed the process for myself and it worked beautifully.</p>
+        <p class="testimonial-text">Simo transformed one of our most time-consuming onboarding processes into an AI-powered workflow that saves us hours every week. Instead of juggling prompts and manual editing, we now have a repeatable system that produces high-quality podcast pitches quickly and consistently. It's become a core part of how Wonderfish operates.</p>
+        <p class="testimonial-author">James Colistra, Founder, <a href="https://wonderfish.xyz/" target="_blank" rel="noopener noreferrer">Wonderfish</a></p>
       </div>
     </div>
   </section>
