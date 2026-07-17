@@ -6,7 +6,7 @@
   <title>AI Blog Automation for Business Owners | BottBott Autoblog System</title>
   <meta name="description" content="Stop hiring writers that don't know your industry. The BottBott Autoblog turns a 2-minute voice memo into a published, SEO-optimized post in your voice. Every week, automatically.">
   <link rel="canonical" href="https://www.bottbottgenai.com/autoblog/">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <meta name="robots" content="index, follow">
   <meta name="keywords" content="AI blog automation, blog writing 2026, automated blog content, AI writing tool, EEAT content strategy, content marketing automation">
 
@@ -339,6 +339,8 @@
     }
 
     .prose p + p { margin-top: 16px; }
+    .prose a { color: var(--gold-light); text-decoration: none; }
+    .prose a:hover { text-decoration: underline; }
 
     /* ── EEAT GRID ── */
     .eeat-grid {
@@ -464,6 +466,13 @@
       line-height: 1.55;
     }
 
+    .benefits-list li a {
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+
+    .benefits-list li a:hover { text-decoration: underline; }
+
     .check-icon {
       flex-shrink: 0;
       width: 22px;
@@ -492,6 +501,33 @@
     }
 
     .cost-callout strong { color: var(--gold-light); }
+
+    /* ── TRUST CALLOUT ── */
+    .trust-section {
+      padding: 48px 0;
+    }
+
+    .trust-callout {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .trust-callout-lead {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .trust-callout p + p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
 
     /* ── CTA SECTION ── */
     .cta-section {
@@ -615,6 +651,7 @@
     </a>
 
     <nav class="nav-links" aria-label="Site navigation">
+      <a href="/#services">Services</a>
       <a href="/solutions/">Solutions</a>
       <a href="/about/">About</a>
       <a href="/how-we-work/">How We Work</a>
@@ -783,7 +820,7 @@
     <div class="prose">
       <p>There is significant noise right now about AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization), the argument that Google is being replaced by chatbots and that traditional SEO no longer matters.</p>
       <p>Here is what that framing misses: most AI search tools, including ChatGPT, Perplexity, and Google's AI Overviews, pull live web results as part of how they generate answers. They do not answer purely from training data. They search, retrieve, and synthesize. In practice, that process depends on the same core signals: indexed pages, domain authority, consistent publishing, and credible sourcing.</p>
-      <p>A blog that publishes weekly signals to Google and every tool that depends on its index that the site is active, current, and worth surfacing. The Autoblog System maintains that cadence automatically.</p>
+      <p>A blog that publishes weekly signals to Google and every tool that depends on its index that the site is active, current, and worth surfacing. The Autoblog System maintains that cadence automatically. That same body of work becomes the research a host needs to say yes when you're <a href="/podcast-pitching/">pitching podcasts</a>.</p>
     </div>
   </div>
 </section>
@@ -818,7 +855,7 @@
       </li>
       <li>
         <span class="check-icon" aria-hidden="true">&#10003;</span>
-        LinkedIn and Facebook drafts generated alongside each post
+        <a href="/linkedin-outreach-pipeline/">LinkedIn</a> and Facebook drafts generated alongside each post
       </li>
       <li>
         <span class="check-icon" aria-hidden="true">&#10003;</span>
@@ -826,9 +863,22 @@
       </li>
     </ul>
 
+    <p class="prose">Every post also becomes material your <a href="/warm-outreach/">warm outreach</a> can reference months later.</p>
+
     <p class="cost-callout">
       AI running costs: approximately <strong>$0.75 per post</strong> (Whisper transcription + Claude API). You are billed only for what runs. No subscription.
     </p>
+  </div>
+</section>
+
+
+<!-- ══ TRUST ══ -->
+<section class="trust-section">
+  <div class="container">
+    <div class="trust-callout">
+      <p class="trust-callout-lead">No subscriptions. No platform fees. No vendor lock-in.</p>
+      <p>Every system BottBott builds is yours outright. You own the code, the data, and the deployment. After setup, most systems run for a few dollars a month in API costs. That is it.</p>
+    </div>
   </div>
 </section>
 
