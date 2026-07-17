@@ -229,7 +229,26 @@
       margin-bottom: 16px;
     }
 
-    .hero h1 {
+    .hero-heading-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .hero-heading-row h1 {
+      margin-bottom: 0;
+      flex: 1;
+    }
+
+    .hero-icon {
+      flex-shrink: 0;
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+    }
+
+        .hero h1 {
       font-size: clamp(30px, 5vw, 52px);
       font-weight: 800;
       line-height: 1.15;
@@ -532,6 +551,7 @@
     @media (max-width: 768px) {
       section { padding: 56px 0; }
       .hero { padding: 72px 0 64px; }
+      .hero-icon { width: 56px; height: 56px; }
       .cta-section { padding: 72px 24px; }
 
       .nav-links a:not(.btn-nav) { display: none; }
@@ -573,7 +593,10 @@
 <section class="hero">
   <div class="container">
     <p class="eyebrow">The Warm Outreach System</p>
-    <h1>Your Best Leads Are Already in Your Database. They Just Haven't Heard from You.</h1>
+    <div class="hero-heading-row">
+      <h1>Your Best Leads Are Already in Your Database. They Just Haven't Heard from You.</h1>
+      <img src="/solutions/icons/warm-outreach.svg" alt="Warm Outreach System icon" class="hero-icon">
+    </div>
     <p class="hero-sub">Most professionals with 200+ contacts in a CRM are sitting on years of relationships that aren't hearing from them. The Warm Outreach System changes that automatically.</p>
     <div class="hero-actions">
       <a href="https://calendly.com/simon-bottbottgenai/30min"
@@ -722,7 +745,7 @@
   <div class="container">
     <div class="trust-callout">
       <p class="trust-callout-lead">No subscriptions. No platform fees. No vendor lock-in.</p>
-      <p>Every system BottBott builds is yours outright. You own the code, the data, and the deployment. After setup, most systems run for a few dollars a month in API costs. That is it.</p>
+      <p>Every system BottBott builds is yours outright. You own the code, the data, and the deployment. After setup, most systems run for a few dollars a month in API costs. That's it!</p>
     </div>
   </div>
 </section>

@@ -338,6 +338,9 @@
       display: flex;
       flex-direction: column;
       transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
     }
 
     .solution-card.live:hover {
@@ -346,11 +349,13 @@
     }
 
     .solution-icon {
-      width: 56px;
-      height: 56px;
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 70px;
+      height: 70px;
       border-radius: 4px;
       overflow: hidden;
-      margin-bottom: 20px;
     }
 
     .solution-icon img {
@@ -382,6 +387,7 @@
       font-weight: 700;
       color: var(--text-light);
       margin-bottom: 12px;
+      max-width: calc(100% - 86px);
     }
 
     .solution-desc {
@@ -395,18 +401,14 @@
     .solution-link {
       display: inline-flex;
       align-items: center;
-      background: var(--gold);
-      color: var(--on-gold);
+      color: var(--gold-light);
       font-size: 15px;
       font-weight: 700;
-      padding: 14px 28px;
-      border-radius: 4px;
-      text-decoration: none;
       align-self: flex-start;
-      transition: background 0.2s;
+      transition: color 0.2s;
     }
 
-    .solution-link:hover { background: var(--gold-light); }
+    .solution-card.live:hover .solution-link { color: var(--gold); }
 
     /* ── CTA SECTION ── */
     .cta-section {
@@ -574,34 +576,34 @@
 <section class="solutions">
   <div class="container">
     <div class="solutions-grid">
-      <div class="solution-card live">
+      <a href="/autoblog/" class="solution-card live">
         <div class="solution-icon"><img src="/solutions/icons/autoblog-solution.svg" alt="Autoblog System icon"></div>
         <span class="solution-status status-live">Live</span>
         <h2 class="solution-name">Autoblog System</h2>
         <p class="solution-desc">Turn a 2-minute voice memo into a published, SEO-optimized blog post in your voice. Every week, automatically — no content writers, no subscriptions.</p>
-        <a href="/autoblog/" class="solution-link">See How It Works →</a>
-      </div>
-      <div class="solution-card live">
+        <span class="solution-link">See How It Works →</span>
+      </a>
+      <a href="/podcast-pitching/" class="solution-card live">
         <div class="solution-icon"><img src="/solutions/icons/pod-guest.svg" alt="Pitch Perfect Podcast Placement Agent icon"></div>
         <span class="solution-status status-live">Live</span>
         <h2 class="solution-name">Your Next Client Is Already Listening to a Podcast</h2>
         <p class="solution-desc">The question is whether you're the guest being introduced. Pitch Perfect finds the right shows, scores them for fit, and writes personalized pitches in your voice — you review, you send.</p>
-        <a href="/podcast-pitching/" class="solution-link">See How It Works →</a>
-      </div>
-      <div class="solution-card live">
+        <span class="solution-link">See How It Works →</span>
+      </a>
+      <a href="/linkedin-outreach-pipeline/" class="solution-card live">
         <div class="solution-icon"><img src="/solutions/icons/lead-gen.svg" alt="LinkedIn Outreach Pipeline icon"></div>
         <span class="solution-status status-live">Live</span>
         <h2 class="solution-name">Your Best Prospects Deserve More Than a Template</h2>
         <p class="solution-desc">Most LinkedIn outreach fails before you hit send. The Outreach Pipeline scores your contacts, builds research briefs, and drafts personalized messages in your voice — in a fraction of the time.</p>
-        <a href="/linkedin-outreach-pipeline/" class="solution-link">See How It Works →</a>
-      </div>
-      <div class="solution-card live">
+        <span class="solution-link">See How It Works →</span>
+      </a>
+      <a href="/warm-outreach/" class="solution-card live">
         <div class="solution-icon"><img src="/solutions/icons/warm-outreach.svg" alt="Warm Outreach System icon"></div>
         <span class="solution-status status-live">Live</span>
         <h2 class="solution-name">Warm Outreach System</h2>
         <p class="solution-desc">Your CRM has 200+ relationships that haven't heard from you in months. This system sends AI-written, personally tailored emails on your behalf at exactly the right moments: birthday touches, seasonal check-ins, and rolling check-ins every 90 days, all from your own address.</p>
-        <a href="/warm-outreach/" class="solution-link">Learn More →</a>
-      </div>
+        <span class="solution-link">Learn More →</span>
+      </a>
     </div>
   </div>
 </section>

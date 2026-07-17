@@ -1031,11 +1031,11 @@
     }
 
     .projects-grid {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
 
     .project-card {
@@ -1046,6 +1046,7 @@
       border: 1px solid var(--gold-dim);
       transition: transform 0.3s, box-shadow 0.3s;
       display: block;
+      position: relative;
     }
 
     .project-card:hover {
@@ -1055,11 +1056,13 @@
     }
 
     .project-logo {
-      width: 56px;
-      height: 56px;
+      position: absolute;
+      top: 36px;
+      right: 36px;
+      width: 70px;
+      height: 70px;
       border-radius: 4px;
       overflow: hidden;
-      margin-bottom: 20px;
     }
 
     .project-logo img {
@@ -1074,6 +1077,7 @@
       font-weight: 700;
       color: var(--text-light);
       margin-bottom: 10px;
+      max-width: calc(100% - 86px);
     }
 
     .project-desc {
@@ -1265,6 +1269,7 @@
       .stat-divider { display: none; }
       .cta-banner-content { flex-direction: column; text-align: center; }
       .services-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
       .footer-content { flex-direction: column; text-align: center; }
       .footer-links { justify-content: center; }
     }
@@ -1448,7 +1453,7 @@
       <div class="about-visual">
         <div class="about-quote">
           <span class="quote-icon">"</span>
-          <p class="quote-text">Most businesses do not need new tools. They need their existing tools to finally talk to each other.</p>
+          <p class="quote-text">Most businesses do not need new tools. They need their existing tools to actually work for them.</p>
         </div>
       </div>
     </div>
