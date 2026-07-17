@@ -74,10 +74,10 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
   <style>
-    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     /* ── DESIGN TOKENS, EXACT MATCH TO MAIN SITE ── */
-    :root {{
+    :root {
       --bg:            #0f1923;
       --bg-alt:        #131f2b;
       --bg-card:       #17232f;
@@ -93,21 +93,21 @@
       --text-dimmer:   #6f8294;
       --white:         #ffffff;
       --font-body:     'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }}
+    }
 
-    html {{ scroll-behavior: smooth; }}
+    html { scroll-behavior: smooth; }
 
-    body {{
+    body {
       font-family: var(--font-body);
       font-weight: 500;
       color: var(--text-light);
       background: var(--bg);
       line-height: 1.7;
       overflow-x: hidden;
-    }}
+    }
 
     /* ── NAV ── */
-    .site-header {{
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
@@ -115,56 +115,56 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--gold-dim);
       padding: 0 24px;
-    }}
+    }
 
-    .nav-inner {{
+    .nav-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 72px;
-    }}
+    }
 
-    .nav-logo {{
+    .nav-logo {
       display: flex;
       align-items: center;
       gap: 10px;
       text-decoration: none;
       color: var(--text-light);
       flex-shrink: 0;
-    }}
+    }
 
-    .logo-icon {{ width: 36px; height: 36px; }}
+    .logo-icon { width: 36px; height: 36px; }
 
-    .logo-text-wrap {{
+    .logo-text-wrap {
       display: flex;
       flex-direction: column;
       line-height: 1.1;
-    }}
+    }
 
-    .logo-name {{
+    .logo-name {
       font-size: 16px;
       font-weight: 700;
       color: var(--text-light);
       letter-spacing: -0.01em;
-    }}
+    }
 
-    .logo-sub {{
+    .logo-sub {
       font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-dim);
-    }}
+    }
 
-    .nav-links {{
+    .nav-links {
       display: flex;
       align-items: center;
       gap: 4px;
-    }}
+    }
 
-    .nav-links a {{
+    .nav-links a {
       font-size: 14px;
       font-weight: 600;
       color: var(--text-dim);
@@ -172,43 +172,43 @@
       padding: 8px 12px;
       border-radius: 4px;
       transition: color 0.2s;
-    }}
+    }
 
-    .nav-links a:hover {{ color: var(--gold-light); }}
-    .nav-links a.active {{ color: var(--gold-light); font-weight: 700; }}
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a.active { color: var(--gold-light); font-weight: 700; }
 
-    .btn-nav {{
+    .btn-nav {
       background: var(--gold) !important;
       color: var(--on-gold) !important;
       padding: 10px 20px !important;
       border-radius: 4px !important;
       font-weight: 700 !important;
       margin-left: 8px;
-    }}
+    }
 
-    .btn-nav:hover {{
+    .btn-nav:hover {
       background: var(--gold-light) !important;
       color: var(--on-gold) !important;
-    }}
+    }
 
     /* ── LAYOUT ── */
-    .container {{
+    .container {
       max-width: 860px;
       margin: 0 auto;
       padding: 0 24px;
-    }}
+    }
 
-    section {{
+    section {
       padding: 72px 0;
       background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.jpg');
       background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.webp');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-    }}
+    }
 
     /* ── HERO ── */
-    .hero {{
+    .hero {
       background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
       background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
       background-size: cover;
@@ -216,59 +216,59 @@
       background-repeat: no-repeat;
       color: var(--text-light);
       padding: 96px 0 88px;
-    }}
+    }
 
-    .eyebrow {{
+    .eyebrow {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold-light);
       margin-bottom: 16px;
-    }}
+    }
 
-    .hero-heading-row {{
+    .hero-heading-row {
       display: flex;
       align-items: center;
       gap: 24px;
       margin-bottom: 20px;
-    }}
+    }
 
-    .hero-heading-row h1 {{
+    .hero-heading-row h1 {
       margin-bottom: 0;
       flex: 1;
-    }}
+    }
 
-    .hero-icon {{
+    .service-hero-icon {
       flex-shrink: 0;
       width: 90px;
       height: 90px;
       object-fit: contain;
-    }}
+    }
 
-    .hero h1 {{
+    .hero h1 {
       font-size: clamp(30px, 5vw, 52px);
       font-weight: 800;
       line-height: 1.15;
       letter-spacing: -0.02em;
       max-width: 700px;
-    }}
+    }
 
-    .hero-sub {{
+    .hero-sub {
       font-size: 18px;
       line-height: 1.7;
       color: rgba(245,247,249,0.72);
       max-width: 580px;
       margin-bottom: 40px;
-    }}
+    }
 
-    .hero-actions {{
+    .hero-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-    }}
+    }
 
-    .btn-primary {{
+    .btn-primary {
       display: inline-flex;
       align-items: center;
       background: var(--gold);
@@ -282,11 +282,11 @@
       border: none;
       cursor: pointer;
       transition: background 0.2s;
-    }}
+    }
 
-    .btn-primary:hover {{ background: var(--gold-light); }}
+    .btn-primary:hover { background: var(--gold-light); }
 
-    .btn-ghost {{
+    .btn-ghost {
       display: inline-flex;
       align-items: center;
       background: transparent;
@@ -299,75 +299,75 @@
       text-decoration: none;
       border: 1px solid var(--gold-dim);
       transition: border-color 0.2s, color 0.2s;
-    }}
+    }
 
-    .btn-ghost:hover {{
+    .btn-ghost:hover {
       border-color: var(--gold);
       color: var(--text-light);
-    }}
+    }
 
     /* ── SECTION HEADINGS ── */
-    .section-eyebrow {{
+    .section-eyebrow {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 12px;
-    }}
+    }
 
-    h2 {{
+    h2 {
       font-size: clamp(22px, 3.5vw, 34px);
       font-weight: 700;
       line-height: 1.25;
       letter-spacing: -0.015em;
       color: var(--text-light);
       margin-bottom: 16px;
-    }}
+    }
 
-    .section-lead {{
+    .section-lead {
       font-size: 17px;
       color: var(--text-dim);
       max-width: 640px;
       margin-bottom: 40px;
       line-height: 1.7;
-    }}
+    }
 
     /* ── ALT BACKGROUNDS ── */
-    .section-alt {{
+    .section-alt {
       background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('/hero-bg.jpg');
       background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('/hero-bg.webp');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-    }}
+    }
 
     /* ── PROSE ── */
-    .prose {{
+    .prose {
       font-size: 16px;
       color: var(--text-dim);
       line-height: 1.8;
       max-width: 720px;
-    }}
+    }
 
-    .prose p + p {{ margin-top: 16px; }}
-    .prose strong {{ color: var(--text-light); }}
-    .prose a {{ color: var(--gold-light); text-decoration: none; }}
-    .prose a:hover {{ text-decoration: underline; }}
+    .prose p + p { margin-top: 16px; }
+    .prose strong { color: var(--text-light); }
+    .prose a { color: var(--gold-light); text-decoration: none; }
+    .prose a:hover { text-decoration: underline; }
 
     /* ── EXPLORE OTHER SERVICES ── */
-    .explore-services .section-eyebrow {{
+    .explore-services .section-eyebrow {
       text-align: center;
-    }}
+    }
 
-    .explore-grid {{
+    .explore-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 16px;
       margin-top: 24px;
-    }}
+    }
 
-    .explore-item {{
+    .explore-item {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -378,59 +378,59 @@
       border-radius: 4px;
       border: 1px solid transparent;
       transition: border-color 0.2s, background 0.2s;
-    }}
+    }
 
-    .explore-item:hover {{
+    .explore-item:hover {
       background: var(--bg-card);
       border-color: var(--gold-dim);
-    }}
+    }
 
-    .explore-item img {{
+    .explore-item img {
       width: 48px;
       height: 48px;
       object-fit: contain;
-    }}
+    }
 
-    .explore-item span {{
+    .explore-item span {
       font-size: 13px;
       font-weight: 600;
       color: var(--text-dim);
       transition: color 0.2s;
-    }}
+    }
 
-    .explore-item:hover span {{
+    .explore-item:hover span {
       color: var(--gold-light);
-    }}
+    }
 
     /* ── TRUST CALLOUT ── */
-    .trust-section {{
+    .trust-section {
       padding: 48px 0;
-    }}
+    }
 
-    .trust-callout {{
+    .trust-callout {
       max-width: 720px;
       margin: 0 auto;
       padding: 20px 24px;
       background: var(--bg-card);
       border-left: 3px solid var(--gold);
       border-radius: 0 4px 4px 0;
-    }}
+    }
 
-    .trust-callout-lead {{
+    .trust-callout-lead {
       font-size: 16px;
       font-weight: 700;
       color: var(--gold-light);
       margin-bottom: 8px;
-    }}
+    }
 
-    .trust-callout p + p {{
+    .trust-callout p + p {
       font-size: 14px;
       color: var(--text-dim);
       line-height: 1.65;
-    }}
+    }
 
     /* ── CTA SECTION ── */
-    .cta-section {{
+    .cta-section {
       background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
       background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
       background-size: cover;
@@ -440,22 +440,22 @@
       text-align: center;
       padding: 96px 24px;
       border-top: 1px solid var(--gold-dim);
-    }}
+    }
 
-    .cta-section h2 {{
+    .cta-section h2 {
       color: var(--text-light);
       margin: 0 auto 36px;
       max-width: 560px;
-    }}
+    }
 
-    .cta-actions {{
+    .cta-actions {
       display: flex;
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
-    }}
+    }
 
-    .btn-white {{
+    .btn-white {
       display: inline-flex;
       align-items: center;
       background: var(--gold);
@@ -467,12 +467,12 @@
       border-radius: 4px;
       text-decoration: none;
       transition: background 0.2s;
-    }}
+    }
 
-    .btn-white:hover {{ background: var(--gold-light); }}
+    .btn-white:hover { background: var(--gold-light); }
 
     /* ── FOOTER ── */
-    .site-footer {{
+    .site-footer {
       background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
       background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
       background-size: cover;
@@ -480,9 +480,9 @@
       background-repeat: no-repeat;
       border-top: 1px solid var(--gold-dim);
       padding: 40px 24px;
-    }}
+    }
 
-    .footer-inner {{
+    .footer-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
@@ -490,45 +490,45 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 16px;
-    }}
+    }
 
-    .footer-copy {{
+    .footer-copy {
       font-size: 13px;
       color: var(--text-dimmer);
-    }}
+    }
 
-    .footer-links {{
+    .footer-links {
       display: flex;
       gap: 20px;
-    }}
+    }
 
-    .footer-links a {{
+    .footer-links a {
       font-size: 13px;
       font-weight: 500;
       color: var(--text-dim);
       text-decoration: none;
       transition: color 0.15s;
-    }}
+    }
 
-    .footer-links a:hover {{ color: var(--gold-light); }}
+    .footer-links a:hover { color: var(--gold-light); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {{
-      section {{ padding: 56px 0; }}
-      .hero {{ padding: 72px 0 64px; }}
-      .hero-icon {{ width: 60px; height: 60px; }}
-      .cta-section {{ padding: 72px 24px; }}
-      .explore-grid {{ grid-template-columns: repeat(3, 1fr); }}
+    @media (max-width: 768px) {
+      section { padding: 56px 0; }
+      .hero { padding: 72px 0 64px; }
+      .service-hero-icon { width: 60px; height: 60px; }
+      .cta-section { padding: 72px 24px; }
+      .explore-grid { grid-template-columns: repeat(3, 1fr); }
 
-      .nav-links a:not(.btn-nav) {{ display: none; }}
+      .nav-links a:not(.btn-nav) { display: none; }
 
-      .footer-inner {{ flex-direction: column; align-items: flex-start; }}
-      .footer-links {{ flex-wrap: wrap; }}
-    }}
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+    }
 
-    @media (max-width: 480px) {{
-      .explore-grid {{ grid-template-columns: repeat(2, 1fr); }}
-    }}
+    @media (max-width: 480px) {
+      .explore-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 <body>
@@ -565,7 +565,7 @@
     <p class="eyebrow">Team Fluency Training</p>
     <div class="hero-heading-row">
       <h1>AI Fluency Is Not Optional. But It Does Not Have to Be Overwhelming.</h1>
-      <img src="/Team%20Fluency%20Training.svg" alt="Team Fluency Training icon" class="hero-icon">
+      <img src="/Team%20Fluency%20Training.svg" alt="Team Fluency Training icon" class="service-hero-icon" width="90" height="90">
     </div>
     <p class="hero-sub">For teams adopting new systems into daily operations: fundamentals, workflow design, and an actionable playbook your team will actually use.</p>
     <div class="hero-actions">
