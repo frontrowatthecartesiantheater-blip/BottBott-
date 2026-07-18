@@ -1,0 +1,16 @@
+{
+  "dominant_phrases": [
+    "I've been doing this a long time",
+    "here's what I tell people",
+    "it comes down to the basics"
+  ],
+  "energy_level": "conversational",
+  "specific_references": [
+    "an example local landmark",
+    "a named tool or process the creator uses"
+  ],
+  "opinions_expressed": [
+    "A clear, specific opinion the creator stated, which the post should anchor to.",
+    "A second honest take that adds personality."
+  ]
+}

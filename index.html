@@ -928,103 +928,6 @@
       color: var(--text-dim);
     }
 
-    /* Posts */
-    .posts {
-      padding: 100px 24px;
-      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.jpg');
-      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('hero-bg.webp');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .posts-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
-
-    .post-card {
-      padding: 32px;
-      background: var(--bg-card);
-      border-radius: 4px;
-      text-decoration: none;
-      border: 1px solid var(--gold-dim);
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: block;
-    }
-
-    .post-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(196, 146, 58, 0.12);
-    }
-
-    .post-meta {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--gold-light);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
-    }
-
-    .post-title {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text-light);
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-
-    .post-excerpt {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--text-dim);
-      margin-bottom: 16px;
-    }
-
-    .post-link {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gold-light);
-    }
-
-    /* Post skeleton loading state */
-    .post-skeleton {
-      cursor: default;
-    }
-
-    .post-skeleton:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .skeleton-bar {
-      height: 14px;
-      border-radius: 3px;
-      background: linear-gradient(90deg, var(--bg-card-hover) 25%, rgba(196, 146, 58, 0.18) 50%, var(--bg-card-hover) 75%);
-      background-size: 200% 100%;
-      animation: skeleton-pulse 1.6s ease-in-out infinite;
-      margin-bottom: 12px;
-    }
-
-    .skeleton-meta { width: 40%; height: 12px; }
-    .skeleton-title { width: 90%; height: 20px; }
-    .skeleton-excerpt { width: 100%; height: 14px; }
-    .skeleton-link { width: 35%; height: 14px; margin-top: 4px; margin-bottom: 0; }
-
-    @keyframes skeleton-pulse {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .skeleton-bar { animation: none; }
-    }
-
     /* Projects */
     .projects {
       padding: 100px 24px;
@@ -1039,8 +942,15 @@
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
+    }
+
+    .project-latest {
+      font-size: 14px;
+      color: var(--gold-light);
+      margin: -8px 0 16px;
+      line-height: 1.5;
     }
 
     .project-card {
@@ -1298,7 +1208,7 @@
         <a href="/solutions/" class="nav-link">Solutions</a>
         <a href="/about/" class="nav-link">About</a>
         <a href="/how-we-work/" class="nav-link">How We Work</a>
-        <a href="#posts" class="nav-link">Posts</a>
+        <a href="/blog/" class="nav-link">Posts</a>
         <a href="#contact" class="nav-link">Contact</a>
         <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Call</a>
       </div>
@@ -1309,7 +1219,7 @@
       <a href="/solutions/" class="mobile-nav-link" onclick="closeMenu()">Solutions</a>
       <a href="/about/" class="mobile-nav-link" onclick="closeMenu()">About</a>
       <a href="/how-we-work/" class="mobile-nav-link" onclick="closeMenu()">How We Work</a>
-      <a href="#posts" class="mobile-nav-link" onclick="closeMenu()">Posts</a>
+      <a href="/blog/" class="mobile-nav-link" onclick="closeMenu()">Posts</a>
       <a href="#contact" class="mobile-nav-link" onclick="closeMenu()">Contact</a>
       <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">Book a Call →</a>
     </div>
@@ -1548,42 +1458,6 @@
     </div>
   </section>
 
-  <!-- Posts -->
-  <section id="posts" class="posts">
-    <div class="section-header">
-      <span class="section-label">Writing</span>
-      <h2 class="section-title">Latest from BottBott</h2>
-      <p class="section-subtitle">Practical guidance. No hype, no fluff — just what works.</p>
-    </div>
-    <div class="posts-grid" id="postsGrid">
-      <!-- Skeleton loading state shown until JS loads cached/fresh posts -->
-      <div class="post-card post-skeleton" aria-hidden="true">
-        <div class="skeleton-bar skeleton-meta"></div>
-        <div class="skeleton-bar skeleton-title"></div>
-        <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
-        <div class="skeleton-bar skeleton-excerpt"></div>
-        <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
-        <div class="skeleton-bar skeleton-link"></div>
-      </div>
-      <div class="post-card post-skeleton" aria-hidden="true">
-        <div class="skeleton-bar skeleton-meta"></div>
-        <div class="skeleton-bar skeleton-title"></div>
-        <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
-        <div class="skeleton-bar skeleton-excerpt"></div>
-        <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
-        <div class="skeleton-bar skeleton-link"></div>
-      </div>
-      <div class="post-card post-skeleton" aria-hidden="true">
-        <div class="skeleton-bar skeleton-meta"></div>
-        <div class="skeleton-bar skeleton-title"></div>
-        <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
-        <div class="skeleton-bar skeleton-excerpt"></div>
-        <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
-        <div class="skeleton-bar skeleton-link"></div>
-      </div>
-    </div>
-  </section>
-
   <!-- Projects -->
   <section id="projects" class="projects">
     <div class="section-header">
@@ -1615,6 +1489,15 @@
         <h3 class="project-name">Top AI News Today</h3>
         <p class="project-desc">Stay on top of AI. A curated daily feed of the most important AI news, filtered so you don't have to be.</p>
         <span class="project-link">Visit Top AI News Today →</span>
+      </a>
+      <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer" class="project-card">
+        <div class="project-logo">
+          <img src="assets/images/icon-substack.svg" alt="BottBott Substack icon">
+        </div>
+        <h3 class="project-name">The BottBott Substack</h3>
+        <p class="project-desc">Weekly writing on AI, automation, and business systems — practical guidance straight from the workshop.</p>
+        <p class="project-latest" id="substackLatest" hidden></p>
+        <span class="project-link">Read on Substack →</span>
       </a>
     </div>
   </section>
@@ -1682,49 +1565,28 @@
       item.classList.toggle('open');
     }
 
-    // Shown if the fetch fails or returns no posts
-    const POSTS_FALLBACK_HTML = `
-      <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer" class="post-card">
-        <div class="post-meta">Latest</div>
-        <h3 class="post-title">Read the BottBott Newsletter</h3>
-        <p class="post-excerpt">Practical guidance on workflow systems, automation, and building infrastructure that scales.</p>
-        <span class="post-link">Visit Substack →</span>
-      </a>
-    `;
-
-    // Fetch posts from local JSON (updated by GitHub Action)
-    async function fetchPosts() {
-      const postsGrid = document.getElementById('postsGrid');
+    // Show the latest Substack post title on the Substack project card.
+    // posts.json is kept fresh by the fetch-posts GitHub Action; if the fetch
+    // fails the line simply stays hidden and the static card stands alone.
+    async function fetchLatestPost() {
+      const latest = document.getElementById('substackLatest');
 
       try {
         const response = await fetch('posts.json');
         const data = await response.json();
 
         if (data.posts && data.posts.length > 0) {
-          postsGrid.innerHTML = data.posts.map(post => {
-            const date = new Date(post.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-            return `
-              <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="post-card">
-                <div class="post-meta">${date}</div>
-                <h3 class="post-title">${post.title}</h3>
-                <p class="post-excerpt">${post.excerpt}...</p>
-                <span class="post-link">Read on Substack →</span>
-              </a>
-            `;
-          }).join('');
-        } else {
-          postsGrid.innerHTML = POSTS_FALLBACK_HTML;
+          latest.textContent = `Latest: ${data.posts[0].title}`;
+          latest.hidden = false;
         }
       } catch (error) {
-        // Fetch failed, show fallback newsletter card
-        console.error('Failed to fetch posts:', error);
-        postsGrid.innerHTML = POSTS_FALLBACK_HTML;
+        console.error('Failed to fetch latest post:', error);
       }
     }
 
     // Nav scroll highlighting
     function updateActiveNav() {
-      const sections = ['hero', 'services', 'about', 'posts', 'contact'];
+      const sections = ['hero', 'services', 'about', 'contact'];
       const scrollPos = window.scrollY + 150;
 
       sections.forEach(id => {
@@ -1770,7 +1632,7 @@
     window.addEventListener('scroll', updateActiveNav);
     document.addEventListener('DOMContentLoaded', () => {
       updateActiveNav();
-      fetchPosts();
+      fetchLatestPost();
       initVideoFacade();
     });
   </script>

@@ -1,0 +1,7 @@
+{
+  "title": "An Example H1 With the Example Primary Keyword",
+  "slug": "example-primary-keyword",
+  "meta_title": "Example Meta Title With Keyword",
+  "meta_description": "An example meta description that includes the primary keyword and addresses search intent in under 155 characters.",
+  "internal_links": ["https://example.com/about", "https://example-secondary.com/reviews"]
+}

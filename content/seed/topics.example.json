@@ -1,0 +1,33 @@
+[
+  {
+    "order_index": 1,
+    "title": "An Example First Topic Title",
+    "description": "One or two sentences describing what this post covers and why it matters to the client's audience.",
+    "primary_keyword": "example primary keyword",
+    "scheduled_date": "2026-01-07",
+    "category": "example-category-a",
+    "status": "upcoming",
+    "supporting_keywords": ["example supporting keyword one", "example supporting keyword two"],
+    "guiding_questions": [
+      "What is the first thing the creator should say about this?",
+      "What is a common misconception worth correcting?",
+      "What practical tip comes from real experience?",
+      "Any local quirks worth mentioning?"
+    ]
+  },
+  {
+    "order_index": 2,
+    "title": "An Example Second Topic Title",
+    "description": "A short description of the second example topic.",
+    "primary_keyword": "another example keyword",
+    "scheduled_date": "2026-01-14",
+    "category": "example-category-b",
+    "status": "upcoming",
+    "supporting_keywords": ["example supporting keyword one", "example supporting keyword three"],
+    "guiding_questions": [
+      "What do people usually get wrong here?",
+      "How long does the process really take?",
+      "What would you tell a friend who asked about this?"
+    ]
+  }
+]

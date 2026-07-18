@@ -1,0 +1,52 @@
+PRIMARY KEYWORD: example primary keyword
+SECONDARY KEYWORDS: example secondary term, related example phrase
+
+CHOSEN INTERNAL LINK A:
+- URL: https://example.com/about
+- Anchor text suggestion: about the work
+- Placement rationale: The experience section is the natural place to link the about page.
+
+CHOSEN INTERNAL LINK B:
+- URL: https://example-secondary.com/reviews
+- Anchor text suggestion: what clients say
+- Placement rationale: The closing section points readers to social proof on the secondary site.
+
+OPENING HOOK: A specific, grounded first line that pulls the reader in. Not a question.
+
+PROPOSED H1: An Example H1 With the Example Primary Keyword
+
+SECTIONS:
+
+## A Specific First Section Heading
+- Purpose: orient the reader and state the angle
+- Key content: one or two concrete points
+- Transcript anchor: "here's what I tell people"
+- Keyword placement: primary keyword in the first paragraph
+- Dynamic TOV to use: "I've been doing this a long time"
+
+## A Second Section Heading
+- Purpose: deliver the core practical value
+- Key content: the main advice
+- Transcript anchor: the first stated opinion
+- Keyword placement: a secondary keyword
+- Dynamic TOV to use: "it comes down to the basics"
+
+## A Third Section Heading
+- Purpose: address what people get wrong
+- Key content: a correction or nuance
+- Transcript anchor: none — use TOV profile
+- Keyword placement: primary keyword once
+- Dynamic TOV to use: the second stated opinion
+
+CONCLUSION SECTION:
+- H2 heading: Talk to [Creator] About the Example Primary Keyword
+- Purpose: move the reader to a next step
+- CTA direction: call the phone number, or visit the site
+- Voice: first person
+
+SEO METADATA PLAN:
+- Meta title: Example Meta Title With Keyword
+- Meta description: An example meta description that includes the primary keyword and addresses search intent in under 155 characters.
+- URL slug: example-primary-keyword
+
+WORD COUNT TARGET: 900-1,100 words

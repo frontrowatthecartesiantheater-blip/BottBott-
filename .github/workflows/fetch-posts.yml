@@ -17,7 +17,7 @@ jobs:
       - name: Fetch RSS and convert to JSON
         run: |
           curl -s "https://api.rss2json.com/v1/api.json?rss_url=https://bottbott.substack.com/feed" \
-            | jq '{posts: [.items[:3][] | {title: .title, link: .link, pubDate: .pubDate, excerpt: (.description | gsub("<[^>]*>"; "") | .[0:120])}], updated: now | strftime("%Y-%m-%dT%H:%M:%SZ")}' \
+            | jq '{posts: [.items[:1][] | {title: .title, link: .link, pubDate: .pubDate, excerpt: (.description | gsub("<[^>]*>"; "") | .[0:120])}], updated: now | strftime("%Y-%m-%dT%H:%M:%SZ")}' \
             > posts.json
       
       - name: Commit if changed

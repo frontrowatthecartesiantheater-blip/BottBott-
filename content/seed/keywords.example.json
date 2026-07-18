@@ -1,0 +1,7 @@
+[
+  { "term": "example primary keyword", "tier": "primary" },
+  { "term": "another example keyword", "tier": "primary" },
+  { "term": "example supporting keyword one", "tier": "secondary" },
+  { "term": "example supporting keyword two", "tier": "secondary" },
+  { "term": "example supporting keyword three", "tier": "secondary" }
+]

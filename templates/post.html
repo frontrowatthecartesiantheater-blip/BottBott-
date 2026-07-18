@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{META_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <link rel="canonical" href="{{CANONICAL_URL}}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="{{CLIENT_BUSINESS_NAME}}">
+  <meta property="og:title" content="{{META_TITLE}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL_URL}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta property="article:published_time" content="{{DATE_ISO}}">
+  <meta property="article:author" content="{{CLIENT_FULL_NAME}}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{META_TITLE}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="{{OG_IMAGE}}">
+
+  <!-- Fonts: preload the most-used face, then the stylesheet -->
+  <link rel="preload" href="../assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- LocalBusiness structured data (site-wide base) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": {{CLIENT_SCHEMA_TYPES_JSON}},
+    "name": "{{CLIENT_BUSINESS_NAME}}",
+    "image": "{{CLIENT_SCHEMA_IMAGE_URL}}",
+    "url": "{{CANONICAL_URL}}",
+    "telephone": "{{CLIENT_PHONE_E164}}",
+    "email": "{{CLIENT_CONTACT_EMAIL}}",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "{{CLIENT_PRIMARY_CITY}}"
+    },
+    "areaServed": [{{CLIENT_SERVICE_AREAS_JSON}}
+    ],
+    "sameAs": [
+      "{{CLIENT_LINKEDIN_URL}}",
+      "https://{{CLIENT_PERSONAL_SITE_DOMAIN}}",
+      "{{CLIENT_GOOGLE_MAPS_URL}}"
+    ],
+    "knowsAbout": {{CLIENT_EXPERTISE_TAGS_JSON}},
+    "description": "{{CLIENT_SCHEMA_DESCRIPTION}}"
+  }
+  </script>
+
+  <!-- Article structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": {{TITLE_JSON}},
+    "description": {{META_DESCRIPTION_JSON}},
+    "author": {
+      "@type": "Person",
+      "name": "{{CLIENT_FULL_NAME}}"
+    },
+    "datePublished": "{{DATE_ISO}}",
+    "dateModified": "{{DATE_ISO}}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{CLIENT_BUSINESS_NAME}}"
+    },
+    "mainEntityOfPage": "{{CANONICAL_URL}}"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================ Header ============================ -->
+  <header class="site-header">
+    <nav class="container nav" aria-label="Primary">
+      <a class="nav__logo" href="../index.html">{{CLIENT_FULL_NAME}}</a>
+
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav__menu" id="nav-menu">
+        <li><a class="nav__link" href="../index.html">Home</a></li>
+        <li><a class="nav__link" href="index.html" aria-current="page">Blog</a></li>
+      </ul>
+
+      <a class="nav__phone" href="tel:{{CLIENT_PHONE_E164}}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span class="nav__phone-num">{{CLIENT_PHONE_NUMBER}}</span>
+      </a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================ Post ============================ -->
+    <section class="section">
+      <div class="container">
+        <article class="article">
+          <div class="article__header">
+            <p class="article__meta">
+              <time datetime="{{DATE_ISO}}">{{DATE_HUMAN}}</time>
+              <span aria-hidden="true">&middot;</span>
+              <span>{{READ_MINUTES}} min read</span>
+              <span aria-hidden="true">&middot;</span>
+              <span>By {{CLIENT_FULL_NAME}}</span>
+            </p>
+          </div>
+{{FEATURED_IMAGE_BLOCK}}
+          <div class="article__body">
+{{ARTICLE_BODY}}
+          </div>
+
+          <!-- End-of-article CTA -->
+          <div class="post-cta">
+            <h2>{{POST_CTA_HEADING}}</h2>
+            <p>{{POST_CTA_TEXT}}</p>
+            <div class="btn-group" style="justify-content:center;">
+              <a class="btn btn--primary" href="tel:{{CLIENT_PHONE_E164}}">Call {{CLIENT_PHONE_NUMBER}}</a>
+              <a class="btn btn--secondary" href="../contact.html">Send a message</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+{{RELATED_POSTS_BLOCK}}
+  </main>
+
+  <!-- ============================ Footer ============================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>{{CLIENT_FULL_NAME}}</h4>
+          <ul>
+            <li><a href="tel:{{CLIENT_PHONE_E164}}">{{CLIENT_PHONE_FORMATTED}}</a></li>
+            <li><a href="mailto:{{CLIENT_CONTACT_EMAIL}}">{{CLIENT_CONTACT_EMAIL}}</a></li>
+            <li>{{CLIENT_PRIMARY_CITY}}</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html">Blog</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-social">
+            <a href="{{CLIENT_LINKEDIN_URL}}" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4V24h-4V8zM8 8h3.83v2.18h.05c.53-1 1.84-2.18 3.79-2.18 4.05 0 4.8 2.67 4.8 6.14V24h-4v-7.1c0-1.69-.03-3.86-2.35-3.86-2.35 0-2.71 1.84-2.71 3.74V24H8V8z"/></svg>
+            </a>
+          </div>
+          <p class="meta" style="margin-top:var(--gap-tight); color:#9aa6bf;">
+            Visit <a href="https://{{CLIENT_PERSONAL_SITE_DOMAIN}}">{{CLIENT_PERSONAL_SITE_DOMAIN}}</a> for more.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; {{CLIENT_FULL_NAME}}. All rights reserved.</span>
+        <span>{{CLIENT_LICENSE_REFERENCE}} &middot; {{CLIENT_PRIMARY_CITY}}</span>
+      </div>
+
+      <p style="margin-top:var(--gap-standard); text-align:center; font-size:12px; color:#8a94ad;">
+        Built by <a href="https://www.bottbottgenai.com" target="_blank" rel="noopener noreferrer" style="color:#a7b0c6;">BottBott Business Systems</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

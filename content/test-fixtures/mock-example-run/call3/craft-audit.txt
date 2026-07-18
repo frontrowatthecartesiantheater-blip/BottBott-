@@ -1,0 +1,11 @@
+CRAFT AUDIT:
+- Word count: ~180 words (example fixture, not a real post)
+- Primary keyword count: 4 instances
+- Em dashes found and removed: 0
+- AI-tell phrases removed: none
+- Parallel constructions rewritten: none found
+- Paragraphs split: 0
+- Single-sentence paragraphs merged: 0
+- Internal links verified: [A: https://example.com/about | B: https://example-secondary.com/reviews]
+- Fabrication issues found: none
+- Remaining concerns: this is a static example fixture used for offline mock runs, not generated content.

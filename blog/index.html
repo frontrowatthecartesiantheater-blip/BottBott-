@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | BottBott Business Systems</title>
+  <meta name="description" content="Practical writing on AI systems, automation, and business workflows from BottBott Business Systems. No hype, no fluff — just what works.">
+  <link rel="canonical" href="https://www.bottbottgenai.com/blog/">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog | BottBott Business Systems">
+  <meta property="og:description" content="Practical writing on AI systems, automation, and business workflows from BottBott Business Systems. No hype, no fluff — just what works.">
+  <meta property="og:url" content="https://www.bottbottgenai.com/blog/">
+  <meta property="og:site_name" content="BottBott Business Systems">
+  <meta property="og:image" content="https://www.bottbottgenai.com/BottBott.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog | BottBott Business Systems">
+  <meta name="twitter:description" content="Practical writing on AI systems, automation, and business workflows from BottBott Business Systems. No hype, no fluff — just what works.">
+  <meta name="twitter:image" content="https://www.bottbottgenai.com/BottBott.png">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": "https://www.bottbottgenai.com/blog/#blog",
+        "url": "https://www.bottbottgenai.com/blog/",
+        "name": "The BottBott Blog",
+        "description": "Practical writing on AI systems, automation, and business workflows from BottBott Business Systems. No hype, no fluff — just what works.",
+        "inLanguage": "en",
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.bottbottgenai.com/#organization",
+          "name": "BottBott Business Systems",
+          "url": "https://www.bottbottgenai.com/",
+          "email": "simon@bottbottgenai.com",
+          "logo": "https://www.bottbottgenai.com/BottBott.png",
+          "sameAs": [
+            "https://bottbott.substack.com",
+            "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change",
+            "https://maps.google.com/?cid=3659021546116455577"
+          ]
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.bottbottgenai.com/blog/",
+        "url": "https://www.bottbottgenai.com/blog/",
+        "name": "Blog | BottBott Business Systems",
+        "description": "Practical writing on AI systems, automation, and business workflows from BottBott Business Systems. No hype, no fluff — just what works.",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bottbottgenai.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.bottbottgenai.com/blog/" }
+          ]
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "url": "https://www.bottbottgenai.com/",
+          "name": "BottBott Business Systems"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts — matching main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DESIGN TOKENS — EXACT MATCH TO MAIN SITE ── */
+    :root {
+      --bg:            #0f1923;
+      --bg-alt:        #131f2b;
+      --bg-card:       #17232f;
+      --bg-card-hover: #1c2b39;
+      --primary-dark:  #0a141d;
+      --gold:          #C4923A;
+      --gold-light:    #d9ad5f;
+      --gold-dim:      rgba(196, 146, 58, 0.6);
+      --gold-faint:    rgba(196, 146, 58, 0.12);
+      --on-gold:       #0f1923;
+      --text-light:    #f5f7f9;
+      --text-dim:      #9fb0c0;
+      --text-dimmer:   #6f8294;
+      --white:         #ffffff;
+      --font-body:     'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--text-light);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 25, 35, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-light);
+      flex-shrink: 0;
+    }
+
+    .logo-icon { width: 36px; height: 36px; }
+
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-sub {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a.active { color: var(--gold-light); font-weight: 700; }
+
+    .btn-nav {
+      background: var(--gold) !important;
+      color: var(--on-gold) !important;
+      padding: 10px 20px !important;
+      border-radius: 4px !important;
+      font-weight: 700 !important;
+      margin-left: 8px;
+    }
+
+    .btn-nav:hover {
+      background: var(--gold-light) !important;
+      color: var(--on-gold) !important;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--gold);
+      padding: 4px 6px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      padding: 8px 24px 20px;
+      border-top: 1px solid var(--gold-dim);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      padding: 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active { color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--text-light);
+      padding: 88px 24px 72px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(245,247,249,0.72);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ── POSTS ── */
+    .posts-section {
+      padding: 72px 24px 100px;
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .posts-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* Single card shouldn't stretch full width */
+    .posts-grid.single { max-width: 540px; }
+
+    .post-card {
+      padding: 32px;
+      background: var(--bg-card);
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1px solid var(--gold-dim);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: block;
+    }
+
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(196, 146, 58, 0.12);
+    }
+
+    .post-meta {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .post-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .post-excerpt {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+
+    .post-link {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    /* ── SKELETON LOADING ── */
+    .post-skeleton { cursor: default; }
+    .post-skeleton:hover { transform: none; box-shadow: none; }
+
+    .skeleton-bar {
+      height: 14px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--bg-card-hover) 25%, rgba(196, 146, 58, 0.18) 50%, var(--bg-card-hover) 75%);
+      background-size: 200% 100%;
+      animation: skeleton-pulse 1.6s ease-in-out infinite;
+      margin-bottom: 12px;
+    }
+
+    .skeleton-meta { width: 40%; height: 12px; }
+    .skeleton-title { width: 90%; height: 20px; }
+    .skeleton-excerpt { width: 100%; height: 14px; }
+    .skeleton-link { width: 35%; height: 14px; margin-top: 4px; margin-bottom: 0; }
+
+    @keyframes skeleton-pulse {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skeleton-bar { animation: none; }
+    }
+
+    /* ── EMPTY STATE ── */
+    .posts-empty {
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 56px 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--gold-dim);
+      border-radius: 4px;
+    }
+
+    .posts-empty h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+
+    .posts-empty p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .posts-empty a { color: var(--gold-light); text-decoration: none; }
+    .posts-empty a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top: 1px solid var(--gold-dim);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-dimmer);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { padding: 64px 24px 56px; }
+      .posts-section { padding: 56px 24px 72px; }
+
+      .nav-links a:not(.btn-nav) { display: none; }
+      .mobile-menu-btn { display: block; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER / NAV ══ -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="BottBott Business Systems home">
+      <img src="/BottBott.svg" alt="BottBott" class="logo-icon">
+      <div class="logo-text-wrap">
+        <span class="logo-name">BottBott</span>
+        <span class="logo-sub">Business Systems</span>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="Site navigation">
+      <a href="/#services">Services</a>
+      <a href="/solutions/">Solutions</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-work/">How We Work</a>
+      <a href="/blog/" class="active" aria-current="page">Posts</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-nav">Book a Call</a>
+    </nav>
+
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+      <a href="/#services">Services</a>
+      <a href="/solutions/">Solutions</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-work/">How We Work</a>
+      <a href="/blog/" class="active" aria-current="page">Posts</a>
+      <a href="/#contact">Contact</a>
+  </div>
+</header>
+
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <p class="eyebrow">Writing</p>
+  <h1>Latest from BottBott</h1>
+  <p class="hero-sub">Practical guidance. No hype, no fluff — just what works.</p>
+</section>
+
+
+<!-- ══ POSTS ══ -->
+<main class="posts-section">
+  <div class="posts-grid" id="postsGrid">
+    <!-- Skeleton loading state shown until JS loads the manifest -->
+    <div class="post-card post-skeleton" aria-hidden="true">
+      <div class="skeleton-bar skeleton-meta"></div>
+      <div class="skeleton-bar skeleton-title"></div>
+      <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
+      <div class="skeleton-bar skeleton-excerpt"></div>
+      <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
+      <div class="skeleton-bar skeleton-link"></div>
+    </div>
+    <div class="post-card post-skeleton" aria-hidden="true">
+      <div class="skeleton-bar skeleton-meta"></div>
+      <div class="skeleton-bar skeleton-title"></div>
+      <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
+      <div class="skeleton-bar skeleton-excerpt"></div>
+      <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
+      <div class="skeleton-bar skeleton-link"></div>
+    </div>
+    <div class="post-card post-skeleton" aria-hidden="true">
+      <div class="skeleton-bar skeleton-meta"></div>
+      <div class="skeleton-bar skeleton-title"></div>
+      <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
+      <div class="skeleton-bar skeleton-excerpt"></div>
+      <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
+      <div class="skeleton-bar skeleton-link"></div>
+    </div>
+  </div>
+</main>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">&copy; 2026 BottBott Business Systems. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="/solutions/">Solutions</a>
+      <a href="/about/">About</a>
+      <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;">&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;</a>
+      <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer">Substack</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+      <a href="/privacy/">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    var menu = document.getElementById('mobileMenu');
+    var btn = document.querySelector('.mobile-menu-btn');
+    var isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    btn.textContent = isOpen ? '✕' : '☰';
+  }
+
+  // Escape untrusted-ish strings before injecting into innerHTML. The manifest
+  // is first-party, but titles/descriptions can legitimately contain & < >.
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  var EMPTY_STATE_HTML =
+    '<div class="posts-empty">' +
+      '<h2>No posts yet — check back soon.</h2>' +
+      '<p>New writing is on the way. In the meantime, the <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer">BottBott Substack</a> is live now.</p>' +
+    '</div>';
+
+  // Fetch the post manifest (written by the autoblog pipeline on each publish)
+  // and render a card per post.
+  async function fetchPosts() {
+    var postsGrid = document.getElementById('postsGrid');
+
+    try {
+      var response = await fetch('/blog/index.json');
+      var data = await response.json();
+
+      if (data.posts && data.posts.length > 0) {
+        if (data.posts.length === 1) postsGrid.classList.add('single');
+        postsGrid.innerHTML = data.posts.map(function (post) {
+          var date = new Date(post.date + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          var read = post.readMinutes ? ' &middot; ' + post.readMinutes + ' min read' : '';
+          return (
+            '<a href="/blog/' + encodeURIComponent(post.slug) + '" class="post-card">' +
+              '<div class="post-meta">' + esc(date) + read + '</div>' +
+              '<h3 class="post-title">' + esc(post.title) + '</h3>' +
+              '<p class="post-excerpt">' + esc(post.description) + '</p>' +
+              '<span class="post-link">Read post →</span>' +
+            '</a>'
+          );
+        }).join('');
+      } else {
+        postsGrid.innerHTML = EMPTY_STATE_HTML;
+      }
+    } catch (error) {
+      console.error('Failed to fetch posts:', error);
+      postsGrid.innerHTML = EMPTY_STATE_HTML;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchPosts);
+</script>
+</body>
+</html>
