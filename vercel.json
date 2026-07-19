@@ -1,5 +1,17 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/solutions",
+      "destination": "/systems/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/:path*",
+      "destination": "/systems/:path*",
+      "permanent": true
+    }
+  ],
   "crons": [
     {
       "path": "/api/cron/reminder",
