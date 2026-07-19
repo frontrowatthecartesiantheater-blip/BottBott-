@@ -70,8 +70,8 @@ create table if not exists topics (
   description       text,           -- 1-2 sentences, injected as {{TOPIC_DESCRIPTION}}
   primary_keyword   text,           -- injected as {{PRIMARY_KEYWORD}}
   guiding_questions text[],         -- 3-4 questions shown to the creator before recording
-  -- REPLACE PER CLIENT: must match CLIENT.topicCategories in lib/client-config.js
-  category          text check (category in ('example-category-a', 'example-category-b')),
+  -- Must match CLIENT.topicCategories in lib/client-config.js
+  category          text check (category in ('ai-roi-efficiency', 'ai-powered-operations', 'founder-productivity', 'ai-content-visibility', 'case-studies')),
   scheduled_date    date,
   status            topic_status not null default 'upcoming',
   created_at        timestamptz not null default now()
@@ -160,10 +160,10 @@ create table if not exists images (
   category        text
 );
 
--- REPLACE PER CLIENT: must match topics.category values above.
+-- Must match topics.category values above.
 do $$ begin
   alter table images add constraint images_category_check
-    check (category in ('example-category-a', 'example-category-b'));
+    check (category in ('ai-roi-efficiency', 'ai-powered-operations', 'founder-productivity', 'ai-content-visibility', 'case-studies'));
 exception
   when duplicate_object then null;
 end $$;
