@@ -103,7 +103,9 @@ const topicsToInsert = topics
   .map((t) => ({
     order_index: t.order_index,
     title: t.title,
+    description: t.description,
     primary_keyword: t.primary_keyword,
+    guiding_questions: t.guiding_questions,
     scheduled_date: t.scheduled_date,
     category: t.category,
     status: t.status ?? 'upcoming',
