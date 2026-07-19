@@ -68,6 +68,7 @@
   {
     "@context": "https://schema.org",
     "@type": {{CLIENT_SCHEMA_TYPES_JSON}},
+    "@id": "{{SITE_ORIGIN}}/#organization",
     "name": "{{CLIENT_BUSINESS_NAME}}",
     "image": "{{CLIENT_SCHEMA_IMAGE_URL}}",
     "url": "{{CANONICAL_URL}}",
@@ -102,7 +103,8 @@
     "datePublished": "{{DATE_ISO}}",
     "dateModified": "{{DATE_ISO}}",
     "publisher": {
-      "@type": "Organization",
+      "@type": "ProfessionalService",
+      "@id": "{{SITE_ORIGIN}}/#organization",
       "name": "{{CLIENT_BUSINESS_NAME}}"
     },
     "mainEntityOfPage": "{{CANONICAL_URL}}"
