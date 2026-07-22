@@ -52,7 +52,7 @@
         "@type": "ItemList",
         "@id": "https://www.bottbottgenai.com/systems/#itemlist",
         "name": "BottBott Systems",
-        "numberOfItems": 4,
+        "numberOfItems": 5,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -125,6 +125,27 @@
               "name": "Warm Outreach System",
               "url": "https://www.bottbottgenai.com/warm-outreach/",
               "description": "An AI-assisted relationship marketing system that sends personalized birthday touches, rolling check-ins, and seasonal notes to a professional's existing CRM contacts from their own email address, with a review dashboard for approval before sending.",
+              "provider": {
+                "@type": "ProfessionalService",
+                "@id": "https://www.bottbottgenai.com/#organization",
+                "name": "BottBott Business Systems",
+                "url": "https://www.bottbottgenai.com/",
+                "email": "simon@bottbottgenai.com",
+                "sameAs": [
+                  "https://bottbott.substack.com",
+                  "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change"
+                ]
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "Service",
+              "name": "Lead Prospector",
+              "url": "https://www.bottbottgenai.com/lead-prospector/",
+              "description": "A prospecting system that sweeps a defined target market, filters every business for a specific observable ICP condition, scores confirmed matches by severity, and returns an outreach-ready contact list with a reason behind every name.",
               "provider": {
                 "@type": "ProfessionalService",
                 "@id": "https://www.bottbottgenai.com/#organization",
@@ -364,6 +385,13 @@
       gap: 32px;
     }
 
+    /* Fifth card: spans both columns, centered at single-card width */
+    .systems-grid .system-card:nth-child(5) {
+      grid-column: 1 / -1;
+      width: calc(50% - 16px);
+      justify-self: center;
+    }
+
     .system-card {
       background: var(--bg-card);
       border: 1px solid var(--gold-dim);
@@ -566,6 +594,7 @@
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; }
       .systems-grid { grid-template-columns: 1fr; }
+      .systems-grid .system-card:nth-child(5) { grid-column: auto; width: 100%; }
     }
   </style>
 </head>
@@ -633,15 +662,15 @@
       <a href="/podcast-pitching/" class="system-card live">
         <div class="system-icon"><img src="/systems/icons/pod-guest.svg" alt="Pitch Perfect Podcast Placement Agent icon"></div>
         <span class="system-status status-live">Live</span>
-        <h2 class="system-name">Your Next Client Is Already Listening to a Podcast</h2>
+        <h2 class="system-name">Podcast Placement System</h2>
         <p class="system-desc">The question is whether you're the guest being introduced. Pitch Perfect finds the right shows, scores them for fit, and writes personalized pitches in your voice — you review, you send.</p>
         <span class="system-link">See How It Works →</span>
       </a>
       <a href="/linkedin-outreach-pipeline/" class="system-card live">
         <div class="system-icon"><img src="/systems/icons/lead-gen.svg" alt="LinkedIn Outreach Pipeline icon"></div>
         <span class="system-status status-live">Live</span>
-        <h2 class="system-name">Your Best Prospects Deserve More Than a Template</h2>
-        <p class="system-desc">Most LinkedIn outreach fails before you hit send. The Outreach Pipeline scores your contacts, builds research briefs, and drafts personalized messages in your voice — in a fraction of the time.</p>
+        <h2 class="system-name">LinkedIn Lead System</h2>
+        <p class="system-desc">Your best LinkedIn prospects deserve more than a template. Most LinkedIn outreach fails before you hit send. The Outreach Pipeline scores your contacts, builds research briefs, and drafts personalized messages in your voice, in a fraction of the time.</p>
         <span class="system-link">See How It Works →</span>
       </a>
       <a href="/warm-outreach/" class="system-card live">
@@ -650,6 +679,13 @@
         <h2 class="system-name">Warm Outreach System</h2>
         <p class="system-desc">Your CRM has 200+ relationships that haven't heard from you in months. This system sends AI-written, personally tailored emails on your behalf at exactly the right moments: birthday touches, seasonal check-ins, and rolling check-ins every 90 days, all from your own address.</p>
         <span class="system-link">Learn More →</span>
+      </a>
+      <a href="/lead-prospector/" class="system-card live">
+        <div class="system-icon"><img src="/systems/icons/lead-prospector.svg" alt="Lead Prospector icon"></div>
+        <span class="system-status status-live">Live</span>
+        <h2 class="system-name">Lead Prospector</h2>
+        <p class="system-desc">Define your ICP and target market, and the system returns an outreach-ready contact list of prospects who already have the specific problem you solve.</p>
+        <span class="system-link">See How It Works →</span>
       </a>
     </div>
   </div>

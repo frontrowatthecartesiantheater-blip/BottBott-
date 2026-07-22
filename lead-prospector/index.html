@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Prospector | Find Prospects With Your Problem | BottBott</title>
+  <meta name="description" content="Define your ICP and target market. Lead Prospector finds who's in it, filters for your specific prospect condition, scores every match, and hands you a contact list with a reason behind every name.">
+  <link rel="canonical" href="https://www.bottbottgenai.com/lead-prospector/">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lead Prospector | Find Prospects With Your Problem | BottBott">
+  <meta property="og:description" content="Define your ICP and target market. Lead Prospector finds who's in it, filters for your specific prospect condition, scores every match, and hands you a contact list with a reason behind every name.">
+  <meta property="og:url" content="https://www.bottbottgenai.com/lead-prospector/">
+  <meta property="og:site_name" content="BottBott Business Systems">
+  <meta property="og:image" content="https://www.bottbottgenai.com/BottBott.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lead Prospector | Find Prospects With Your Problem | BottBott">
+  <meta name="twitter:description" content="Define your ICP and target market. Lead Prospector finds who's in it, filters for your specific prospect condition, scores every match, and hands you a contact list with a reason behind every name.">
+  <meta name="twitter:image" content="https://www.bottbottgenai.com/BottBott.png">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.bottbottgenai.com/lead-prospector/",
+        "url": "https://www.bottbottgenai.com/lead-prospector/",
+        "name": "Lead Prospector | Find Prospects With Your Problem | BottBott",
+        "description": "Define your ICP and target market. Lead Prospector finds who's in it, filters for your specific prospect condition, scores every match, and hands you a contact list with a reason behind every name.",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bottbottgenai.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Systems", "item": "https://www.bottbottgenai.com/systems/" },
+            { "@type": "ListItem", "position": 3, "name": "Lead Prospector", "item": "https://www.bottbottgenai.com/lead-prospector/" }
+          ]
+        },
+        "isPartOf": { "@id": "https://www.bottbottgenai.com/#website" }
+      },
+      {
+        "@type": "Service",
+        "name": "Lead Prospector",
+        "description": "A prospecting system that sweeps a defined target market, filters every business for a specific observable ICP condition, scores confirmed matches by severity, and returns an outreach-ready contact list with a reason behind every name.",
+        "areaServed": "Worldwide",
+        "provider": {
+          "@type": "ProfessionalService",
+          "@id": "https://www.bottbottgenai.com/#organization",
+          "name": "BottBott Business Systems",
+          "url": "https://www.bottbottgenai.com/",
+          "email": "simon@bottbottgenai.com",
+          "sameAs": [
+            "https://bottbott.substack.com",
+            "https://www.linkedin.com/in/simon-d-ai-systems-director-building-for-change"
+          ]
+        },
+        "serviceType": "Lead Prospecting System",
+        "url": "https://www.bottbottgenai.com/lead-prospector/"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts, matching main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DESIGN TOKENS, EXACT MATCH TO MAIN SITE ── */
+    :root {
+      --bg:            #0f1923;
+      --bg-alt:        #131f2b;
+      --bg-card:       #17232f;
+      --bg-card-hover: #1c2b39;
+      --primary-dark:  #0a141d;
+      --gold:          #C4923A;
+      --gold-light:    #d9ad5f;
+      --gold-dim:      rgba(196, 146, 58, 0.6);
+      --gold-faint:    rgba(196, 146, 58, 0.12);
+      --on-gold:       #0f1923;
+      --text-light:    #f5f7f9;
+      --text-dim:      #9fb0c0;
+      --text-dimmer:   #6f8294;
+      --white:         #ffffff;
+      --font-body:     'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--text-light);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 25, 35, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-light);
+      flex-shrink: 0;
+    }
+
+    .logo-icon { width: 36px; height: 36px; }
+
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-sub {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a.active { color: var(--gold-light); font-weight: 700; }
+
+    .btn-nav {
+      background: var(--gold) !important;
+      color: var(--on-gold) !important;
+      padding: 10px 20px !important;
+      border-radius: 4px !important;
+      font-weight: 700 !important;
+      margin-left: 8px;
+    }
+
+    .btn-nav:hover {
+      background: var(--gold-light) !important;
+      color: var(--on-gold) !important;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--gold);
+      padding: 4px 6px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      padding: 8px 24px 20px;
+      border-top: 1px solid var(--gold-dim);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      padding: 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active { color: var(--gold-light); }
+
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 72px 0;
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--text-light);
+      padding: 96px 0 88px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+
+    .hero-heading-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .hero-heading-row h1 {
+      margin-bottom: 0;
+      flex: 1;
+    }
+
+    .hero-icon {
+      flex-shrink: 0;
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(245,247,249,0.72);
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gold);
+      color: var(--on-gold);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: rgba(245,247,249,0.82);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1px solid var(--gold-dim);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--text-light);
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-size: 17px;
+      color: var(--text-dim);
+      max-width: 640px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    /* ── ALT BACKGROUNDS ── */
+    .section-alt {
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(19, 31, 43, 0.93) 0%, rgba(19, 31, 43, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* ── PROSE ── */
+    .prose {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      max-width: 720px;
+    }
+
+    .prose p + p { margin-top: 16px; }
+    .prose strong { color: var(--text-light); }
+    .prose a { color: var(--gold-light); text-decoration: none; }
+    .prose a:hover { text-decoration: underline; }
+
+    /* ── STEPS ── */
+    .steps-list {
+      list-style: none;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--on-gold);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .step-content p + p { margin-top: 10px; }
+
+    .step-content p strong { color: var(--text-light); }
+
+    .step-content p a { color: var(--gold-light); text-decoration: none; }
+    .step-content p a:hover { text-decoration: underline; }
+
+    /* ── BENEFITS ── */
+    .benefits-list {
+      list-style: none;
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .benefits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--on-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--text-light);
+      text-align: center;
+      padding: 96px 24px;
+      border-top: 1px solid var(--gold-dim);
+    }
+
+    .cta-section h2 {
+      color: var(--text-light);
+      margin: 0 auto 36px;
+      max-width: 640px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-support {
+      font-size: 15px;
+      color: rgba(245,247,249,0.68);
+      max-width: 480px;
+      margin: 24px auto 0;
+      line-height: 1.7;
+    }
+
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gold);
+      color: var(--on-gold);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-white:hover { background: var(--gold-light); }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top: 1px solid var(--gold-dim);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-dimmer);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      section { padding: 56px 0; }
+      .hero { padding: 72px 0 64px; }
+      .hero-icon { width: 56px; height: 56px; }
+      .cta-section { padding: 72px 24px; }
+
+      .nav-links a:not(.btn-nav) { display: none; }
+      .mobile-menu-btn { display: block; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER / NAV ══ -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="BottBott Business Systems home">
+      <img src="/BottBott.svg" alt="BottBott" class="logo-icon">
+      <div class="logo-text-wrap">
+        <span class="logo-name">BottBott</span>
+        <span class="logo-sub">Business Systems</span>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="Site navigation">
+      <a href="/#services">Services</a>
+      <a href="/systems/">Systems</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-work/">How We Work</a>
+      <a href="/blog/">Posts</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-nav">Book a Call</a>
+    </nav>
+
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+  </div>
+
+
+  <div class="mobile-menu" id="mobileMenu">
+      <a href="/#services">Services</a>
+      <a href="/systems/">Systems</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-work/">How We Work</a>
+      <a href="/blog/">Posts</a>
+      <a href="/#contact">Contact</a>
+  </div>
+</header>
+
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">Lead Prospector</p>
+    <div class="hero-heading-row">
+      <h1>Your Ideal Clients Are Already Findable. Most People Just Never Build the Filter.</h1>
+      <img src="/systems/icons/lead-prospector.svg" alt="Lead Prospector icon" class="hero-icon">
+    </div>
+    <p class="hero-sub">Most outreach lists are built on who a prospect is. Lead Prospector builds lists on what's true about them right now.</p>
+    <div class="hero-actions">
+      <a href="https://calendly.com/simon-bottbottgenai/30min"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-primary">Book a Strategy Call</a>
+      <a href="#system" class="btn-ghost">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ THE PROBLEM ══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">The problem</p>
+    <div class="prose">
+      <p>A bought list may tell you someone's title and company size, but it doesn't tell you whether they actually have the problem you solve today. So you sequence the whole list, hoping the timing is right; but your reply rates tell you otherwise.</p>
+      <p>Lead Prospector is built on a different premise. Your best prospects share a specific, detectable condition. They're on a platform that doesn't serve them. Their operation has a visible gap. Their infrastructure hasn't caught up with their growth. Whatever that condition is for your ICP, if it's observable, it's findable at scale.</p>
+      <p>This system searches your target market by area, applies your filter, scores every match by severity, and returns a contact list where every name on it has a reason.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="section-alt" id="system">
+  <div class="container">
+    <p class="section-eyebrow">The system</p>
+    <h2>How It Works</h2>
+
+    <ol class="steps-list" aria-label="The four phases of Lead Prospector">
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div class="step-content">
+          <h3>Phase 1: Harvest</h3>
+          <p>The system starts broad, using Google Places to target search queries, sweeps your defined target market, and pulls every business operating in that space. It conducts a live search of what's actually there right now, including newer operators who haven't made it onto any purchased list yet.</p>
+          <p><strong>Output:</strong> a deduplicated list of every prospect in your target market, with domain and location data.</p>
+          <p><strong>Why it matters:</strong> Bought lists have coverage gaps and stale data. Starting from a live search means you're working with what exists today, not what someone compiled months ago.</p>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div class="step-content">
+          <h3>Phase 2: Filter</h3>
+          <p>This is where the list gets useful. The system applies your ICP condition to every domain from Phase 1, checking for the specific technical or operational signal that makes someone a high-fit prospect for your offer.</p>
+          <p>For example, this system was recently deployed for a real estate outreach vertical. The condition was if an agent's site was built on a cookie-cutter platform with no content pipeline. The check ran via DNS records and HTML scraping. No manual research, no site visits. Anything that doesn't match the filter drops off.</p>
+          <p><strong>Output:</strong> confirmed matches only, each tagged with how the match was detected.</p>
+          <p><strong>Why it matters:</strong> Volume without fit is noise. Filtering for a specific observable condition means every contact that survives Phase 2 is there because there's evidence they need what you do, not just fit a demographic profile.</p>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div class="step-content">
+          <h3>Phase 3: Score</h3>
+          <p>Matching the filter isn't the same as being a priority. Phase 3 scores every confirmed match by the severity of the condition your offer addresses.</p>
+          <p>For the real estate implementation, that's organic traffic and keyword count per domain: an agent on a cookie-cutter platform with near-zero traffic is a higher-priority lead than one who's managed to rank despite the platform. Every match is kept in the output regardless of score. The score tells you where to start, but you decide what's worth pursuing.</p>
+          <p><strong>Output:</strong> every match tagged with a priority tier, high-intent, warm, or active.</p>
+          <p><strong>Why it matters:</strong> Not all problems are equally acute. Scoring by severity means you can sequence outreach starting with the contacts who have the most urgent version of the problem, rather than working through the list in arbitrary order.</p>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="step-num" aria-hidden="true">4</div>
+        <div class="step-content">
+          <h3>Phase 4: Enrich</h3>
+          <p>A name in a spreadsheet without a contact point isn't a lead. Phase 4 scrapes for names, emails, and phone numbers for every scored match directly from each site, with a Hunter.io lookup as a fallback for anything the on-page scrape can't find.</p>
+          <p>Name extraction includes false-positive guards so you don't end up with a name or a city name in your mail merge field. If it can't confirm a clean personal name, it returns blank. A wrong name in an outreach field is worse than no name at all.</p>
+          <p>Every completed run auto-saves to a timestamped CSV and appends to a rolling Google Sheet log. No export button required.</p>
+          <p><strong>Output:</strong> an outreach-ready contact list with name, email, phone, platform tag, priority tier, and contact source.</p>
+          <p><strong>Why it matters:</strong> Enrichment at the end of a filtered, scored list means you're only spending lookup credits on contacts that already qualified. You're not enriching a cold list and hoping some percentage of it turns out to be relevant.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ══ WHAT IT COSTS TO RUN ══ -->
+<section>
+  <div class="container">
+    <p class="section-eyebrow">Running costs</p>
+    <h2>What It Costs to Run</h2>
+    <div class="prose">
+      <p>Near zero. The core pipeline runs on free-tier APIs. Google Places covers location search within its monthly free credit. Platform fingerprinting uses DNS and HTTP with no API dependency.</p>
+      <p>For higher-volume runs, optional paid integration can be added. A 200-contact run costs under $0.50. Hunter.io's free tier covers 25 email lookups per month, with paid tiers available if you need more volume.</p>
+      <p><strong>No subscription. No ongoing fee. You run it when you need it.</strong></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WHAT YOU GET ══ -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-eyebrow">What's included</p>
+    <h2>What You Get</h2>
+
+    <ul class="benefits-list">
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        A configured system built around your ICP and target market.
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Four phases: find, filter, score, contact.
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Auto-saves to CSV on every run and appends to a rolling Google Sheet log.
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Runs locally on your machine with a browser interface.
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        No hosting, no ongoing cost.
+      </li>
+      <li>
+        <span class="check-icon" aria-hidden="true">&#10003;</span>
+        Optional paid API integrations if you want higher-volume enrichment.
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ══ CTA ══ -->
+<section class="cta-section">
+  <h2>If your ideal client has a detectable condition, you don't need a list. You need a system.</h2>
+  <div class="cta-actions">
+    <a href="https://calendly.com/simon-bottbottgenai/30min"
+       target="_blank" rel="noopener noreferrer"
+       class="btn-white">Book a Strategy Call</a>
+    <a href="#system" class="btn-ghost">See How It Works</a>
+  </div>
+  <p class="cta-support">We'll map the specific signal your ICP carries and build the filter around it.</p>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">&copy; 2026 BottBott Business Systems. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="/systems/">Systems</a>
+      <a href="/about/">About</a>
+      <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;">&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;</a>
+      <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer">Substack</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+      <a href="/privacy/">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    var menu = document.getElementById('mobileMenu');
+    var btn = document.querySelector('.mobile-menu-btn');
+    var isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    btn.textContent = isOpen ? '✕' : '☰';
+  }
+</script>
+</body>
+</html>
