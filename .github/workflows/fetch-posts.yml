@@ -16,9 +16,45 @@ jobs:
       
       - name: Fetch RSS and convert to JSON
         run: |
-          curl -s "https://api.rss2json.com/v1/api.json?rss_url=https://bottbott.substack.com/feed" \
-            | jq '{posts: [.items[:1][] | {title: .title, link: .link, pubDate: .pubDate, excerpt: (.description | gsub("<[^>]*>"; "") | .[0:120])}], updated: now | strftime("%Y-%m-%dT%H:%M:%SZ")}' \
-            > posts.json
+          python3 - <<'EOF'
+          import urllib.request
+          import xml.etree.ElementTree as ET
+          import json
+          import re
+          from datetime import datetime, timezone
+
+          url = "https://bottbott.substack.com/feed"
+          with urllib.request.urlopen(url, timeout=15) as response:
+              xml_content = response.read()
+
+          root = ET.fromstring(xml_content)
+          channel = root.find('channel')
+          items = channel.findall('item')
+
+          posts = []
+          for item in items[:1]:
+              title = item.findtext('title', '').strip()
+              link = item.findtext('link', '').strip()
+              pub_date = item.findtext('pubDate', '').strip()
+              description = item.findtext('description', '')
+              excerpt = re.sub(r'<[^>]*>', '', description)[:120].strip()
+              posts.append({
+                  "title": title,
+                  "link": link,
+                  "pubDate": pub_date,
+                  "excerpt": excerpt
+              })
+
+          output = {
+              "posts": posts,
+              "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+          }
+
+          with open("posts.json", "w") as f:
+              json.dump(output, f, indent=2)
+
+          print(f"Fetched: {posts[0]['title'] if posts else 'no posts'}")
+          EOF
       
       - name: Commit if changed
         run: |
