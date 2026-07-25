@@ -24,7 +24,8 @@ jobs:
           from datetime import datetime, timezone
 
           url = "https://bottbott.substack.com/feed"
-          with urllib.request.urlopen(url, timeout=15) as response:
+          req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; BottBott/1.0)"})
+          with urllib.request.urlopen(req, timeout=15) as response:
               xml_content = response.read()
 
           root = ET.fromstring(xml_content)
