@@ -947,13 +947,6 @@
       gap: 24px;
     }
 
-    .project-latest {
-      font-size: 14px;
-      color: var(--gold-light);
-      margin: -8px 0 16px;
-      line-height: 1.5;
-    }
-
     .project-card {
       padding: 36px;
       background: var(--bg-card);
@@ -1496,7 +1489,6 @@
         </div>
         <h3 class="project-name">The BottBott Substack</h3>
         <p class="project-desc">Weekly writing on AI, automation, and business systems — practical guidance straight from the workshop.</p>
-        <p class="project-latest" id="substackLatest" hidden></p>
         <span class="project-link">Read on Substack →</span>
       </a>
     </div>
@@ -1565,25 +1557,6 @@
       item.classList.toggle('open');
     }
 
-    // Show the latest Substack post title on the Substack project card.
-    // posts.json is kept fresh by the fetch-posts GitHub Action; if the fetch
-    // fails the line simply stays hidden and the static card stands alone.
-    async function fetchLatestPost() {
-      const latest = document.getElementById('substackLatest');
-
-      try {
-        const response = await fetch('posts.json');
-        const data = await response.json();
-
-        if (data.posts && data.posts.length > 0) {
-          latest.textContent = `Latest: ${data.posts[0].title}`;
-          latest.hidden = false;
-        }
-      } catch (error) {
-        console.error('Failed to fetch latest post:', error);
-      }
-    }
-
     // Nav scroll highlighting
     function updateActiveNav() {
       const sections = ['hero', 'services', 'about', 'contact'];
@@ -1632,7 +1605,6 @@
     window.addEventListener('scroll', updateActiveNav);
     document.addEventListener('DOMContentLoaded', () => {
       updateActiveNav();
-      fetchLatestPost();
       initVideoFacade();
     });
   </script>
