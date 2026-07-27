@@ -4,10 +4,13 @@
     "title": "Why SaaS Is Ass (And Why You Can Own Your Stack Instead)",
     "description": "A blunt take on why renting your business tools through endless subscriptions is often the worse deal, and what owning your automation stack actually looks like instead.",
     "primary_keyword": "AI vs SaaS subscription cost",
-    "scheduled_date": "2026-07-27",
+    "scheduled_date": "2026-08-12",
     "category": "ai-roi-efficiency",
     "status": "upcoming",
-    "supporting_keywords": ["own your business systems", "vendor lock-in"],
+    "supporting_keywords": [
+      "own your business systems",
+      "vendor lock-in"
+    ],
     "guiding_questions": [
       "What's a SaaS subscription you've watched a client (or yourself) pay for year after year without ever really owning anything?",
       "What's the difference between renting a tool and owning a system you built for a client?",
@@ -20,10 +23,13 @@
     "title": "The 'AI Tools That Don't Really Work' Problem, and How to Actually Fix It",
     "description": "A lot of 'AI-powered' tools promise more than they deliver because they're bolted onto workflows that were never fixed in the first place. What actually needs to happen before AI can make a real difference.",
     "primary_keyword": "connect business tools AI",
-    "scheduled_date": "2026-08-03",
+    "scheduled_date": "2026-08-19",
     "category": "ai-powered-operations",
     "status": "upcoming",
-    "supporting_keywords": ["disconnected business tools", "tools that dont talk to each other"],
+    "supporting_keywords": [
+      "disconnected business tools",
+      "tools that dont talk to each other"
+    ],
     "guiding_questions": [
       "What's an 'AI tool' you've seen a client try and abandon because it didn't actually work for them?",
       "What's usually broken underneath, before AI even gets involved?",
@@ -36,10 +42,13 @@
     "title": "Why Being the Bottleneck Is a Systems Problem, Not a Discipline Problem",
     "description": "Founders often blame themselves for being overwhelmed, when the real issue is a missing system. Why fixing the structure solves what willpower never will.",
     "primary_keyword": "founder bottleneck",
-    "scheduled_date": "2026-08-10",
+    "scheduled_date": "2026-08-26",
     "category": "founder-productivity",
     "status": "upcoming",
-    "supporting_keywords": ["systems thinking business", "structural fix vs willpower"],
+    "supporting_keywords": [
+      "systems thinking business",
+      "structural fix vs willpower"
+    ],
     "guiding_questions": [
       "What's a founder you've worked with who thought their problem was personal, but was actually structural?",
       "How do you tell the difference between a discipline problem and a systems problem?",
@@ -52,10 +61,13 @@
     "title": "Why Blogs Are More Important Than Ever in the Age of AI",
     "description": "The counterintuitive case for why blogging matters more, not less, now that AI can generate content at industrial scale, and what actually separates content that ranks from content that doesn't.",
     "primary_keyword": "blogging in the age of AI",
-    "scheduled_date": "2026-08-17",
+    "scheduled_date": "2026-09-02",
     "category": "ai-content-visibility",
     "status": "upcoming",
-    "supporting_keywords": ["AI generated content quality", "content marketing 2026"],
+    "supporting_keywords": [
+      "AI generated content quality",
+      "content marketing 2026"
+    ],
     "guiding_questions": [
       "Why do you think most people assume blogs matter less now, and why is that wrong?",
       "What's an example of AI-generated content that clearly says nothing useful?",
@@ -68,10 +80,13 @@
     "title": "The Real Math Behind '>50% Time Saved' — What It Actually Looks Like Week to Week",
     "description": "Breaking down what a 50%+ time savings claim actually means in practice — which tasks disappear, which stay, and how a business owner would notice the difference in a normal week.",
     "primary_keyword": "AI automation ROI",
-    "scheduled_date": "2026-08-24",
+    "scheduled_date": "2026-09-09",
     "category": "ai-roi-efficiency",
     "status": "upcoming",
-    "supporting_keywords": ["time savings automation", "reduce repetitive tasks"],
+    "supporting_keywords": [
+      "time savings automation",
+      "reduce repetitive tasks"
+    ],
     "guiding_questions": [
       "Walk me through a specific client whose weekly workload got cut in half — what tasks went away?",
       "How do you actually measure time saved with a client, versus just guessing?",
@@ -84,10 +99,13 @@
     "title": "What a Workflow Audit Actually Looks Like (and Why Most Businesses Skip It)",
     "description": "Before any automation gets built, there's a diagnosis step most businesses never do. A look at what a real workflow audit uncovers and why skipping it is where most automation projects go wrong.",
     "primary_keyword": "business process automation",
-    "scheduled_date": "2026-08-31",
+    "scheduled_date": "2026-09-16",
     "category": "ai-powered-operations",
     "status": "upcoming",
-    "supporting_keywords": ["workflow diagnosis", "process mapping small business"],
+    "supporting_keywords": [
+      "workflow diagnosis",
+      "process mapping small business"
+    ],
     "guiding_questions": [
       "Walk me through your process on a recent Strategy Call — what are you actually looking for?",
       "What's a workflow problem that only became obvious once you mapped it out?",
@@ -100,10 +118,13 @@
     "title": "How to Scale Your Business Without Adding Headcount",
     "description": "Growth doesn't have to mean more hires. A look at how automation lets a small team absorb more volume without the overhead of scaling headcount.",
     "primary_keyword": "scale business without hiring",
-    "scheduled_date": "2026-09-07",
+    "scheduled_date": "2026-09-23",
     "category": "founder-productivity",
     "status": "upcoming",
-    "supporting_keywords": ["grow business without hiring", "scale operations small team"],
+    "supporting_keywords": [
+      "grow business without hiring",
+      "scale operations small team"
+    ],
     "guiding_questions": [
       "Tell me about a client who grew without hiring — what actually changed for them?",
       "What's usually the first role people assume they need to hire for, that automation can cover instead?",
@@ -116,10 +137,13 @@
     "title": "Why 'AI Search' Is Misleading, and Why Authentic Expertise Is All That Matters",
     "description": "There's a lot of noise about AI replacing search. What actually happens under the hood, and why the same old signals — real expertise, real sourcing — still decide what surfaces.",
     "primary_keyword": "AI search vs SEO",
-    "scheduled_date": "2026-09-14",
+    "scheduled_date": "2026-09-30",
     "category": "ai-content-visibility",
     "status": "upcoming",
-    "supporting_keywords": ["AI Overviews SEO impact", "generative engine optimization"],
+    "supporting_keywords": [
+      "AI Overviews SEO impact",
+      "generative engine optimization"
+    ],
     "guiding_questions": [
       "What's the biggest misconception you hear about 'AI search' replacing Google?",
       "How do tools like ChatGPT or AI Overviews actually decide what to show, as far as you understand it?",
@@ -132,10 +156,13 @@
     "title": "Why 'No Subscriptions, No Vendor Lock-In' Should Be the Default, Not a Bonus",
     "description": "Most automation vendors are built to keep you paying forever. This one covers why full ownership of your systems and credentials should be the baseline expectation, not a premium feature.",
     "primary_keyword": "no vendor lock-in automation",
-    "scheduled_date": "2026-09-21",
+    "scheduled_date": "2026-10-07",
     "category": "ai-roi-efficiency",
     "status": "upcoming",
-    "supporting_keywords": ["own your business systems", "no monthly platform fees"],
+    "supporting_keywords": [
+      "own your business systems",
+      "no monthly platform fees"
+    ],
     "guiding_questions": [
       "What does it actually mean, in practice, for a client to 'own' what you build for them?",
       "Have you seen a business get burned by vendor lock-in? What happened?",
@@ -148,10 +175,13 @@
     "title": "AI Agents vs. Automation: What's the Difference, and Which Does Your Business Need",
     "description": "'AI agent' has become a buzzword. A plain-English explanation of what actually separates a simple automation from a true AI agent, and how to know which one solves your problem.",
     "primary_keyword": "AI agents for business",
-    "scheduled_date": "2026-09-28",
+    "scheduled_date": "2026-10-14",
     "category": "ai-powered-operations",
     "status": "upcoming",
-    "supporting_keywords": ["custom AI agent build", "automation vs AI agent"],
+    "supporting_keywords": [
+      "custom AI agent build",
+      "automation vs AI agent"
+    ],
     "guiding_questions": [
       "In your own words, what's the actual difference between an automation and an agent?",
       "Tell me about an agent build you've done — what decision was it actually making on its own?",
@@ -164,10 +194,13 @@
     "title": "Getting Your Team to Actually Use New Systems (Not Just Tolerate Them)",
     "description": "The best system in the world fails if the team quietly avoids it. What actually gets adoption to stick, from the Team Fluency Training side of the work.",
     "primary_keyword": "team adoption AI tools",
-    "scheduled_date": "2026-10-05",
+    "scheduled_date": "2026-10-21",
     "category": "founder-productivity",
     "status": "upcoming",
-    "supporting_keywords": ["team training AI systems", "employee adoption new tools"],
+    "supporting_keywords": [
+      "team training AI systems",
+      "employee adoption new tools"
+    ],
     "guiding_questions": [
       "What's a system that looked great on paper but the team resisted at first?",
       "What actually turned that resistance around?",
@@ -180,10 +213,13 @@
     "title": "What the Latest Google Update Means for Your Website: It's All About Your Expertise",
     "description": "Breaking down what the latest Google update actually rewards, and why it keeps coming back to the same answer: real expertise, not keyword-stuffed content.",
     "primary_keyword": "Google helpful content update small business",
-    "scheduled_date": "2026-10-12",
+    "scheduled_date": "2026-10-28",
     "category": "ai-content-visibility",
     "status": "upcoming",
-    "supporting_keywords": ["Google ranking factors expertise", "Google algorithm update 2026"],
+    "supporting_keywords": [
+      "Google ranking factors expertise",
+      "Google algorithm update 2026"
+    ],
     "guiding_questions": [
       "What's the core thing this Google update is actually rewarding or penalizing?",
       "Have you seen a client's site affected by an update like this, positively or negatively?",
@@ -196,10 +232,13 @@
     "title": "The Hidden Cost of Manual Admin: What Being the Bottleneck Actually Costs You",
     "description": "Manual admin doesn't show up as a line item, but it's quietly the most expensive thing in a lot of small businesses. A look at what founders actually lose when they're stuck doing repetitive work.",
     "primary_keyword": "cost of manual processes small business",
-    "scheduled_date": "2026-10-19",
+    "scheduled_date": "2026-11-04",
     "category": "ai-roi-efficiency",
     "status": "upcoming",
-    "supporting_keywords": ["cost of being the bottleneck", "manual admin tasks"],
+    "supporting_keywords": [
+      "cost of being the bottleneck",
+      "manual admin tasks"
+    ],
     "guiding_questions": [
       "What's a manual process you've seen quietly costing a business owner way more than they realized?",
       "How do you help a founder actually see the cost of their own bottleneck?",
@@ -212,10 +251,13 @@
     "title": "From Copy-Paste to Connected: Turning Manual Processes Into Systems",
     "description": "The unglamorous work of turning copy-paste, spreadsheet-juggling processes into something that actually flows on its own, and why that shift matters more than any single AI feature.",
     "primary_keyword": "workflow automation small business",
-    "scheduled_date": "2026-10-26",
+    "scheduled_date": "2026-11-11",
     "category": "ai-powered-operations",
     "status": "upcoming",
-    "supporting_keywords": ["automate manual processes", "integrate business software"],
+    "supporting_keywords": [
+      "automate manual processes",
+      "integrate business software"
+    ],
     "guiding_questions": [
       "What's a copy-paste workflow you've replaced recently, and what replaced it?",
       "How do you decide what to automate first when everything feels manual?",
@@ -228,10 +270,13 @@
     "title": "The Founder's Time Audit: Where Your Week Actually Goes",
     "description": "Most founders can't actually say where their week goes. A practical breakdown of how to find out, and what usually turns up once you look closely.",
     "primary_keyword": "small business productivity AI",
-    "scheduled_date": "2026-11-02",
+    "scheduled_date": "2026-11-18",
     "category": "founder-productivity",
     "status": "upcoming",
-    "supporting_keywords": ["founder time management", "time audit small business"],
+    "supporting_keywords": [
+      "founder time management",
+      "time audit small business"
+    ],
     "guiding_questions": [
       "If you had a client track every hour for a week, what usually turns up?",
       "What's a task category people underestimate the time cost of?",
@@ -244,10 +289,13 @@
     "title": "Don't Hire a Ghostwriter for Your Blog. Do This Instead",
     "description": "Ghostwriters are expensive and never quite sound like you. A look at using voice transcription and a real tone-of-voice profile to get content that's actually yours, without writing a word.",
     "primary_keyword": "AI content writing alternative to ghostwriter",
-    "scheduled_date": "2026-11-09",
+    "scheduled_date": "2026-11-25",
     "category": "ai-content-visibility",
     "status": "upcoming",
-    "supporting_keywords": ["voice memo to blog post", "tone of voice profile content"],
+    "supporting_keywords": [
+      "voice memo to blog post",
+      "tone of voice profile content"
+    ],
     "guiding_questions": [
       "What's frustrating about hiring a ghostwriter, from your own experience doing that work?",
       "How does turning a voice memo into a post actually preserve someone's voice better than a ghostwriter would?",
@@ -260,10 +308,13 @@
     "title": "How Much Does AI Automation Actually Cost? A Real Breakdown",
     "description": "A straight answer to the question every prospective client asks first: real numbers on what bespoke automation costs, what drives the price up or down, and what's actually included.",
     "primary_keyword": "how much does AI automation cost",
-    "scheduled_date": "2026-11-16",
+    "scheduled_date": "2026-12-02",
     "category": "ai-roi-efficiency",
     "status": "upcoming",
-    "supporting_keywords": ["automation pricing", "cost of AI tools business"],
+    "supporting_keywords": [
+      "automation pricing",
+      "cost of AI tools business"
+    ],
     "guiding_questions": [
       "Walk me through how you actually price a project, start to finish.",
       "What makes one automation project $1,000 and another $10,000+?",
@@ -276,10 +327,13 @@
     "title": "Why Bespoke Beats Off-the-Shelf for Business Automation",
     "description": "Off-the-shelf automation tools solve the generic 80% of a problem and leave the specific 20%, usually the part that actually matters, for you to figure out. Why a tailored build closes that gap.",
     "primary_keyword": "custom automation vs off the shelf",
-    "scheduled_date": "2026-11-23",
+    "scheduled_date": "2026-12-09",
     "category": "ai-powered-operations",
     "status": "upcoming",
-    "supporting_keywords": ["custom workflow build", "off the shelf automation limits"],
+    "supporting_keywords": [
+      "custom workflow build",
+      "off the shelf automation limits"
+    ],
     "guiding_questions": [
       "What's a generic tool a client tried before coming to you, and where did it fall short?",
       "How do you decide when off-the-shelf is actually fine, versus when it isn't?",
@@ -292,10 +346,13 @@
     "title": "Why 'I'll Just Do It Myself' Is the Most Expensive Habit in Your Business",
     "description": "The instinct to just handle it yourself feels efficient in the moment but compounds into the biggest constraint on a growing business. Why letting go is the actual unlock.",
     "primary_keyword": "founder productivity",
-    "scheduled_date": "2026-11-30",
+    "scheduled_date": "2026-12-16",
     "category": "founder-productivity",
     "status": "upcoming",
-    "supporting_keywords": ["letting go of tasks", "delegate business tasks"],
+    "supporting_keywords": [
+      "letting go of tasks",
+      "delegate business tasks"
+    ],
     "guiding_questions": [
       "What's an example of a founder holding onto a task way longer than they should have?",
       "What does it usually cost them, in hindsight?",
@@ -308,10 +365,13 @@
     "title": "The Content Nobody Else Can Write for You: Turning Years of Experience Into a Blog",
     "description": "Your lived experience is the one thing a generic writer or AI prompt can't fabricate. Why that's the actual asset behind every post, and how to get it out of your head and published.",
     "primary_keyword": "EEAT content strategy",
-    "scheduled_date": "2026-12-07",
+    "scheduled_date": "2026-12-23",
     "category": "ai-content-visibility",
     "status": "upcoming",
-    "supporting_keywords": ["authentic content expertise", "experience based content marketing"],
+    "supporting_keywords": [
+      "authentic content expertise",
+      "experience based content marketing"
+    ],
     "guiding_questions": [
       "What's a piece of hard-won experience you have that no generalist writer could fake?",
       "How do you help someone realize what's actually valuable in their own knowledge?",
