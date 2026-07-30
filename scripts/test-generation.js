@@ -12,6 +12,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
 import { runGeneration } from '../lib/generation/engine.js';
+import { SITE_ORIGIN } from '../lib/client-config.js';
 
 const args = process.argv.slice(2);
 function argValue(flag) {
@@ -31,7 +32,7 @@ const topic = JSON.parse(readFileSync(topicFile, 'utf8').replace(/^﻿/, ''));
 const transcript = readFileSync(transcriptFile, 'utf8').trim();
 const priorPosts = JSON.parse(readFileSync('blog/index.json', 'utf8')).posts
   .slice(0, 5)
-  .map((p) => ({ title: p.title, slug: p.slug }));
+  .map((p) => ({ title: p.title, url: `${SITE_ORIGIN}/blog/${p.slug}` }));
 
 const inputs = {
   topicTitle: topic.title,

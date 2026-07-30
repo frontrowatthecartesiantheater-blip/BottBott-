@@ -9,9 +9,11 @@ most valuable reusable asset in the template — keep it well-commented.
 ## Runtime inputs (per run)
 
 `topicTitle`, `topicDescription`, `primaryKeyword`, `guidingQuestions`,
-`transcript`, `priorPosts` (last 5, for internal-linking + repetition
-avoidance), `ragFlag`, `ragChunks` (only when `ragFlag` is true). The static
-TOV profile and the two internal-link pools are injected from config.
+`transcript`, `priorPosts` (last 5, each `{ title, url }` carrying the full
+`/blog/` URL, for internal-linking + repetition avoidance), `ragFlag`,
+`ragChunks` (only when `ragFlag` is true). The static TOV profile and the two
+internal-link pools are injected from config. Prompts use a prior post's `url`
+verbatim — never assemble a post URL from its slug.
 
 ## Pre-pass — dynamic TOV extraction
 
