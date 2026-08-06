@@ -1,11 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Blog | BottBott Business Systems</title>
   <meta name="description" content="Practical writing on AI systems, automation, and business workflows from BottBott Business Systems. No hype, no fluff — just what works.">
   <link rel="canonical" href="https://www.bottbottgenai.com/blog/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" href="/favicon.png">
   <meta name="robots" content="index, follow">
 
@@ -55,6 +57,7 @@
         "url": "https://www.bottbottgenai.com/blog/",
         "name": "Blog | BottBott Business Systems",
         "description": "Practical writing on AI systems, automation, and business workflows from BottBott Business Systems. No hype, no fluff — just what works.",
+        "inLanguage": "en",
         "breadcrumb": {
           "@type": "BreadcrumbList",
           "itemListElement": [
@@ -62,11 +65,7 @@
             { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.bottbottgenai.com/blog/" }
           ]
         },
-        "isPartOf": {
-          "@type": "WebSite",
-          "url": "https://www.bottbottgenai.com/",
-          "name": "BottBott Business Systems"
-        }
+        "isPartOf": { "@id": "https://www.bottbottgenai.com/#website" }
       }
     ]
   }
@@ -110,6 +109,27 @@
       background: var(--bg);
       line-height: 1.7;
       overflow-x: hidden;
+    }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -48px;
+      z-index: 200;
+      background: var(--primary-dark);
+      color: var(--text-light);
+      padding: 10px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 12px; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
     }
 
     /* ── NAV ── */
@@ -285,83 +305,81 @@
       gap: 24px;
     }
 
-    /* Single card shouldn't stretch full width */
-    .posts-grid.single { max-width: 540px; }
+    /* Single card shouldn't stretch full width. The .single class was applied by
+       the old client-side renderer; :has() covers the server-rendered case. */
+    .posts-grid.single,
+    .posts-grid:has(> .card:only-child) { max-width: 540px; }
 
-    .post-card {
-      padding: 32px;
+    /* ── POST CARDS (markup emitted by renderPostCard in lib/blog.js) ── */
+    .card {
+      display: flex;
+      flex-direction: column;
       background: var(--bg-card);
-      border-radius: 4px;
-      text-decoration: none;
       border: 1px solid var(--gold-dim);
+      border-radius: 4px;
+      overflow: hidden;
       transition: transform 0.3s, box-shadow 0.3s;
-      display: block;
     }
 
-    .post-card:hover {
+    .card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(196, 146, 58, 0.12);
     }
 
-    .post-meta {
+    .card__media {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-bottom: 1px solid var(--gold-dim);
+    }
+
+    .card__body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 32px;
+      flex: 1;
+    }
+
+    .meta {
       font-size: 13px;
       font-weight: 700;
       color: var(--gold-light);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 12px;
     }
 
-    .post-title {
+    .card__title {
       font-size: 20px;
       font-weight: 700;
       color: var(--text-light);
-      margin-bottom: 12px;
       line-height: 1.3;
     }
 
-    .post-excerpt {
+    .card__text {
       font-size: 15px;
       line-height: 1.6;
       color: var(--text-dim);
-      margin-bottom: 16px;
     }
 
-    .post-link {
+    .card__link {
+      margin-top: auto;
       font-size: 14px;
       font-weight: 700;
       color: var(--gold-light);
+      text-decoration: none;
     }
 
-    /* ── SKELETON LOADING ── */
-    .post-skeleton { cursor: default; }
-    .post-skeleton:hover { transform: none; box-shadow: none; }
-
-    .skeleton-bar {
-      height: 14px;
-      border-radius: 3px;
-      background: linear-gradient(90deg, var(--bg-card-hover) 25%, rgba(196, 146, 58, 0.18) 50%, var(--bg-card-hover) 75%);
-      background-size: 200% 100%;
-      animation: skeleton-pulse 1.6s ease-in-out infinite;
-      margin-bottom: 12px;
-    }
-
-    .skeleton-meta { width: 40%; height: 12px; }
-    .skeleton-title { width: 90%; height: 20px; }
-    .skeleton-excerpt { width: 100%; height: 14px; }
-    .skeleton-link { width: 35%; height: 14px; margin-top: 4px; margin-bottom: 0; }
-
-    @keyframes skeleton-pulse {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .skeleton-bar { animation: none; }
-    }
+    .card__link:hover { text-decoration: underline; }
 
     /* ── EMPTY STATE ── */
-    .posts-empty {
+    /* Shown only when the manifest rendered no cards at all. */
+    .posts-empty { display: none; }
+    .posts-grid:empty { display: none; }
+
+    .posts-grid:empty + .posts-empty {
+      display: block;
       max-width: 540px;
       margin: 0 auto;
       text-align: center;
@@ -439,9 +457,19 @@
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ══ HEADER / NAV ══ -->
 <header class="site-header">
@@ -489,33 +517,38 @@
 
 
 <!-- ══ POSTS ══ -->
-<main class="posts-section">
-  <div class="posts-grid" id="postsGrid">
-    <!-- Skeleton loading state shown until JS loads the manifest -->
-    <div class="post-card post-skeleton" aria-hidden="true">
-      <div class="skeleton-bar skeleton-meta"></div>
-      <div class="skeleton-bar skeleton-title"></div>
-      <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
-      <div class="skeleton-bar skeleton-excerpt"></div>
-      <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
-      <div class="skeleton-bar skeleton-link"></div>
-    </div>
-    <div class="post-card post-skeleton" aria-hidden="true">
-      <div class="skeleton-bar skeleton-meta"></div>
-      <div class="skeleton-bar skeleton-title"></div>
-      <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
-      <div class="skeleton-bar skeleton-excerpt"></div>
-      <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
-      <div class="skeleton-bar skeleton-link"></div>
-    </div>
-    <div class="post-card post-skeleton" aria-hidden="true">
-      <div class="skeleton-bar skeleton-meta"></div>
-      <div class="skeleton-bar skeleton-title"></div>
-      <div class="skeleton-bar skeleton-title" style="width: 70%;"></div>
-      <div class="skeleton-bar skeleton-excerpt"></div>
-      <div class="skeleton-bar skeleton-excerpt" style="width: 85%;"></div>
-      <div class="skeleton-bar skeleton-link"></div>
-    </div>
+<!-- Cards are server-rendered from blog/index.json at build/publish time.
+     The grid must contain the post-cards token and nothing else — no
+     whitespace — so that :empty matches when there are no posts and the
+     fallback below takes over. Do not repeat that token anywhere else in
+     this file (including comments); every occurrence gets substituted. -->
+<main class="posts-section" id="main">
+  <div class="posts-grid">          <article class="card">
+            <a href="/blog/custom-ai-infrastructure-vs-saas-platforms">
+              <img class="card__media" src="../assets/images/renting-or-building.webp" alt="" width="800" height="450" loading="lazy">
+            </a>
+            <div class="card__body">
+              <p class="meta">August 5, 2026 &middot; 4 min read</p>
+              <h2 class="card__title">Are You Renting a Template or Building Infrastructure?</h2>
+              <p class="card__text">How to avoid being a founder who trades long-term control for short-term convenience when adopting AI for your business.</p>
+              <a class="card__link" href="/blog/custom-ai-infrastructure-vs-saas-platforms">Read more &rarr;</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <a href="/blog/ai-data-security-professional-services">
+              <img class="card__media" src="../assets/images/ai-wall.webp" alt="" width="800" height="450" loading="lazy">
+            </a>
+            <div class="card__body">
+              <p class="meta">July 29, 2026 &middot; 7 min read</p>
+              <h2 class="card__title">The AI Wall Professional Services Firms Are Hitting, and the Only Way Through It</h2>
+              <p class="card__text">Why sending client data through a public API is a security risk and what a small professional services firm can actually do about it today.</p>
+              <a class="card__link" href="/blog/ai-data-security-professional-services">Read more &rarr;</a>
+            </div>
+          </article></div>
+  <div class="posts-empty">
+    <h2>No posts yet — check back soon.</h2>
+    <p>New writing is on the way. In the meantime, the <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer">BottBott Substack</a> is live now.</p>
   </div>
 </main>
 
@@ -543,54 +576,6 @@
     btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     btn.textContent = isOpen ? '✕' : '☰';
   }
-
-  // Escape untrusted-ish strings before injecting into innerHTML. The manifest
-  // is first-party, but titles/descriptions can legitimately contain & < >.
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
-
-  var EMPTY_STATE_HTML =
-    '<div class="posts-empty">' +
-      '<h2>No posts yet — check back soon.</h2>' +
-      '<p>New writing is on the way. In the meantime, the <a href="https://bottbott.substack.com" target="_blank" rel="noopener noreferrer">BottBott Substack</a> is live now.</p>' +
-    '</div>';
-
-  // Fetch the post manifest (written by the autoblog pipeline on each publish)
-  // and render a card per post.
-  async function fetchPosts() {
-    var postsGrid = document.getElementById('postsGrid');
-
-    try {
-      var response = await fetch('/blog/index.json');
-      var data = await response.json();
-
-      if (data.posts && data.posts.length > 0) {
-        if (data.posts.length === 1) postsGrid.classList.add('single');
-        postsGrid.innerHTML = data.posts.map(function (post) {
-          var date = new Date(post.date + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-          var read = post.readMinutes ? ' &middot; ' + post.readMinutes + ' min read' : '';
-          return (
-            '<a href="/blog/' + encodeURIComponent(post.slug) + '" class="post-card">' +
-              '<div class="post-meta">' + esc(date) + read + '</div>' +
-              '<h3 class="post-title">' + esc(post.title) + '</h3>' +
-              '<p class="post-excerpt">' + esc(post.description) + '</p>' +
-              '<span class="post-link">Read post →</span>' +
-            '</a>'
-          );
-        }).join('');
-      } else {
-        postsGrid.innerHTML = EMPTY_STATE_HTML;
-      }
-    } catch (error) {
-      console.error('Failed to fetch posts:', error);
-      postsGrid.innerHTML = EMPTY_STATE_HTML;
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', fetchPosts);
 </script>
 </body>
 </html>

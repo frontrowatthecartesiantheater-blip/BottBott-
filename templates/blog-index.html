@@ -7,181 +7,553 @@
   <title>{{BLOG_INDEX_TITLE}}</title>
   <meta name="description" content="{{BLOG_INDEX_META_DESCRIPTION}}">
   <link rel="canonical" href="{{SITE_ORIGIN}}/blog/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="robots" content="index, follow">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="{{CLIENT_BUSINESS_NAME}}">
   <meta property="og:title" content="{{BLOG_INDEX_TITLE}}">
   <meta property="og:description" content="{{BLOG_INDEX_META_DESCRIPTION}}">
   <meta property="og:url" content="{{SITE_ORIGIN}}/blog/">
-  <meta property="og:image" content="{{SITE_ORIGIN}}/assets/images/og-image.png">
+  <meta property="og:site_name" content="{{CLIENT_BUSINESS_NAME}}">
+  <meta property="og:image" content="{{SITE_ORIGIN}}/BottBott.png">
 
-  <!-- Twitter -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{BLOG_INDEX_TITLE}}">
   <meta name="twitter:description" content="{{BLOG_INDEX_META_DESCRIPTION}}">
-  <meta name="twitter:image" content="{{SITE_ORIGIN}}/assets/images/og-image.png">
+  <meta name="twitter:image" content="{{SITE_ORIGIN}}/BottBott.png">
 
-  <!-- Fonts: preload the most-used face, then the stylesheet -->
-  <link rel="preload" href="../assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/css/style.css">
-
-  <!-- Site chrome (nav + footer) — markup and styles ported from the main site's pages -->
-  <style>
-    .site-header { padding: 0 24px; background: rgba(15, 25, 35, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gold-dim); }
-    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 72px; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-light); flex-shrink: 0; }
-    .logo-icon { width: 36px; height: 36px; }
-    .logo-text-wrap { display: flex; flex-direction: column; line-height: 1.1; }
-    .logo-name { font-size: 16px; font-weight: 700; color: var(--text-light); letter-spacing: -0.01em; }
-    .logo-sub { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
-    .nav-links { display: flex; align-items: center; gap: 4px; }
-    .nav-links a { font-size: 14px; font-weight: 600; color: var(--text-dim); text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--gold-light); text-decoration: none; }
-    .nav-links a.active { color: var(--gold-light); font-weight: 700; }
-    .btn-nav { background: var(--gold) !important; color: var(--on-gold) !important; padding: 10px 20px !important; border-radius: 4px !important; font-weight: 700 !important; margin-left: 8px; }
-    .btn-nav:hover { background: var(--gold-light) !important; color: var(--on-gold) !important; }
-    .mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; line-height: 1; cursor: pointer; color: var(--gold); padding: 4px 6px; }
-    .mobile-menu { display: none; flex-direction: column; gap: 2px; padding: 8px 24px 20px; border-top: 1px solid var(--gold-dim); }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { padding: 12px 0; font-size: 16px; font-weight: 600; color: var(--text-dim); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .mobile-menu a:hover, .mobile-menu a.active { color: var(--gold-light); text-decoration: none; }
-    .site-footer { padding: 40px 24px; border-top: 1px solid var(--gold-dim); }
-    .site-footer::before { content: none; }
-    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    .footer-copy { font-size: 13px; color: var(--text-dimmer); }
-    .footer-links { display: flex; gap: 20px; }
-    .footer-links a { font-size: 13px; font-weight: 500; color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
-    .footer-links a:hover { color: var(--gold-light); text-decoration: none; }
-    @media (max-width: 768px) {
-      .nav-links a:not(.btn-nav) { display: none; }
-      .mobile-menu-btn { display: block; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-      .footer-links { flex-wrap: wrap; }
-    }
-  </style>
-
-  <!-- LocalBusiness structured data (site-wide base) -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": {{CLIENT_SCHEMA_TYPES_JSON}},
-    "@id": "{{SITE_ORIGIN}}/#organization",
-    "name": "{{CLIENT_BUSINESS_NAME}}",
-    "image": "{{CLIENT_SCHEMA_IMAGE_URL}}",
-    "url": "{{SITE_ORIGIN}}/blog/",
-    "email": "{{CLIENT_CONTACT_EMAIL}}",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "{{CLIENT_PRIMARY_CITY}}"
-    },
-    "areaServed": [{{CLIENT_SERVICE_AREAS_JSON}}
-    ],
-    "sameAs": [
-      "{{CLIENT_LINKEDIN_URL}}",
-      "https://{{CLIENT_PERSONAL_SITE_DOMAIN}}",
-      "{{CLIENT_GOOGLE_MAPS_URL}}"
-    ],
-    "knowsAbout": {{CLIENT_EXPERTISE_TAGS_JSON}},
-    "description": "{{CLIENT_SCHEMA_DESCRIPTION}}"
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": "{{SITE_ORIGIN}}/blog/#blog",
+        "url": "{{SITE_ORIGIN}}/blog/",
+        "name": "The BottBott Blog",
+        "description": "{{BLOG_INDEX_META_DESCRIPTION}}",
+        "inLanguage": "en",
+        "publisher": {
+          "@type": "ProfessionalService",
+          "@id": "{{SITE_ORIGIN}}/#organization",
+          "name": "{{CLIENT_BUSINESS_NAME}}",
+          "url": "{{SITE_ORIGIN}}/",
+          "email": "{{CLIENT_CONTACT_EMAIL}}",
+          "logo": "{{CLIENT_SCHEMA_IMAGE_URL}}",
+          "sameAs": [
+            "https://{{CLIENT_PERSONAL_SITE_DOMAIN}}",
+            "{{CLIENT_LINKEDIN_URL}}",
+            "{{CLIENT_GOOGLE_MAPS_URL}}"
+          ]
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "{{SITE_ORIGIN}}/blog/",
+        "url": "{{SITE_ORIGIN}}/blog/",
+        "name": "{{BLOG_INDEX_TITLE}}",
+        "description": "{{BLOG_INDEX_META_DESCRIPTION}}",
+        "inLanguage": "en",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{SITE_ORIGIN}}/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "{{SITE_ORIGIN}}/blog/" }
+          ]
+        },
+        "isPartOf": { "@id": "{{SITE_ORIGIN}}/#website" }
+      }
+    ]
   }
   </script>
+
+  <!-- Fonts — matching main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DESIGN TOKENS — EXACT MATCH TO MAIN SITE ── */
+    :root {
+      --bg:            #0f1923;
+      --bg-alt:        #131f2b;
+      --bg-card:       #17232f;
+      --bg-card-hover: #1c2b39;
+      --primary-dark:  #0a141d;
+      --gold:          #C4923A;
+      --gold-light:    #d9ad5f;
+      --gold-dim:      rgba(196, 146, 58, 0.6);
+      --gold-faint:    rgba(196, 146, 58, 0.12);
+      --on-gold:       #0f1923;
+      --text-light:    #f5f7f9;
+      --text-dim:      #9fb0c0;
+      --text-dimmer:   #6f8294;
+      --white:         #ffffff;
+      --font-body:     'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--text-light);
+      background: var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -48px;
+      z-index: 200;
+      background: var(--primary-dark);
+      color: var(--text-light);
+      padding: 10px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 12px; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    /* ── NAV ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 25, 35, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-light);
+      flex-shrink: 0;
+    }
+
+    .logo-icon { width: 36px; height: 36px; }
+
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-sub {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a.active { color: var(--gold-light); font-weight: 700; }
+
+    .btn-nav {
+      background: var(--gold) !important;
+      color: var(--on-gold) !important;
+      padding: 10px 20px !important;
+      border-radius: 4px !important;
+      font-weight: 700 !important;
+      margin-left: 8px;
+    }
+
+    .btn-nav:hover {
+      background: var(--gold-light) !important;
+      color: var(--on-gold) !important;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--gold);
+      padding: 4px 6px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      padding: 8px 24px 20px;
+      border-top: 1px solid var(--gold-dim);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      padding: 12px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active { color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--text-light);
+      padding: 88px 24px 72px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(245,247,249,0.72);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ── POSTS ── */
+    .posts-section {
+      padding: 72px 24px 100px;
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(15, 25, 35, 0.93) 0%, rgba(15, 25, 35, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .posts-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* Single card shouldn't stretch full width. The .single class was applied by
+       the old client-side renderer; :has() covers the server-rendered case. */
+    .posts-grid.single,
+    .posts-grid:has(> .card:only-child) { max-width: 540px; }
+
+    /* ── POST CARDS (markup emitted by renderPostCard in lib/blog.js) ── */
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-card);
+      border: 1px solid var(--gold-dim);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(196, 146, 58, 0.12);
+    }
+
+    .card__media {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-bottom: 1px solid var(--gold-dim);
+    }
+
+    .card__body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 32px;
+      flex: 1;
+    }
+
+    .meta {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card__title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-light);
+      line-height: 1.3;
+    }
+
+    .card__text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-dim);
+    }
+
+    .card__link {
+      margin-top: auto;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+
+    .card__link:hover { text-decoration: underline; }
+
+    /* ── EMPTY STATE ── */
+    /* Shown only when the manifest rendered no cards at all. */
+    .posts-empty { display: none; }
+    .posts-grid:empty { display: none; }
+
+    .posts-grid:empty + .posts-empty {
+      display: block;
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 56px 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--gold-dim);
+      border-radius: 4px;
+    }
+
+    .posts-empty h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+
+    .posts-empty p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .posts-empty a { color: var(--gold-light); text-decoration: none; }
+    .posts-empty a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.jpg');
+      background-image: linear-gradient(135deg, rgba(10, 20, 29, 0.93) 0%, rgba(10, 20, 29, 0.93) 100%), url('/hero-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top: 1px solid var(--gold-dim);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-dimmer);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { padding: 64px 24px 56px; }
+      .posts-section { padding: 56px 24px 72px; }
+
+      .nav-links a:not(.btn-nav) { display: none; }
+      .mobile-menu-btn { display: block; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ============================ Header ============================ -->
-  <header class="site-header">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="BottBott Business Systems home">
-        <img src="/BottBott.svg" alt="BottBott" class="logo-icon">
-        <div class="logo-text-wrap">
-          <span class="logo-name">BottBott</span>
-          <span class="logo-sub">Business Systems</span>
-        </div>
-      </a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-      <nav class="nav-links" aria-label="Site navigation">
-        <a href="/#services">Services</a>
-        <a href="/systems/">Systems</a>
-        <a href="/about/">About</a>
-        <a href="/how-we-work/">How We Work</a>
-        <a href="/blog/" class="active" aria-current="page">Posts</a>
-        <a href="/#contact">Contact</a>
-        <a href="https://calendly.com/simon-bottbottgenai/30min"
-           target="_blank" rel="noopener noreferrer"
-           class="btn-nav">Book a Call</a>
-      </nav>
+<!-- ══ HEADER / NAV ══ -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="BottBott Business Systems home">
+      <img src="/BottBott.svg" alt="BottBott" class="logo-icon">
+      <div class="logo-text-wrap">
+        <span class="logo-name">BottBott</span>
+        <span class="logo-sub">Business Systems</span>
+      </div>
+    </a>
 
-      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+    <nav class="nav-links" aria-label="Site navigation">
+      <a href="/#services">Services</a>
+      <a href="/systems/">Systems</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-work/">How We Work</a>
+      <a href="/blog/" class="active" aria-current="page">Posts</a>
+      <a href="/#contact">Contact</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-nav">Book a Call</a>
+    </nav>
+
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+      <a href="/#services">Services</a>
+      <a href="/systems/">Systems</a>
+      <a href="/about/">About</a>
+      <a href="/how-we-work/">How We Work</a>
+      <a href="/blog/" class="active" aria-current="page">Posts</a>
+      <a href="/#contact">Contact</a>
+  </div>
+</header>
+
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <p class="eyebrow">Writing</p>
+  <h1>{{BLOG_HERO_HEADLINE}}</h1>
+  <p class="hero-sub">{{BLOG_HERO_SUBHEAD}}</p>
+</section>
+
+
+<!-- ══ POSTS ══ -->
+<!-- Cards are server-rendered from blog/index.json at build/publish time.
+     The grid must contain the post-cards token and nothing else — no
+     whitespace — so that :empty matches when there are no posts and the
+     fallback below takes over. Do not repeat that token anywhere else in
+     this file (including comments); every occurrence gets substituted. -->
+<main class="posts-section" id="main">
+  <div class="posts-grid">{{POST_CARDS}}</div>
+  <div class="posts-empty">
+    <h2>No posts yet — check back soon.</h2>
+    <p>New writing is on the way. In the meantime, the <a href="https://{{CLIENT_PERSONAL_SITE_DOMAIN}}" target="_blank" rel="noopener noreferrer">BottBott Substack</a> is live now.</p>
+  </div>
+</main>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">&copy; 2026 {{CLIENT_BUSINESS_NAME}}. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="/systems/">Systems</a>
+      <a href="/about/">About</a>
+      <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;">&#115;&#105;&#109;&#111;&#110;&#64;&#98;&#111;&#116;&#116;&#98;&#111;&#116;&#116;&#103;&#101;&#110;&#97;&#105;&#46;&#99;&#111;&#109;</a>
+      <a href="https://{{CLIENT_PERSONAL_SITE_DOMAIN}}" target="_blank" rel="noopener noreferrer">Substack</a>
+      <a href="https://calendly.com/simon-bottbottgenai/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+      <a href="/privacy/">Privacy Policy</a>
     </div>
+  </div>
+</footer>
 
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="/#services">Services</a>
-        <a href="/systems/">Systems</a>
-        <a href="/about/">About</a>
-        <a href="/how-we-work/">How We Work</a>
-        <a href="/blog/" class="active" aria-current="page">Posts</a>
-        <a href="/#contact">Contact</a>
-    </div>
-  </header>
-
-  <main id="main">
-
-    <!-- ============================ Hero banner ============================ -->
-    <section class="hero hero--compact" style="min-height:auto; padding-block:80px; background:var(--primary-dark);">
-      <div class="container hero__content">
-        <h1 class="hero__title" style="font-size:28px; text-shadow:none; margin-bottom:var(--gap-tight);">{{BLOG_HERO_HEADLINE}}</h1>
-        <span class="hero__rule" aria-hidden="true"></span>
-        <p class="hero__subtitle" style="margin-bottom:0;">{{BLOG_HERO_SUBHEAD}}</p>
-      </div>
-    </section>
-
-    <!-- ============================ Blog grid ============================ -->
-    <section class="section">
-      <div class="container">
-        <div class="grid grid--3">
-{{POST_CARDS}}
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= Contact CTA ========================= -->
-    <section class="section section--navy">
-      <div class="container center">
-        <h2>{{POST_CTA_HEADING}}</h2>
-        <p class="lead" style="color:#c6cede;">{{POST_CTA_TEXT}}</p>
-        <div class="btn-group" style="justify-content:center;">
-          <a class="btn btn--primary" href="/strategy-call/">Send a message</a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ============================ Footer ============================ -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <span class="footer-copy">&copy; 2026 {{CLIENT_BUSINESS_NAME}}. All rights reserved.</span>
-      <div class="footer-links">
-        <a href="/systems/">Systems</a>
-        <a href="/about/">About</a>
-        <a href="https://{{CLIENT_PERSONAL_SITE_DOMAIN}}" target="_blank" rel="noopener noreferrer">Substack</a>
-        <a href="{{CLIENT_LINKEDIN_URL}}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:{{CLIENT_CONTACT_EMAIL}}">{{CLIENT_CONTACT_EMAIL}}</a>
-        <a href="/privacy/">Privacy Policy</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMobileMenu() {
-      var menu = document.getElementById('mobileMenu');
-      var btn = document.querySelector('.mobile-menu-btn');
-      var isOpen = menu.classList.toggle('open');
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      btn.textContent = isOpen ? '✕' : '☰';
-    }
-  </script>
+<script>
+  function toggleMobileMenu() {
+    var menu = document.getElementById('mobileMenu');
+    var btn = document.querySelector('.mobile-menu-btn');
+    var isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    btn.textContent = isOpen ? '✕' : '☰';
+  }
+</script>
 </body>
 </html>

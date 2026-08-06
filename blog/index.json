@@ -1,1 +1,20 @@
-{"posts":[]}
+{
+  "posts": [
+    {
+      "slug": "custom-ai-infrastructure-vs-saas-platforms",
+      "title": "Are You Renting a Template or Building Infrastructure?",
+      "date": "2026-08-05",
+      "description": "How to avoid being a founder who trades long-term control for short-term convenience when adopting AI for your business.",
+      "image": "assets/images/renting-or-building.webp",
+      "readMinutes": 4
+    },
+    {
+      "slug": "ai-data-security-professional-services",
+      "title": "The AI Wall Professional Services Firms Are Hitting, and the Only Way Through It",
+      "date": "2026-07-29",
+      "description": "Why sending client data through a public API is a security risk and what a small professional services firm can actually do about it today.",
+      "image": "assets/images/ai-wall.webp",
+      "readMinutes": 7
+    }
+  ]
+}
