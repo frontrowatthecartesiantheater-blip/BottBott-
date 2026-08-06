@@ -902,7 +902,7 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
-      margin-top: 28px;
+      margin-bottom: 28px;
     }
 
     .testimonial-dot {
@@ -1458,6 +1458,10 @@
       <h2 class="section-title section-title-light">Results that speak for themselves</h2>
     </div>
     <div class="testimonials-carousel">
+      <div class="testimonial-dots" id="testimonialDots">
+        <button class="testimonial-dot active" onclick="goToTestimonial(0)" aria-label="Show testimonial 1 of 2"></button>
+        <button class="testimonial-dot" onclick="goToTestimonial(1)" aria-label="Show testimonial 2 of 2"></button>
+      </div>
       <div class="testimonial-track" id="testimonialTrack">
         <div class="testimonial-slide">
           <div class="testimonial-card">
@@ -1478,10 +1482,6 @@
             <p class="testimonial-author">Gregg McElwee, Broker/Agent, <a href="https://www.realestateandloans.com" target="_blank" rel="noopener noreferrer">Real Estate & Loans</a></p>
           </div>
         </div>
-      </div>
-      <div class="testimonial-dots" id="testimonialDots">
-        <button class="testimonial-dot active" onclick="goToTestimonial(0)" aria-label="Show testimonial 1 of 2"></button>
-        <button class="testimonial-dot" onclick="goToTestimonial(1)" aria-label="Show testimonial 2 of 2"></button>
       </div>
     </div>
   </section>
