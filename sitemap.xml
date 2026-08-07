@@ -2,61 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.bottbottgenai.com/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/systems/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/autoblog/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/podcast-pitching/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/linkedin-outreach-pipeline/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/warm-outreach/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/lead-prospector/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/strategy-call/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/ongoing-support/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/workflow-build/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/agent-build/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/webapp-build/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/team-fluency/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/about/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/how-we-work/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/privacy/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/blog/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/blog/custom-ai-infrastructure-vs-saas-platforms</loc>
     <lastmod>2026-08-05</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bottbottgenai.com/blog/ai-data-security-professional-services</loc>
     <lastmod>2026-07-29</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>
