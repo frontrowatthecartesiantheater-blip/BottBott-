@@ -29,9 +29,9 @@ const ALLOWED_EXT = ['jpg', 'jpeg', 'png', 'webp'];
 // Claude vision model + prompt for auto-generating SEO alt text on upload.
 // Location and keywords come from client-config.
 const ALT_TEXT_MODEL = 'claude-sonnet-4-6';
-const ALT_TEXT_PROMPT = `You are writing SEO alt text for a blog serving ${CLIENT.primaryCity} and nearby areas.
-Describe this image in one concise sentence (12 words max) as if it were taken in or near
-${CLIENT.primaryCity} — use specific local place references where the image plausibly fits.
+const ALT_TEXT_PROMPT = `You are writing SEO alt text for the blog of ${CLIENT.businessName}.
+Describe this image in one concise sentence (12 words max), focused on what
+the image shows and the business concept it illustrates. No location references.
 Do not mention the image being stock or generic.
 Primary keywords to weave in naturally where relevant:
 ${CLIENT.altTextKeywords}.
@@ -76,7 +76,9 @@ async function generateAltText(base64, ext) {
   });
   if (!res.ok) throw new Error(`Anthropic alt-text error: ${res.status} ${await res.text()}`);
   const data = await res.json();
-  return data.content.map((b) => b.text ?? '').join('').trim();
+  // Strip surrounding quote marks — the model sometimes returns the alt text
+  // as a quoted string, which would otherwise be stored verbatim.
+  return data.content.map((b) => b.text ?? '').join('').trim().replace(/^["'“]+|["'”]+$/g, '');
 }
 
 export default async function handler(req, res) {
