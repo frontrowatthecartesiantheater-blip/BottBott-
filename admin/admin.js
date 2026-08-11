@@ -300,9 +300,9 @@ async function loadUpcomingTopics() {
     const { topics } = await api('/api/admin/topics?status=upcoming');
     host.innerHTML = topics.length ? `
       <table class="upcoming-table">
-        <thead><tr><th>Topic Title</th><th>Scheduled Date</th><th>Status</th></tr></thead>
+        <thead><tr><th>Topic Title</th><th>Pillar</th><th>Scheduled Date</th><th>Status</th></tr></thead>
         <tbody>${topics.map((t) => `
-          <tr><td>${escapeHtml(t.title)}</td><td>${fmtDate(t.scheduled_date)}</td><td>${escapeHtml(t.status)}</td></tr>`).join('')}
+          <tr><td>${escapeHtml(t.title)}</td><td>${escapeHtml(categoryLabel(t.category))}</td><td>${fmtDate(t.scheduled_date)}</td><td>${escapeHtml(t.status)}</td></tr>`).join('')}
         </tbody>
       </table>` : '<p class="meta">No upcoming topics.</p>';
   } catch (err) {
