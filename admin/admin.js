@@ -35,6 +35,14 @@ function fmtDate(d) {
 
 const recorder = { mediaRecorder: null, chunks: [], blob: null, topicId: null };
 
+// Human-readable pillar label for a category slug, read from the topic form's
+// <select> options so the labels live in one place.
+function categoryLabel(slug) {
+  if (!slug) return '';
+  const opt = document.querySelector(`select[name="category"] option[value="${slug}"]`);
+  return opt ? opt.textContent : slug;
+}
+
 function renderCreator(state) {
   const topic = state.upcomingTopic;
   if (!topic) {
@@ -45,6 +53,8 @@ function renderCreator(state) {
   recorder.topicId = topic.id;
   $('#g-topic').textContent = topic.title;
   $('#g-date').textContent = topic.scheduled_date ? `Goes live ${fmtDate(topic.scheduled_date)}` : '';
+  $('#g-pillar').textContent = categoryLabel(topic.category);
+  $('#g-pillar').hidden = !topic.category;
   $('#g-questions').innerHTML = (topic.guiding_questions || [])
     .map((q) => `<li>${escapeHtml(q)}</li>`).join('');
   $('#record-btn').disabled = false;
