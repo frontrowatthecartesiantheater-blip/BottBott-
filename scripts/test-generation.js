@@ -7,7 +7,7 @@
 //     --transcript content/test-fixtures/transcript-2026-06-11.txt \
 //     [--mock content/test-fixtures/mock-website-run] [--out content/test-runs/NAME]
 //
-// Without --mock, requires ANTHROPIC_API_KEY (live run against claude-sonnet-4-6).
+// Without --mock, requires ANTHROPIC_API_KEY (live run against claude-sonnet-5).
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';

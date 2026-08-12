@@ -28,7 +28,7 @@ const ALLOWED_EXT = ['jpg', 'jpeg', 'png', 'webp'];
 
 // Claude vision model + prompt for auto-generating SEO alt text on upload.
 // Location and keywords come from client-config.
-const ALT_TEXT_MODEL = 'claude-sonnet-4-6';
+const ALT_TEXT_MODEL = 'claude-sonnet-5';
 const ALT_TEXT_PROMPT = `You are writing SEO alt text for the blog of ${CLIENT.businessName}.
 Describe this image in one concise sentence (12 words max), focused on what
 the image shows and the business concept it illustrates. No location references.
@@ -64,7 +64,11 @@ async function generateAltText(base64, ext) {
     },
     body: JSON.stringify({
       model: ALT_TEXT_MODEL,
-      max_tokens: 100,
+      max_tokens: 200,
+      // Sonnet 5 runs adaptive thinking by default and thinking shares
+      // max_tokens; for a 12-word alt text that would eat the whole budget
+      // and silently return empty text, so disable it here.
+      thinking: { type: 'disabled' },
       messages: [{
         role: 'user',
         content: [
