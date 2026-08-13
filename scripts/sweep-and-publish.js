@@ -17,6 +17,7 @@
 // VERIFY_BASE_URL is optional (publishPost skips live verification if unset).
 
 import { getSupabaseClient } from '../lib/supabase.js';
+import { todayInClientTz } from '../lib/cron.js';
 import { createLinkClients } from '../lib/links/models.js';
 import { runLinkSweep } from '../lib/links/sweep.js';
 import { getEditorToggle, updatePost, markTopicPublished } from '../lib/admin-data.js';
@@ -58,7 +59,9 @@ if (postsErr) {
 }
 console.log(`${posts.length} post(s) ready to publish`);
 
-const date = new Date().toISOString().slice(0, 10);
+// Publish date in the client's timezone, not UTC — an evening local-time
+// publish must not be stamped with tomorrow's date (same rule as the cron).
+const date = todayInClientTz();
 let failures = 0;
 
 for (const post of posts) {

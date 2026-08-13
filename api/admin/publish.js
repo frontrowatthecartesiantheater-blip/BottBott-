@@ -9,6 +9,7 @@ import { getPostById, updatePost, markTopicPublished } from '../../lib/admin-dat
 import { getSupabaseClient } from '../../lib/supabase.js';
 import { getImageAltByFilename } from '../../lib/images.js';
 import { indexContent } from '../../lib/rag.js';
+import { todayInClientTz } from '../../lib/cron.js';
 
 const EDITABLE_FIELDS = [
   'title', 'meta_title', 'meta_description', 'body_md',
@@ -73,7 +74,8 @@ export default async function handler(req, res) {
     }
 
     const { publishPost } = await import('../../lib/publish.js');
-    const date = new Date().toISOString().slice(0, 10);
+    // Client-timezone date, not UTC (see scripts/sweep-and-publish.js).
+    const date = todayInClientTz();
     const result = await publishPost({ pkg, date, existingPostId: postId, imageFilename, imageAlt });
 
     // Newly published post becomes a future RAG source. Best-effort: never
