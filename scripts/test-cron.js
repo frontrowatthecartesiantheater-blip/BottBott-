@@ -4,6 +4,9 @@
 //   - publish job, toggle OFF and ON: both save pending_review + ping the
 //     editor (the cron never publishes inline anymore — the link sweep /
 //     auto-publish runs out-of-band via scripts/sweep-and-publish.js)
+//   - per-run topic cap: default run processes one topic, defers the rest
+// The two-topic plumbing runs pass maxTopics: 2 explicitly to process both
+// fixtures in one run; the cap run uses the default of 1.
 //
 // No credentials needed. Usage: node scripts/test-cron.js
 //
@@ -39,13 +42,17 @@ console.log(JSON.stringify(remSummary, null, 2));
 
 hr('PUBLISH JOB — editor toggle OFF (still pending_review; sweep publishes later)');
 await setEditorToggle('off');
-const offSummary = await runPublishJob();
+const offSummary = await runPublishJob({ maxTopics: 2 });
 console.log(JSON.stringify(offSummary, null, 2));
 
 hr('PUBLISH JOB — editor toggle ON (pending_review + editor ping)');
 await setEditorToggle('on');
-const onSummary = await runPublishJob();
+const onSummary = await runPublishJob({ maxTopics: 2 });
 console.log(JSON.stringify(onSummary, null, 2));
+
+hr('PUBLISH JOB — default per-run cap (one topic, second deferred)');
+const capSummary = await runPublishJob();
+console.log(JSON.stringify(capSummary, null, 2));
 
 // ---- assertions -------------------------------------------------------
 hr('ASSERTIONS');
@@ -72,6 +79,10 @@ const onByTopic = Object.fromEntries(onSummary.processed.map((p) => [p.topicId, 
 assert('ON: topic-a saved to pending_review', onByTopic['cron-topic-a']?.action === 'pending_review');
 assert('ON: topic-a editor ping sent', onByTopic['cron-topic-a']?.reviewPing?.ok === true);
 assert('ON: nothing was published', onSummary.processed.every((p) => p.action === 'pending_review'));
+
+assert('CAP: default run processes exactly one topic', capSummary.processed.length === 1);
+assert('CAP: oldest topic (topic-a) went first', capSummary.processed[0]?.topicId === 'cron-topic-a');
+assert('CAP: second topic recorded as deferred', capSummary.deferred?.length === 1 && capSummary.deferred[0].topicId === 'cron-topic-b');
 
 let failed = 0;
 for (const c of checks) { console.log(`  ${c.pass ? 'PASS' : 'FAIL'}  ${c.name}`); if (!c.pass) failed++; }
