@@ -18,6 +18,7 @@
 
 import { getSupabaseClient } from '../lib/supabase.js';
 import { todayInClientTz } from '../lib/cron.js';
+import { CLIENT } from '../lib/client-config.js';
 import { createLinkClients } from '../lib/links/models.js';
 import { runLinkSweep } from '../lib/links/sweep.js';
 import { getEditorToggle, updatePost, markTopicPublished } from '../lib/admin-data.js';
@@ -33,7 +34,13 @@ console.log('--- link sweep ---');
 const sweep = await runLinkSweep({ supabase, clients: createLinkClients() });
 console.log(`swept ${sweep.processed.length} post(s), ${sweep.errors.length} error(s)`);
 for (const p of sweep.processed) {
-  console.log(`  ${p.slug}: injected=${p.injected ?? '-'} flagged=${p.flagged ?? '-'} surplus=${p.surplus ?? '-'} ok=${p.ok}${p.error ? ` (${p.error})` : ''}`);
+  console.log(`  ${p.slug}: claims=${p.claims ?? '-'} injected=${p.injected ?? '-'} flagged=${p.flagged ?? '-'} surplus=${p.surplus ?? '-'} ok=${p.ok}${p.error ? ` (${p.error})` : ''}`);
+  if (p.claimsDroppedVerbatim > 0) {
+    console.log(`    ${p.claimsDroppedVerbatim} claim(s) dropped by the verbatim-sentence filter`);
+  }
+  for (const s of p.skipped ?? []) {
+    console.log(`    skip: ${s.reason}${s.url ? ` — ${s.url}` : ''}${s.claim ? ` [${s.claim}]` : ''}`);
+  }
 }
 for (const e of sweep.errors) {
   console.error(`  sweep error: ${JSON.stringify(e)}`);
@@ -66,6 +73,15 @@ let failures = 0;
 
 for (const post of posts) {
   console.log(`\npublishing ${post.slug}...`);
+
+  // Advisory only, never blocks: a post can legitimately have nothing worth
+  // citing, but publishing with zero external links should be visible in the
+  // run log rather than silent.
+  const externalLinks = [...post.body_md.matchAll(/\]\((https?:\/\/[^)]+)\)/g)]
+    .filter((m) => !m[1].includes(CLIENT.siteDomain));
+  if (externalLinks.length === 0) {
+    console.warn('  WARNING: publishing with zero external links (sweep injected nothing)');
+  }
   try {
     const pkg = {
       post: {
