@@ -16,6 +16,26 @@ import {
   toManifestEntry,
 } from '../lib/blog.js';
 
+// The autoblog admin pipeline (lib/publish.js, via api/cron/publish.js and
+// api/admin/publish.js) is now the only supported publish path — it commits
+// posts straight to blog/index.json, blog/index.html, and sitemap.xml via
+// the GitHub API. This script rebuilds those same files from content/posts/
+// *.md only, by full overwrite, not merge. content/posts/ does not track
+// every post the pipeline has published, so running this script can drop
+// pipeline-published posts out of the manifest and the sitemap.
+if (!process.argv.includes('--force')) {
+  console.log(
+    'scripts/build-blog.js is disabled by default.\n\n' +
+      'The autoblog admin pipeline is now the only supported publish path.\n' +
+      'This script regenerates blog/index.json, blog/index.html, and\n' +
+      'sitemap.xml from content/posts/*.md by overwriting the manifest, not\n' +
+      'merging it — any post published through the pipeline but missing a\n' +
+      'corresponding content/posts/*.md file will be dropped.\n\n' +
+      'Pass --force to run anyway: npm run build:blog -- --force',
+  );
+  process.exit(0);
+}
+
 const repoRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const postsDir = path.join(repoRoot, 'content', 'posts');
 const blogDir = path.join(repoRoot, 'blog');
