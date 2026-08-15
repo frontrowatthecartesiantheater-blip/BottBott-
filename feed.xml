@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BottBott Business Systems</title>
+    <link>https://www.bottbottgenai.com/blog/</link>
+    <description>Practical writing on AI systems, automation, and business workflows from BottBott Business Systems. No hype, no fluff — just what works.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 Aug 2026 04:47:09 GMT</lastBuildDate>
+    <atom:link href="https://www.bottbottgenai.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>SaaS is Ass: Why Owning Your Software Beats SaaS Subscription Cost for Small Business Owners</title>
+      <link>https://www.bottbottgenai.com/blog/owning-software-vs-saas-subscription-cost</link>
+      <guid isPermaLink="true">https://www.bottbottgenai.com/blog/owning-software-vs-saas-subscription-cost</guid>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Simon Dauphinee breaks down AI vs SaaS subscription cost with a real client story: $200/month for nothing vs. owning your automation stack outright.</description>
+    </item>
+    <item>
+      <title>Are You Renting a Template or Building Infrastructure?</title>
+      <link>https://www.bottbottgenai.com/blog/custom-ai-infrastructure-vs-saas-platforms</link>
+      <guid isPermaLink="true">https://www.bottbottgenai.com/blog/custom-ai-infrastructure-vs-saas-platforms</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How to avoid being a founder who trades long-term control for short-term convenience when adopting AI for your business.</description>
+    </item>
+    <item>
+      <title>The AI Wall Professional Services Firms Are Hitting, and the Only Way Through It</title>
+      <link>https://www.bottbottgenai.com/blog/ai-data-security-professional-services</link>
+      <guid isPermaLink="true">https://www.bottbottgenai.com/blog/ai-data-security-professional-services</guid>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Why sending client data through a public API is a security risk and what a small professional services firm can actually do about it today.</description>
+    </item>
+  </channel>
+</rss>
