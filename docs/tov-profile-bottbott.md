@@ -1,5 +1,5 @@
 # TONE OF VOICE PROFILE — BottBott Blog
-## Author: Simon Dauphinee (Simo / Simon D)
+## Author: Simon D (Simo)
 ## Surface: bottbottgenai.com blog (client-facing)
 ## Version: 1.0 | August 2026
 ## Derived from: BottBott_TOV_Profile.md v1.0 (Substack/LinkedIn), scoped and
