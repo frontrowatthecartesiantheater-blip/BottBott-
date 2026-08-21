@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "slug": "connect-business-tools-ai-workflow-fix",
+      "title": "When Connecting Business Tools to AI, Fix the Workflow First",
+      "date": "2026-08-20",
+      "description": "Most \"AI tools that don't work\" fail from missing governing prompts and messy data, not bad AI. Here's how to actually connect business tools AI can use.",
+      "image": "assets/images/blog/ai-roi-efficiency/1786415561759-futuristic-robot-interacting-with-money-1.webp",
+      "readMinutes": 6
+    },
+    {
       "slug": "owning-software-vs-saas-subscription-cost",
       "title": "SaaS is Ass: Why Owning Your Software Beats SaaS Subscription Cost for Small Business Owners",
       "date": "2026-08-13",
