@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "slug": "founder-bottleneck-systems-problem",
+      "title": "The Founder Bottleneck Is a Systems Problem, Not You",
+      "date": "2026-08-26",
+      "description": "Overwhelmed founders often blame discipline when the real issue is a missing governing system. Here's how to diagnose the actual founder bottleneck.",
+      "image": "assets/images/blog/ai-roi-efficiency/1786415544133-business-concept-with-graphic-holography.webp",
+      "readMinutes": 6
+    },
+    {
       "slug": "connect-business-tools-ai-workflow-fix",
       "title": "When Connecting Business Tools to AI, Fix the Workflow First",
       "date": "2026-08-20",
