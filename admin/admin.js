@@ -11,8 +11,17 @@ async function api(path, options = {}) {
   });
   if (res.status === 401) { showSignin('Your session expired. Sign in again.'); throw new Error('unauthorized'); }
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || `request failed (${res.status})`);
+  if (!res.ok) throw new Error(data.error || platformError(res.status));
   return data;
+}
+
+// Vercel turns some requests away at its edge, before the function runs, and
+// answers with HTML rather than our JSON error shape. Translate the statuses
+// the admin panel can realistically hit into something a human can act on.
+function platformError(status) {
+  if (status === 413) return 'The server rejected the upload as too large. Record a shorter memo, or upload a smaller file.';
+  if (status === 504) return 'The server took too long to respond. Try submitting again.';
+  return `Request failed (${status}).`;
 }
 
 function showSignin(msg) {
@@ -33,7 +42,59 @@ function fmtDate(d) {
 
 // ----------------------------------------------------------- Creator view
 
-const recorder = { mediaRecorder: null, chunks: [], blob: null, topicId: null };
+// Vercel rejects request bodies over 4.5 MB (decimal) at its edge, before the
+// function is ever invoked, so the ceiling has to be enforced here in the
+// browser. Audio travels as base64 inside JSON, which inflates it by 4/3, and
+// the wrapper (topic id, mime, filename) needs a little headroom on top.
+const MAX_BODY_BYTES = 4500000;
+const MAX_AUDIO_BYTES = Math.floor((MAX_BODY_BYTES - 2048) * 3 / 4);
+
+// Containers Whisper accepts. An upload with any other extension is rejected
+// by the API outright, so it is caught here rather than after the round trip.
+const AUDIO_EXTS = ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm'];
+
+const recorder = { mediaRecorder: null, chunks: [], blob: null, filename: null, objectUrl: null, topicId: null };
+
+// Two decimals, not one: the ceiling and an only-just-oversized file both
+// round to the same figure at one, which makes the rejection read as nonsense.
+function fmtSize(bytes) {
+  return `${(bytes / 1000000).toFixed(2)} MB`;
+}
+
+function extFromName(name) {
+  const ext = String(name || '').split('.').pop().toLowerCase();
+  return AUDIO_EXTS.includes(ext) ? ext : null;
+}
+
+// Stage audio for submission, whether it was just recorded or picked off the
+// device. Oversized audio still gets playback and a save link: losing an
+// eight-minute memo to a size limit is the failure worth designing against.
+function setPendingAudio(blob, filename) {
+  if (recorder.objectUrl) URL.revokeObjectURL(recorder.objectUrl);
+  recorder.objectUrl = URL.createObjectURL(blob);
+  recorder.blob = blob;
+  recorder.filename = filename;
+
+  const playback = $('#playback');
+  playback.src = recorder.objectUrl;
+  playback.classList.remove('hidden');
+  const save = $('#save-link');
+  save.href = recorder.objectUrl;
+  save.setAttribute('download', filename);
+  $('#save-copy').classList.remove('hidden');
+  $('#record-confirm').classList.remove('hidden');
+  $('#submit-btn').classList.remove('hidden');
+
+  const tooBig = blob.size > MAX_AUDIO_BYTES;
+  $('#submit-btn').disabled = tooBig;
+  if (tooBig) {
+    $('#record-status').innerHTML = `<span class="err">That is ${escapeHtml(fmtSize(blob.size))}, over the `
+      + `${escapeHtml(fmtSize(MAX_AUDIO_BYTES))} the server accepts. Save a copy, then trim it or re-encode it `
+      + `at a lower bitrate and upload it again.</span>`;
+  } else {
+    $('#record-status').textContent = `Ready to submit — ${fmtSize(blob.size)}. Listen back first if you like.`;
+  }
+}
 
 // Human-readable pillar label for a category slug, read from the topic form's
 // <select> options so the labels live in one place.
@@ -58,6 +119,7 @@ function renderCreator(state) {
   $('#g-questions').innerHTML = (topic.guiding_questions || [])
     .map((q) => `<li>${escapeHtml(q)}</li>`).join('');
   $('#record-btn').disabled = false;
+  $('#size-note').textContent = `Record up to about 14 minutes, or upload an audio file up to ${fmtSize(MAX_AUDIO_BYTES)}.`;
 }
 
 async function startRecording() {
@@ -69,19 +131,17 @@ async function startRecording() {
     'audio/mp4',
   ];
   const mimeType = mimeTypes.find(t => MediaRecorder.isTypeSupported(t)) || '';
-  const options = { audioBitsPerSecond: 64000 };
+  // 32 kbps Opus is ample for speech and for what Whisper needs, and it
+  // doubles the recording ceiling the 4.5 MB body cap imposes.
+  const options = { audioBitsPerSecond: 32000 };
   if (mimeType) options.mimeType = mimeType;
   recorder.mediaRecorder = new MediaRecorder(stream, options);
   recorder.mediaRecorder.ondataavailable = (e) => { if (e.data.size) recorder.chunks.push(e.data); };
   recorder.mediaRecorder.onstop = () => {
     stream.getTracks().forEach((t) => t.stop());
-    recorder.blob = new Blob(recorder.chunks, { type: recorder.mediaRecorder.mimeType });
-    const playback = $('#playback');
-    playback.src = URL.createObjectURL(recorder.blob);
-    playback.classList.remove('hidden');
-    $('#record-confirm').classList.remove('hidden');
-    $('#submit-btn').classList.remove('hidden');
-    $('#record-status').textContent = 'Listen back, then submit, or record again to replace it.';
+    const blob = new Blob(recorder.chunks, { type: recorder.mediaRecorder.mimeType });
+    const sub = (blob.type.split('/')[1] || 'webm').split(';')[0];
+    setPendingAudio(blob, `memo.${AUDIO_EXTS.includes(sub) ? sub : 'webm'}`);
   };
   recorder.mediaRecorder.start();
   const btn = $('#record-btn');
@@ -107,23 +167,53 @@ function wireRecorder() {
   });
 
   $('#submit-btn').addEventListener('click', async () => {
-    if (!recorder.blob) return;
+    if (!recorder.blob || recorder.blob.size > MAX_AUDIO_BYTES) return;
     $('#submit-btn').disabled = true;
     $('#record-status').textContent = 'Uploading and transcribing…';
     try {
       const audio_base64 = await blobToBase64(recorder.blob);
       const r = await api('/api/admin/record', {
         method: 'POST',
-        body: JSON.stringify({ topic_id: recorder.topicId, audio_base64, mime: recorder.blob.type }),
+        body: JSON.stringify({
+          topic_id: recorder.topicId,
+          audio_base64,
+          mime: recorder.blob.type,
+          filename: recorder.filename,
+        }),
       });
       $('#record-status').innerHTML = `Got it. The post will go live on schedule.<br><span class="meta">${escapeHtml(r.transcript_preview)}…</span>`;
       $('#record-btn').disabled = true;
+      $('#upload-input').disabled = true;
       $('#submit-btn').classList.add('hidden');
       $('#record-confirm').classList.add('hidden');
+      $('#save-copy').classList.add('hidden');
     } catch (err) {
-      $('#record-status').innerHTML = `<span class="err">${escapeHtml(err.message)}</span>`;
+      $('#record-status').innerHTML = `<span class="err">${escapeHtml(err.message)}</span>`
+        + '<br><span class="meta">The audio is still loaded — save a copy above before you leave this page, '
+        + 'then upload it again once the problem is sorted.</span>';
       $('#submit-btn').disabled = false;
     }
+  });
+
+  // Upload path: a recovery route when a submit fails, and the way to get a
+  // memo recorded offline (phone voice recorder, on a plane) into the pipeline.
+  $('#upload-input').addEventListener('change', (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    if (!extFromName(file.name)) {
+      // A rejected pick must not leave Submit armed with whatever was staged
+      // before it, or the error on screen contradicts the live button. The
+      // earlier audio is kept — a misclick should not discard a good take —
+      // but the message has to say which file Submit would actually send.
+      const held = recorder.blob
+        ? ` Still holding ${escapeHtml(recorder.filename)}; submit that, or pick another file.`
+        : '';
+      $('#record-status').innerHTML = `<span class="err">${escapeHtml(file.name)} is not a format the `
+        + `transcriber accepts. Use one of: ${AUDIO_EXTS.join(', ')}.</span>${held}`;
+      e.target.value = '';
+      return;
+    }
+    setPendingAudio(file, file.name);
   });
 }
 

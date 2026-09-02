@@ -32,6 +32,11 @@
       background: var(--gold); color: var(--on-gold); font-weight: 600; font-size: 15px; margin: var(--gap-tight); }
     .record-btn.recording { background: #c0392b; color: #fff; animation: pulse 1.2s infinite; }
     .record-btn:disabled { opacity: .5; cursor: not-allowed; }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+    .record-or { margin: var(--gap-tight) 0; color: var(--text-muted); font-size: 14px; }
+    .upload-label { display: inline-block; cursor: pointer; }
+    #upload-input:disabled + .upload-label { opacity: .5; cursor: not-allowed; }
+    .size-note { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
     @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(192,57,43,.5); } 50% { box-shadow: 0 0 0 14px rgba(192,57,43,0); } }
     .record-status { margin-top: var(--gap-standard); font-size: 15px; min-height: 1.4em; }
     audio { width: 100%; margin-top: var(--gap-standard); }
@@ -124,8 +129,16 @@
           <ul class="guiding" id="g-questions"></ul>
 
           <button id="record-btn" class="record-btn" disabled>Record</button>
+
+          <p class="record-or">or</p>
+          <input type="file" id="upload-input" class="visually-hidden"
+                 accept="audio/*,.flac,.m4a,.mp3,.mp4,.mpeg,.mpga,.oga,.ogg,.wav,.webm">
+          <label for="upload-input" class="btn btn--secondary upload-label">Upload an audio file</label>
+          <p class="size-note" id="size-note"></p>
+
           <audio id="playback" controls class="hidden"></audio>
-          <p class="record-status hidden" id="record-confirm">Happy with it? Hit Submit. Want to redo it? Record again before submitting.</p>
+          <p class="record-status hidden" id="save-copy"><a id="save-link" download>Save a copy to your device</a></p>
+          <p class="record-status hidden" id="record-confirm">Happy with it? Hit Submit. Want to redo it? Record again, or pick a different file, before submitting.</p>
           <div>
             <button id="submit-btn" class="btn btn--primary btn--large hidden">Submit voice note</button>
           </div>
