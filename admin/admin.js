@@ -400,6 +400,67 @@ async function loadUpcomingTopics() {
   }
 }
 
+// ------------------------------------------------------------ Settings view
+
+async function loadSources() {
+  const host = $('#sources-list');
+  try {
+    const { sources } = await api('/api/admin/config');
+    renderSources(sources);
+  } catch (err) {
+    host.innerHTML = `<p class="err">${escapeHtml(err.message)}</p>`;
+  }
+}
+
+function renderSources(sources) {
+  const host = $('#sources-list');
+  host.innerHTML = sources.length
+    ? sources.map((s) => `
+      <div class="queue-item" data-domain="${escapeHtml(s.domain)}">
+        <span>${escapeHtml(s.domain)}</span>
+        <button class="btn" data-act="remove-source">Remove</button>
+      </div>`).join('')
+    : '<p class="meta">No trusted sources yet.</p>';
+
+  host.querySelectorAll('[data-act="remove-source"]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const domain = btn.closest('[data-domain]').dataset.domain;
+      btn.disabled = true;
+      try {
+        await api('/api/admin/config?action=remove-source', {
+          method: 'POST', body: JSON.stringify({ domain }),
+        });
+        await loadSources();
+      } catch (err) {
+        alert(`Could not remove ${domain}: ${err.message}`);
+        btn.disabled = false;
+      }
+    });
+  });
+}
+
+function wireSettings() {
+  $('#source-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const input = e.target.elements.domain;
+    const btn = e.target.querySelector('button[type="submit"]');
+    const msg = $('#source-msg');
+    btn.disabled = true; msg.textContent = 'Adding…'; msg.className = 'meta';
+    try {
+      await api('/api/admin/config?action=add-source', {
+        method: 'POST', body: JSON.stringify({ domain: input.value }),
+      });
+      input.value = '';
+      msg.textContent = '';
+      await loadSources();
+    } catch (err) {
+      msg.innerHTML = `<span class="err">${escapeHtml(err.message)}</span>`;
+    } finally {
+      btn.disabled = false;
+    }
+  });
+}
+
 // --------------------------------------------------------- Add Content view
 
 // A preview card for a generated/extracted topic, with Save and Discard.
@@ -586,6 +647,7 @@ function wireEditorChrome() {
       $('#view-creator').classList.toggle('hidden', which !== 'creator');
       $('#view-editor').classList.toggle('hidden', which !== 'editor');
       $('#view-addcontent').classList.toggle('hidden', which !== 'addcontent');
+      $('#view-settings').classList.toggle('hidden', which !== 'settings');
     });
   });
 }
@@ -620,10 +682,13 @@ async function init() {
     renderEditor(state);
     wireAddContent();
     loadUpcomingTopics();
+    wireSettings();
+    loadSources();
   } else {
     // Legacy creator role (no longer assigned): no tabs, only the Record view.
     $('#view-editor').remove();
     $('#view-addcontent').remove();
+    $('#view-settings').remove();
   }
 }
 

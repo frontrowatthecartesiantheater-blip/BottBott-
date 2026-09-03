@@ -116,6 +116,7 @@
         <button class="admin-tab" data-tab="creator" aria-selected="true">Record</button>
         <button class="admin-tab" data-tab="editor" aria-selected="false">Review</button>
         <button class="admin-tab" data-tab="addcontent" aria-selected="false">Add Content</button>
+        <button class="admin-tab" data-tab="settings" aria-selected="false">Settings</button>
       </div>
 
       <!-- ============ Creator view ============ -->
@@ -167,6 +168,26 @@
 
         <h2 style="margin-top:var(--gap-loose)">Upcoming Topics</h2>
         <div id="upcoming-topics"></div>
+      </section>
+
+      <!-- ============ Settings view ============ -->
+      <section id="view-settings" class="hidden">
+        <div class="content-section">
+          <h3>Trusted Sources</h3>
+          <p class="meta">Domains here skip the link sweep's freshness check — for
+            a source that's clearly authoritative (a company's own blog, docs, or
+            newsroom) but whose pages don't carry a publish date the sweep can
+            read. Relevancy and trust are checked as normal either way.</p>
+          <form id="source-form">
+            <div class="field">
+              <label>Domain</label>
+              <input type="text" name="domain" placeholder="example.com" required>
+            </div>
+            <button type="submit" class="btn btn--primary">Add</button>
+            <span id="source-msg" class="meta"></span>
+          </form>
+          <div id="sources-list" style="margin-top:var(--gap-standard)"></div>
+        </div>
       </section>
 
       <!-- ============ Add Content view ============ -->
