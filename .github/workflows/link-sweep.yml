@@ -25,9 +25,22 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # GitHub blocks creating a secret whose name starts with GITHUB_, so
+          # secrets.GITHUB_REPO / secrets.GITHUB_BRANCH could never have existed —
+          # they were structurally empty every run, breaking auto-publish's commit
+          # step the moment the editor toggle went off (confirmed in the run log:
+          # both blank while every other env var showed populated). Neither value
+          # is actually secret, so this repo's copy of lib/github.js still reads
+          # GITHUB_REPO/GITHUB_BRANCH (unchanged — it also backs the Vercel admin
+          # publish endpoint), but the values now come from Actions' own
+          # always-available repository context instead of a phantom secret,
+          # matching how realestateandloans-site's proven-working copy of this
+          # workflow does it. GITHUB_TOKEN is unaffected: that name is GitHub's
+          # own auto-provisioned per-run token, the one exception to the
+          # GITHUB_-prefix rule, not a custom secret.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPO: ${{ secrets.GITHUB_REPO }}
-          GITHUB_BRANCH: ${{ secrets.GITHUB_BRANCH }}
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_BRANCH: main
           GOOGLE_SHEETS_SPREADSHEET_ID: ${{ secrets.GOOGLE_SHEETS_SPREADSHEET_ID }}
           GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
           VERIFY_BASE_URL: ${{ secrets.VERIFY_BASE_URL }}
