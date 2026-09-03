@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "slug": "blogging-in-the-age-of-ai",
+      "title": "Why Blogging in the Age of AI Matters More Than Ever",
+      "date": "2026-09-03",
+      "description": "Why blogging in the age of AI matters more than ever, what Google's EEAT update really targets, and what separates content that ranks.",
+      "image": "assets/images/blog/ai-roi-efficiency/1786415506682-advanced-technological-robot-interacting-with-money-finance.webp",
+      "readMinutes": 5
+    },
+    {
       "slug": "founder-bottleneck-systems-problem",
       "title": "The Founder Bottleneck Is a Systems Problem, Not You",
       "date": "2026-08-26",
