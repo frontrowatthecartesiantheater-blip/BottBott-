@@ -18,6 +18,7 @@ import { createTopic, getTopicsByStatus, getAllTopicTitles } from '../../lib/adm
 import { getSupabaseClient } from '../../lib/supabase.js';
 import { isMock } from '../../lib/mock.js';
 import { createAnthropicClient } from '../../lib/generation/anthropic.js';
+import { extractText } from '../../lib/text-extract.js';
 import {
   buildGeneratePrompt,
   buildExtractPrompt,
@@ -114,23 +115,6 @@ const BULK_MOCK_TOPICS = [
     ],
   },
 ];
-
-// Preserved from the former api/admin/topics/bulk-upload.js.
-async function extractText({ filename, mime, buffer }) {
-  const name = (filename || '').toLowerCase();
-  const isPdf = name.endsWith('.pdf') || mime === 'application/pdf';
-  const isMd = name.endsWith('.md') || name.endsWith('.markdown') || mime === 'text/markdown';
-
-  if (isMd) return buffer.toString('utf8');
-  if (isPdf) {
-    // pdf-parse is CommonJS; import the inner module directly to avoid its
-    // index.js debug-mode file read when there is no module.parent.
-    const { default: pdfParse } = await import('pdf-parse/lib/pdf-parse.js');
-    const data = await pdfParse(buffer);
-    return data.text || '';
-  }
-  throw new Error('only .md and .pdf files are accepted');
-}
 
 // Fix 3: generated topics save with no date. Schedule them on the next
 // Wednesday (the publish day) that is at least 7 days after the latest

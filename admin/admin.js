@@ -44,14 +44,18 @@ function fmtDate(d) {
 
 // Vercel rejects request bodies over 4.5 MB (decimal) at its edge, before the
 // function is ever invoked, so the ceiling has to be enforced here in the
-// browser. Audio travels as base64 inside JSON, which inflates it by 4/3, and
-// the wrapper (topic id, mime, filename) needs a little headroom on top.
+// browser. Audio and documents both travel as base64 inside JSON, which
+// inflates either by 4/3, and the wrapper (topic id, mime, filename) needs a
+// little headroom on top — same cap either way, same request-body physics.
 const MAX_BODY_BYTES = 4500000;
-const MAX_AUDIO_BYTES = Math.floor((MAX_BODY_BYTES - 2048) * 3 / 4);
+const MAX_UPLOAD_BYTES = Math.floor((MAX_BODY_BYTES - 2048) * 3 / 4);
 
 // Containers Whisper accepts. An upload with any other extension is rejected
 // by the API outright, so it is caught here rather than after the round trip.
 const AUDIO_EXTS = ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm'];
+// Formats lib/text-extract.js (server side) knows how to pull text from.
+// .doc (pre-2007 binary Word) is deliberately not offered — see that file.
+const DOCUMENT_EXTS = ['docx', 'pdf', 'md', 'markdown', 'txt'];
 
 const recorder = { mediaRecorder: null, chunks: [], blob: null, filename: null, objectUrl: null, topicId: null };
 
@@ -64,6 +68,11 @@ function fmtSize(bytes) {
 function extFromName(name) {
   const ext = String(name || '').split('.').pop().toLowerCase();
   return AUDIO_EXTS.includes(ext) ? ext : null;
+}
+
+function extIsDocument(name) {
+  const ext = String(name || '').split('.').pop().toLowerCase();
+  return DOCUMENT_EXTS.includes(ext);
 }
 
 // Stage audio for submission, whether it was just recorded or picked off the
@@ -85,11 +94,11 @@ function setPendingAudio(blob, filename) {
   $('#record-confirm').classList.remove('hidden');
   $('#submit-btn').classList.remove('hidden');
 
-  const tooBig = blob.size > MAX_AUDIO_BYTES;
+  const tooBig = blob.size > MAX_UPLOAD_BYTES;
   $('#submit-btn').disabled = tooBig;
   if (tooBig) {
     $('#record-status').innerHTML = `<span class="err">That is ${escapeHtml(fmtSize(blob.size))}, over the `
-      + `${escapeHtml(fmtSize(MAX_AUDIO_BYTES))} the server accepts. Save a copy, then trim it or re-encode it `
+      + `${escapeHtml(fmtSize(MAX_UPLOAD_BYTES))} the server accepts. Save a copy, then trim it or re-encode it `
       + `at a lower bitrate and upload it again.</span>`;
   } else {
     $('#record-status').textContent = `Ready to submit — ${fmtSize(blob.size)}. Listen back first if you like.`;
@@ -119,7 +128,8 @@ function renderCreator(state) {
   $('#g-questions').innerHTML = (topic.guiding_questions || [])
     .map((q) => `<li>${escapeHtml(q)}</li>`).join('');
   $('#record-btn').disabled = false;
-  $('#size-note').textContent = `Record up to about 14 minutes, or upload an audio file up to ${fmtSize(MAX_AUDIO_BYTES)}.`;
+  $('#size-note').textContent = `Record up to about 14 minutes, or upload an audio file, a Word doc, a PDF, or `
+    + `plain text — up to ${fmtSize(MAX_UPLOAD_BYTES)}.`;
 }
 
 async function startRecording() {
@@ -167,7 +177,7 @@ function wireRecorder() {
   });
 
   $('#submit-btn').addEventListener('click', async () => {
-    if (!recorder.blob || recorder.blob.size > MAX_AUDIO_BYTES) return;
+    if (!recorder.blob || recorder.blob.size > MAX_UPLOAD_BYTES) return;
     $('#submit-btn').disabled = true;
     $('#record-status').textContent = 'Uploading and transcribing…';
     try {
@@ -181,12 +191,7 @@ function wireRecorder() {
           filename: recorder.filename,
         }),
       });
-      $('#record-status').innerHTML = `Got it. The post will go live on schedule.<br><span class="meta">${escapeHtml(r.transcript_preview)}…</span>`;
-      $('#record-btn').disabled = true;
-      $('#upload-input').disabled = true;
-      $('#submit-btn').classList.add('hidden');
-      $('#record-confirm').classList.add('hidden');
-      $('#save-copy').classList.add('hidden');
+      markRecordSuccess(r.transcript_preview);
     } catch (err) {
       $('#record-status').innerHTML = `<span class="err">${escapeHtml(err.message)}</span>`
         + '<br><span class="meta">The audio is still loaded — save a copy above before you leave this page, '
@@ -215,6 +220,56 @@ function wireRecorder() {
     }
     setPendingAudio(file, file.name);
   });
+
+  // Typed-up alternative to recording: a transcript or notes dropped in as a
+  // document. Skips the record/confirm/submit staging entirely — there is
+  // nothing to play back or listen to — so picking the file submits it right
+  // away, same as it would for a phone recording made offline and uploaded.
+  $('#doc-input').addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    e.target.value = ''; // let the same file be re-picked after an error
+    if (!file) return;
+    if (!extIsDocument(file.name)) {
+      $('#record-status').innerHTML = `<span class="err">${escapeHtml(file.name)} is not a format this accepts. `
+        + `Use one of: ${DOCUMENT_EXTS.join(', ')}.</span>`;
+      return;
+    }
+    if (file.size > MAX_UPLOAD_BYTES) {
+      $('#record-status').innerHTML = `<span class="err">That is ${escapeHtml(fmtSize(file.size))}, over the `
+        + `${escapeHtml(fmtSize(MAX_UPLOAD_BYTES))} limit.</span>`;
+      return;
+    }
+    $('#record-btn').disabled = true;
+    $('#upload-input').disabled = true;
+    $('#doc-input').disabled = true;
+    $('#record-status').textContent = 'Reading document…';
+    try {
+      const document_base64 = await blobToBase64(file);
+      const r = await api('/api/admin/record', {
+        method: 'POST',
+        body: JSON.stringify({ topic_id: recorder.topicId, document_base64, filename: file.name }),
+      });
+      markRecordSuccess(r.transcript_preview);
+    } catch (err) {
+      $('#record-status').innerHTML = `<span class="err">${escapeHtml(err.message)}</span>`;
+      $('#record-btn').disabled = false;
+      $('#upload-input').disabled = false;
+      $('#doc-input').disabled = false;
+    }
+  });
+}
+
+// Shared by the audio submit button and the document upload: once a
+// transcript is saved for the topic (whichever path produced it), every
+// submission control locks — only one memo per topic is expected.
+function markRecordSuccess(transcriptPreview) {
+  $('#record-status').innerHTML = `Got it. The post will go live on schedule.<br><span class="meta">${escapeHtml(transcriptPreview)}…</span>`;
+  $('#record-btn').disabled = true;
+  $('#upload-input').disabled = true;
+  $('#doc-input').disabled = true;
+  $('#submit-btn').classList.add('hidden');
+  $('#record-confirm').classList.add('hidden');
+  $('#save-copy').classList.add('hidden');
 }
 
 function blobToBase64(blob) {
@@ -340,6 +395,7 @@ function buildPostEditor(post) {
       <label>Paste in comments</label>
       <input class="copy-url" type="text" readonly value="${escapeHtml(postUrl)}" onclick="this.select()">
     </div>
+    <button class="btn" data-action="save">Save</button>
     <button class="btn btn--primary" data-action="publish"${post.links_checked_at ? '' : ' disabled'}>Publish</button>
     <span class="publish-msg meta"></span>
   `;
@@ -354,6 +410,22 @@ function buildPostEditor(post) {
   };
   wireCount('meta_title', 55);
   wireCount('meta_description', 155);
+
+  el.querySelector('[data-action="save"]').addEventListener('click', async (e) => {
+    const btn = e.target;
+    const msg = el.querySelector('.publish-msg');
+    btn.disabled = true; msg.textContent = 'Saving…'; msg.className = 'publish-msg meta';
+    const edits = {};
+    el.querySelectorAll('[data-f]').forEach((i) => { edits[i.dataset.f] = i.value; });
+    try {
+      await api('/api/admin/publish?action=save', { method: 'POST', body: JSON.stringify({ post_id: post.id, ...edits }) });
+      msg.textContent = 'Saved.';
+    } catch (err) {
+      msg.innerHTML = `<span class="err">${escapeHtml(err.message)}</span>`;
+    } finally {
+      btn.disabled = false;
+    }
+  });
 
   el.querySelector('[data-action="publish"]').addEventListener('click', async (e) => {
     const btn = e.target;

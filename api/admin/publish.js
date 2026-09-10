@@ -1,10 +1,17 @@
-// Approve and publish a pending_review post. Editor only.
-// Applies the editor's edits to the stored record, then runs the M4
-// publish flow (single GitHub commit, Sheet log; the Supabase row is
-// updated in place rather than re-inserted).
+// Save or publish a pending_review post. Editor only.
+//
+// POST ?action=save    — write the editor's field edits, nothing else. No
+//   GitHub commit, no status change; usable any time, sweep-pending or not.
+// POST (no action)      — save the edits, then run the M4 publish flow
+//   (single GitHub commit, Sheet log; the Supabase row is updated in place
+//   rather than re-inserted).
+//
+// The mock-mode guard below covers only the publish path: save has no
+// external side effects (updatePost has its own mock branch), so it runs
+// the same under ADMIN_MOCK as it does for real.
 
 import { requireRole } from '../../lib/admin-auth.js';
-import { sendJson, readJsonBody } from '../../lib/http.js';
+import { sendJson, readJsonBody, getQuery } from '../../lib/http.js';
 import { getPostById, updatePost, markTopicPublished } from '../../lib/admin-data.js';
 import { getSupabaseClient } from '../../lib/supabase.js';
 import { getImageAltByFilename } from '../../lib/images.js';
@@ -16,10 +23,47 @@ const EDITABLE_FIELDS = [
   'social_linkedin', 'social_facebook',
 ];
 
+async function loadPendingPost(postId) {
+  const post = await getPostById(postId);
+  if (!post) { const e = new Error('post not found'); e.status = 404; throw e; }
+  if (post.status !== 'pending_review') {
+    const e = new Error(`post status is "${post.status}", expected pending_review`); e.status = 409; throw e;
+  }
+  return post;
+}
+
+function collectEdits(body, post) {
+  const edits = {};
+  for (const field of EDITABLE_FIELDS) {
+    if (typeof body[field] === 'string' && body[field] !== post[field]) {
+      edits[field] = body[field];
+      post[field] = body[field];
+    }
+  }
+  return edits;
+}
+
 export default async function handler(req, res) {
   const session = requireRole(req, res, ['editor']);
   if (!session) return;
   if (req.method !== 'POST') return sendJson(res, 405, { error: 'method not allowed' });
+
+  const { action } = getQuery(req);
+
+  if (action === 'save') {
+    try {
+      const body = await readJsonBody(req);
+      const { post_id: postId } = body;
+      if (!postId) return sendJson(res, 400, { error: 'post_id is required' });
+
+      const post = await loadPendingPost(postId);
+      const edits = collectEdits(body, post);
+      if (Object.keys(edits).length > 0) await updatePost(postId, edits);
+      return sendJson(res, 200, { ok: true, saved: Object.keys(edits) });
+    } catch (err) {
+      return sendJson(res, err.status ?? 500, { error: err.message });
+    }
+  }
 
   if (process.env.ADMIN_MOCK === '1') {
     return sendJson(res, 501, { error: 'publishing is disabled in mock mode; use scripts/publish-post.js --dry-run' });
@@ -30,20 +74,8 @@ export default async function handler(req, res) {
     const { post_id: postId } = body;
     if (!postId) return sendJson(res, 400, { error: 'post_id is required' });
 
-    const post = await getPostById(postId);
-    if (!post) return sendJson(res, 404, { error: 'post not found' });
-    if (post.status !== 'pending_review') {
-      return sendJson(res, 409, { error: `post status is "${post.status}", expected pending_review` });
-    }
-
-    // Apply any edits made in the UI before rendering.
-    const edits = {};
-    for (const field of EDITABLE_FIELDS) {
-      if (typeof body[field] === 'string' && body[field] !== post[field]) {
-        edits[field] = body[field];
-        post[field] = body[field];
-      }
-    }
+    const post = await loadPendingPost(postId);
+    const edits = collectEdits(body, post);
     if (Object.keys(edits).length > 0) await updatePost(postId, edits);
 
     const pkg = {
@@ -96,6 +128,6 @@ export default async function handler(req, res) {
       post_commit_errors: result.postCommitErrors,
     });
   } catch (err) {
-    return sendJson(res, 500, { error: err.message });
+    return sendJson(res, err.status ?? 500, { error: err.message });
   }
 }
