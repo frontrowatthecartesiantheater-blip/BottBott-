@@ -264,9 +264,9 @@
         <div class="content-section">
           <h3>Image Upload</h3>
           <div class="field">
-            <label>Image (png, webp)</label>
-            <input type="file" id="img-file" accept="image/png,image/webp">
-            <p class="meta">JPG files are not recommended. They are larger and can slow down page load, which affects SEO. Use PNG or WebP.</p>
+            <label>Images (png, webp)</label>
+            <input type="file" id="img-file" accept="image/png,image/webp" multiple>
+            <p class="meta">Select as many as you like — they upload together as one batch, all under the same category. JPG files are not recommended. They are larger and can slow down page load, which affects SEO. Use PNG or WebP.</p>
           </div>
           <div class="field">
             <label>Category</label>
@@ -282,7 +282,7 @@
               <option value="case-studies">Case Studies</option>
             </select>
           </div>
-          <button id="img-btn" class="btn btn--primary">Upload Image</button>
+          <button id="img-btn" class="btn btn--primary">Upload Images</button>
           <span id="img-msg" class="meta"></span>
         </div>
 

@@ -1,16 +1,24 @@
 // Media endpoint for the admin panel, dispatched by ?action=.
-//   POST /api/admin/media?action=image-upload — add an image to the library.
+//   POST /api/admin/media?action=image-upload — add one or more images to
+//   the library, all under one category.
 //
 // Folded out of the former api/admin/images/upload.js into a single ?action=
 // dispatched endpoint to stay within the Vercel Hobby 12-function limit.
 //
-// The image arrives as base64 JSON ({ filename, mime, data_base64, category }),
-// matching api/admin/record.js so body handling is identical across Vercel and
-// the dev server with no multipart dependency. The binary is committed into the
-// repo at assets/images/blog/<category>/<file> (the site-root-relative path
-// convention images.filename uses), then a row is inserted into the images
-// table (source 'owned', used false). Alt text is generated automatically from
-// the image via Claude vision and written back to the row. Auth-gated.
+// Payload: JSON { images: [{ filename, mime, data_base64 }, ...], category }
+// — base64 keeps body handling identical across Vercel and the dev server
+// with no multipart dependency, matching api/admin/record.js. Every image in
+// the batch lands in ONE GitHub commit: lib/github.js documents a real Vercel
+// race when separate commits land in quick succession (the next build cancels
+// the previous one mid-flight, which can freeze the live site at an
+// intermediate state), and a naive per-image commit loop would hit that
+// directly. All images are validated up front — extension, per-image size,
+// and combined batch size — before anything is committed or written, so a bad
+// file in the batch fails the whole request instead of leaving a partial
+// upload. Once committed, one `images` row is inserted per image (source
+// 'owned', used false) and alt text is generated per image via Claude vision,
+// best-effort — a failed alt-text call never loses an already-saved image.
+// Auth-gated.
 
 import { requireRole } from '../../lib/admin-auth.js';
 import { sendJson, readJsonBody, getQuery } from '../../lib/http.js';
@@ -19,7 +27,17 @@ import { insertImage, updateImageAltText } from '../../lib/admin-data.js';
 import { createSingleCommit } from '../../lib/github.js';
 import { CLIENT } from '../../lib/client-config.js';
 
-const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
+// Vercel's edge answers a request body over 4.5 MB (decimal) with
+// FUNCTION_PAYLOAD_TOO_LARGE before this function is invoked. The images
+// travel as base64 inside one JSON array, which inflates each by 4/3, so the
+// per-image and combined-batch ceilings both have to sit below that — the
+// same physics as MAX_UPLOAD_BYTES in admin/admin.js's audio/document
+// uploads. The old single-image limit here (8 MB) was never actually
+// reachable: an 8 MB image alone would have been ~10.7 MB of base64 body,
+// rejected at the edge with a bare 413 long before this file's own check ran.
+// One ceiling, used both per-image and as the combined-batch cap: with a
+// single image in the batch these are the same check anyway.
+const MAX_UPLOAD_BYTES = Math.floor((4500000 - 4096) * 3 / 4);
 const IMAGE_DIR_BASE = 'assets/images/blog';
 const CATEGORIES = CLIENT.topicCategories;
 const EXT_BY_MIME = { 'image/jpeg': 'jpg', 'image/jpg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
@@ -38,15 +56,19 @@ ${CLIENT.altTextKeywords}.
 Only use a keyword if it fits naturally — do not force it.
 Return only the alt text string, nothing else.`;
 
-/** Slugify the base name and keep a safe extension; prefix a timestamp to avoid collisions. */
-function safeFilename(rawName, mime) {
+// Slugify the base name and keep a safe extension; prefix a timestamp to
+// avoid collisions. `offset` (an image's index within a batch) keeps two
+// images processed in the same synchronous loop from landing on the same
+// millisecond and colliding — a real risk, not a theoretical one: an earlier
+// single-image batch upload produced two filenames 18ms apart.
+function safeFilename(rawName, mime, offset = 0) {
   const dot = rawName.lastIndexOf('.');
   const base = (dot > 0 ? rawName.slice(0, dot) : rawName) || 'image';
   let ext = (dot > 0 ? rawName.slice(dot + 1) : '').toLowerCase();
   if (!ALLOWED_EXT.includes(ext)) ext = EXT_BY_MIME[mime] || '';
   if (ext === 'jpeg') ext = 'jpg';
   const slug = base.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'image';
-  return { ext, name: `${Date.now()}-${slug}.${ext}` };
+  return { ext, name: `${Date.now() + offset}-${slug}.${ext}` };
 }
 
 /** Generate SEO alt text for an image via Claude vision. Returns '' if none. */
@@ -96,47 +118,81 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { filename, mime, data_base64: dataBase64, category } = await readJsonBody(req);
-    if (!dataBase64) return sendJson(res, 400, { error: 'data_base64 is required' });
+    const { images, category } = await readJsonBody(req);
     if (!category || !CATEGORIES.includes(category)) {
       return sendJson(res, 400, { error: `category must be one of: ${CATEGORIES.join(', ')}` });
     }
-
-    const { ext, name } = safeFilename(filename || '', mime);
-    if (!ALLOWED_EXT.includes(ext)) {
-      return sendJson(res, 400, { error: 'only jpg, png and webp images are accepted' });
+    if (!Array.isArray(images) || images.length === 0) {
+      return sendJson(res, 400, { error: 'images must be a non-empty array' });
     }
 
-    const buffer = Buffer.from(dataBase64, 'base64');
-    if (buffer.length === 0) return sendJson(res, 400, { error: 'image is empty' });
-    if (buffer.length > MAX_IMAGE_BYTES) return sendJson(res, 413, { error: 'image too large (max 8MB)' });
+    // Validate every image up front — nothing is committed or written until
+    // the whole batch checks out, so one bad file fails the request instead
+    // of leaving a partial upload behind.
+    const prepared = [];
+    let totalBytes = 0;
+    for (let i = 0; i < images.length; i += 1) {
+      const { filename, mime, data_base64: dataBase64 } = images[i] ?? {};
+      const label = filename || `image ${i + 1}`;
+      if (!dataBase64) return sendJson(res, 400, { error: `${label}: data_base64 is required` });
 
-    // Category drives the subfolder, matching the existing blog image layout.
-    const repoPath = `${IMAGE_DIR_BASE}/${category}/${name}`;
-
-    if (!isMock()) {
-      await createSingleCommit(`Add library image: ${name}`, [
-        { path: repoPath, contentBase64: buffer.toString('base64') },
-      ]);
-    }
-
-    const image = await insertImage({ filename: repoPath, category });
-
-    // Generate alt text from the image and write it back. Best-effort: a failure
-    // here must not lose an already-saved upload. Skipped in mock mode.
-    if (!isMock()) {
-      try {
-        const altText = await generateAltText(buffer.toString('base64'), ext);
-        if (altText) {
-          await updateImageAltText(image.id, altText);
-          image.alt_text = altText;
-        }
-      } catch (altErr) {
-        console.error(`alt text generation failed for ${repoPath}: ${altErr.message}`);
+      const { ext, name } = safeFilename(filename || '', mime, i);
+      if (!ALLOWED_EXT.includes(ext)) {
+        return sendJson(res, 400, { error: `${label}: only jpg, png and webp images are accepted` });
       }
+
+      const buffer = Buffer.from(dataBase64, 'base64');
+      if (buffer.length === 0) return sendJson(res, 400, { error: `${label}: image is empty` });
+      if (buffer.length > MAX_UPLOAD_BYTES) {
+        return sendJson(res, 413, {
+          error: `${label} is ${(buffer.length / 1000000).toFixed(2)} MB; the limit is `
+            + `${(MAX_UPLOAD_BYTES / 1000000).toFixed(2)} MB per image`,
+        });
+      }
+      totalBytes += buffer.length;
+
+      // Category drives the subfolder, matching the existing blog image layout.
+      const repoPath = `${IMAGE_DIR_BASE}/${category}/${name}`;
+      prepared.push({ repoPath, name, ext, buffer });
+    }
+    if (totalBytes > MAX_UPLOAD_BYTES) {
+      return sendJson(res, 413, {
+        error: `${images.length} images together are ${(totalBytes / 1000000).toFixed(2)} MB; `
+          + `the limit per upload is ${(MAX_UPLOAD_BYTES / 1000000).toFixed(2)} MB combined`,
+      });
     }
 
-    return sendJson(res, 200, { ok: true, image });
+    if (!isMock()) {
+      const message = prepared.length === 1
+        ? `Add library image: ${prepared[0].name}`
+        : `Add ${prepared.length} library images`;
+      await createSingleCommit(message, prepared.map((p) => (
+        { path: p.repoPath, contentBase64: p.buffer.toString('base64') }
+      )));
+    }
+
+    const results = [];
+    for (const p of prepared) {
+      const image = await insertImage({ filename: p.repoPath, category });
+
+      // Generate alt text from the image and write it back. Best-effort: a
+      // failure here must not lose an already-saved upload, and one image's
+      // failure must not stop the rest of the batch. Skipped in mock mode.
+      if (!isMock()) {
+        try {
+          const altText = await generateAltText(p.buffer.toString('base64'), p.ext);
+          if (altText) {
+            await updateImageAltText(image.id, altText);
+            image.alt_text = altText;
+          }
+        } catch (altErr) {
+          console.error(`alt text generation failed for ${p.repoPath}: ${altErr.message}`);
+        }
+      }
+      results.push(image);
+    }
+
+    return sendJson(res, 200, { ok: true, images: results });
   } catch (err) {
     return sendJson(res, 500, { error: err.message });
   }

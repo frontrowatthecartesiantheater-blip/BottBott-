@@ -668,22 +668,43 @@ function wireAddContent() {
   });
 
   // ---- Section D: Image Upload ----
+  // Vercel's edge answers a request body over 4.5 MB (decimal) with
+  // FUNCTION_PAYLOAD_TOO_LARGE before the function runs, so the whole batch's
+  // combined size is checked here before spending a slow upload attempt on a
+  // request the edge would just reject. Matches api/admin/media.js's own
+  // MAX_UPLOAD_BYTES derivation.
+  const MAX_IMAGE_BATCH_BYTES = Math.floor((4500000 - 4096) * 3 / 4);
+
   $('#img-btn').addEventListener('click', async () => {
-    const file = $('#img-file').files[0];
+    const files = [...$('#img-file').files];
     const category = $('#img-category').value;
     const msg = $('#img-msg');
-    if (!file) { msg.innerHTML = '<span class="err">Choose an image first.</span>'; return; }
+    if (files.length === 0) { msg.innerHTML = '<span class="err">Choose at least one image first.</span>'; return; }
     if (!category) { msg.innerHTML = '<span class="err">Choose a category.</span>'; return; }
+
+    const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
+    if (totalBytes > MAX_IMAGE_BATCH_BYTES) {
+      msg.innerHTML = `<span class="err">${files.length} images together are ${fmtSize(totalBytes)}, over the `
+        + `${fmtSize(MAX_IMAGE_BATCH_BYTES)} the server accepts in one batch. Upload fewer at a time.</span>`;
+      return;
+    }
+
     const btn = $('#img-btn');
     const orig = btn.textContent;
     btn.disabled = true; btn.textContent = 'Uploading…'; msg.textContent = '';
     try {
-      const data_base64 = await fileToBase64(file);
-      await api('/api/admin/media?action=image-upload', {
+      const images = await Promise.all(files.map(async (f) => (
+        { filename: f.name, mime: f.type, data_base64: await fileToBase64(f) }
+      )));
+      const r = await api('/api/admin/media?action=image-upload', {
         method: 'POST',
-        body: JSON.stringify({ filename: file.name, mime: file.type, data_base64, category }),
+        body: JSON.stringify({ images, category }),
       });
-      msg.innerHTML = '<span class="ok">Image added to library</span>';
+      const withoutAlt = r.images.filter((img) => !img.alt_text).length;
+      const altNote = withoutAlt
+        ? ` (${withoutAlt} saved without alt text — add it manually if you'd like)`
+        : '';
+      msg.innerHTML = `<span class="ok">${r.images.length} image${r.images.length === 1 ? '' : 's'} added to library${altNote}</span>`;
       $('#img-file').value = ''; $('#img-category').value = '';
     } catch (err) {
       msg.innerHTML = `<span class="err">${escapeHtml(err.message)}</span>`;
