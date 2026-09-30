@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "slug": "what-a-workflow-audit-looks-like",
+      "title": "What a Workflow Audit Actually Looks Like",
+      "date": "2026-09-30",
+      "description": "Business process automation starts with a real workflow audit. Here's what that diagnosis actually looks like, and why most businesses skip it.",
+      "image": "assets/images/blog/ai-powered-operations/1789528292787-ai-technology-brain-background-digital-transformation-concep.webp",
+      "readMinutes": 5
+    },
+    {
       "slug": "ai-automation-roi-time-saved-explained",
       "title": "The Real Math Behind AI Automation ROI, Week to Week",
       "date": "2026-09-23",
