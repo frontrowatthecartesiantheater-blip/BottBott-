@@ -4,8 +4,9 @@
 //   POST /api/admin/topics                  → insert a single topic. status
 //        defaults to 'upcoming'; order_index is auto-assigned as max + 1.
 //   POST /api/admin/topics?action=generate     → AI-generate 5 topic ideas.
-//   POST /api/admin/topics?action=bulk-upload  → extract topics from a .md/.pdf
-//        and insert them directly into Supabase (returns a saved count).
+//   POST /api/admin/topics?action=bulk-upload  → extract topics from a .docx/
+//        .pdf/.md/.txt file and insert them directly into Supabase (returns a
+//        saved count).
 //
 // The two ?action= branches were folded in from the former
 // api/admin/topics/generate.js and api/admin/topics/bulk-upload.js to stay
