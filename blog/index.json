@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "slug": "scale-business-without-hiring",
+      "title": "How to Scale Your Business Without Adding Headcount",
+      "date": "2026-10-08",
+      "description": "Growth doesn't require more hires. See how automation lets a small team absorb more volume, and where judgment still needs a human.",
+      "image": "assets/images/blog/founder-productivity/1789528292792-futuristic-ai-dashboard-display.webp",
+      "readMinutes": 6
+    },
+    {
       "slug": "what-a-workflow-audit-looks-like",
       "title": "What a Workflow Audit Actually Looks Like",
       "date": "2026-09-30",
