@@ -21,6 +21,10 @@ import { todayInClientTz } from '../lib/cron.js';
 import { CLIENT } from '../lib/client-config.js';
 import { createLinkClients } from '../lib/links/models.js';
 import { runLinkSweep } from '../lib/links/sweep.js';
+import { LINK_CONFIG } from '../lib/links/config.js';
+import { backfillTalkingPoints } from '../lib/talking-points.js';
+import { syncCatalog } from '../lib/catalog.js';
+import { backfillLessons } from '../lib/edit-lessons.js';
 import { getEditorToggle, updatePost, markTopicPublished } from '../lib/admin-data.js';
 import { getImageAltByFilename } from '../lib/images.js';
 import { publishPost } from '../lib/publish.js';
@@ -33,8 +37,12 @@ const supabase = getSupabaseClient();
 console.log('--- link sweep ---');
 const sweep = await runLinkSweep({ supabase, clients: createLinkClients() });
 console.log(`swept ${sweep.processed.length} post(s), ${sweep.errors.length} error(s)`);
+if (sweep.quota) {
+  console.log(`serpapi quota: ${sweep.quota.left ?? 'unknown'} left${sweep.quota.renewal ? ` (renews ${sweep.quota.renewal})` : ''}${sweep.quota.error ? ` [quota check failed: ${sweep.quota.error}]` : ''}`);
+}
+for (const a of sweep.alerts ?? []) console.log(`  alert ${a.ok ? 'sent' : 'FAILED to send'}: ${a.subject}`);
 for (const p of sweep.processed) {
-  console.log(`  ${p.slug}: claims=${p.claims ?? '-'} injected=${p.injected ?? '-'} flagged=${p.flagged ?? '-'} surplus=${p.surplus ?? '-'} ok=${p.ok}${p.error ? ` (${p.error})` : ''}`);
+  console.log(`  ${p.slug}: outcome=${p.outcome ?? '-'} claims=${p.claims ?? '-'} searches=${p.searchesAttempted ?? '-'} injected=${p.injected ?? '-'} flagged=${p.flagged ?? '-'} surplus=${p.surplus ?? '-'} ok=${p.ok}${p.error ? ` (${p.error})` : ''}`);
   if (p.claimsDroppedVerbatim > 0) {
     console.log(`    ${p.claimsDroppedVerbatim} claim(s) dropped by the verbatim-sentence filter`);
   }
@@ -44,6 +52,41 @@ for (const p of sweep.processed) {
 }
 for (const e of sweep.errors) {
   console.error(`  sweep error: ${JSON.stringify(e)}`);
+}
+
+// Talking points: extract reusable points from newly published posts so the
+// next generation can rehash them. Best-effort and bounded; never blocks the
+// publish step below. Skips quietly (no model spend) if embeddings are not
+// configured in this environment.
+console.log('\n--- talking points ---');
+try {
+  const tp = await backfillTalkingPoints({ supabase, limit: 3 });
+  console.log(tp.skipped ? `skipped: ${tp.skipped}` : `extracted ${tp.processed.length} post(s): ${tp.processed.map((p) => `${p.slug}=${p.points}`).join(', ') || 'none pending'}`);
+  for (const e of tp.errors) console.error(`  talking-points error: ${JSON.stringify(e)}`);
+} catch (err) {
+  console.error(`  talking points step failed: ${err.message}`);
+}
+
+// Link catalog: the author's own blog + Substack posts as real link targets.
+// Syncs at most every 12 hours; skips quietly without embeddings.
+console.log('\n--- link catalog ---');
+try {
+  const cat = await syncCatalog({ supabase });
+  console.log(cat.skipped ? `skipped: ${cat.skipped}` : `blog=${cat.blog} substack=${cat.substack} newly embedded=${cat.embedded}`);
+  for (const e of cat.errors) console.error(`  catalog error: ${JSON.stringify(e)}`);
+} catch (err) {
+  console.error(`  catalog step failed: ${err.message}`);
+}
+
+// Edit lessons: compare each published post's saved draft with what was
+// published and propose lessons for the editor to approve (admin Settings tab).
+console.log('\n--- edit lessons ---');
+try {
+  const les = await backfillLessons({ supabase, limit: 3 });
+  console.log(les.processed.length ? les.processed.map((p) => `${p.slug}: similarity ${p.similarity}, ${p.lessons} new lesson(s)`).join('\n') : 'nothing to compare');
+  for (const e of les.errors) console.error(`  lessons error: ${JSON.stringify(e)}`);
+} catch (err) {
+  console.error(`  lessons step failed: ${err.message}`);
 }
 
 const toggle = await getEditorToggle();
@@ -64,14 +107,31 @@ if (postsErr) {
   console.error(`posts query failed: ${postsErr.message}`);
   process.exit(1);
 }
-console.log(`${posts.length} post(s) ready to publish`);
+// Hold back posts that should not auto-publish yet: unresolved ungrounded
+// claims (the grounding check found something it could not clear), and posts
+// whose link search is retryable (failed or out of quota) and still inside the
+// hold window, so a transient problem does not silently publish a post with no
+// external sources.
+const holdMs = LINK_CONFIG.maxHoldHours * 3600 * 1000;
+const held = [];
+const ready = posts.filter((p) => {
+  if (p.grounding_report?.blocking) { held.push(`${p.slug}: unresolved ungrounded claims`); return false; }
+  const retryable = ['search_failed', 'quota_exhausted'].includes(p.links_status);
+  if (retryable && Date.now() - new Date(p.generated_at).getTime() < holdMs) {
+    held.push(`${p.slug}: link search ${p.links_status}, retrying`);
+    return false;
+  }
+  return true;
+});
+for (const h of held) console.log(`  holding ${h}`);
+console.log(`${ready.length} post(s) ready to publish (${held.length} held)`);
 
 // Publish date in the client's timezone, not UTC — an evening local-time
 // publish must not be stamped with tomorrow's date (same rule as the cron).
 const date = todayInClientTz();
 let failures = 0;
 
-for (const post of posts) {
+for (const post of ready) {
   console.log(`\npublishing ${post.slug}...`);
 
   // Advisory only, never blocks: a post can legitimately have nothing worth
@@ -136,5 +196,5 @@ for (const post of posts) {
   }
 }
 
-console.log(`\ndone — ${posts.length - failures}/${posts.length} published`);
+console.log(`\ndone — ${ready.length - failures}/${ready.length} published`);
 if (failures > 0) process.exit(1);

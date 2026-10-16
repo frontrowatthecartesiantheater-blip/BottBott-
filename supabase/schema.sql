@@ -87,7 +87,8 @@ create table if not exists voice_memos (
   topic_id     uuid not null references topics(id),
   transcript   text not null,
   recorded_at  timestamptz not null default now(),
-  tov_signals  jsonb           -- dynamic TOV extraction output (pre-pass)
+  tov_signals  jsonb,          -- dynamic TOV extraction output (pre-pass)
+  transcript_check jsonb       -- migration 0003: Whisper-based findings (gaps, looping filler, thin transcript); null when clean
 );
 
 create index if not exists voice_memos_topic_id_idx on voice_memos (topic_id);
@@ -118,7 +119,17 @@ create table if not exists posts (
   -- Link-sweep idempotency marker: the sweep targets pending_review posts
   -- where this is null and stamps it after a successful run (including
   -- zero-source runs). Null it manually to force a re-sweep of a post.
-  links_checked_at timestamptz
+  links_checked_at timestamptz,
+  -- migration 0002:
+  body_md_generated           text,        -- immutable copy of the model's draft (body_md is overwritten by editor edits)
+  grounding_report            jsonb,       -- grounding check output: unsupported sentences + whether they block auto-publish
+  links_status                text,        -- ok | no_claims | search_failed | quota_exhausted (last two are retried)
+  links_attempts              integer not null default 0,
+  links_report                jsonb,       -- sweep detail incl. skip reasons
+  talking_points_extracted_at timestamptz, -- stamped once the post has been distilled into talking_points
+  -- migration 0003:
+  lessons_extracted_at        timestamptz, -- stamped once the draft was compared with the published text
+  edit_similarity             numeric      -- 1.0 = published untouched; falls as the editor changes more
 );
 
 create index if not exists posts_status_idx on posts (status);
@@ -228,6 +239,130 @@ as $$
   from content_chunks
   where embedding is not null
   order by embedding <=> query_embedding
+  limit match_count;
+$$;
+
+-- ---------------------------------------------------------------- talking_points
+-- One row per reusable idea from a published post, restated in neutral words
+-- (never a verbatim sentence). Generation retrieves the closest points for a
+-- new topic and may rehash them as supporting context. client_ref is an
+-- anonymized label ("a podcast placement agency founder"); real client names
+-- are never stored here.
+
+create table if not exists talking_points (
+  id             uuid primary key default gen_random_uuid(),
+  source_post_id uuid not null references posts(id) on delete cascade,
+  kind           text not null check (kind in ('stance', 'claim', 'client_fact', 'how_to', 'metric')),
+  point          text not null,
+  topics         text[] not null default '{}',
+  client_ref     text,
+  evidence_url   text,                      -- external source the post linked for this point, if any
+  status         text not null default 'active' check (status in ('active', 'retired')),
+  embedding      vector(1536),
+  created_at     timestamptz not null default now(),
+  unique (source_post_id, point)
+);
+
+create index if not exists talking_points_source_post_idx on talking_points (source_post_id);
+create index if not exists talking_points_embedding_idx
+  on talking_points using hnsw (embedding vector_cosine_ops);
+
+alter table talking_points enable row level security;
+
+-- Semantic lookup for generation: closest active points from published posts,
+-- optionally excluding one post (the one being regenerated).
+create or replace function match_talking_points(
+  query_embedding  vector(1536),
+  match_count      int  default 8,
+  exclude_post_id  uuid default null
+)
+returns table (
+  id             uuid,
+  source_post_id uuid,
+  source_slug    text,
+  source_title   text,
+  kind           text,
+  point          text,
+  topics         text[],
+  client_ref     text,
+  evidence_url   text,
+  similarity     float
+)
+language sql stable
+as $$
+  select
+    tp.id, tp.source_post_id, p.slug, p.title, tp.kind, tp.point, tp.topics,
+    tp.client_ref, tp.evidence_url,
+    1 - (tp.embedding <=> query_embedding) as similarity
+  from talking_points tp
+  join posts p on p.id = tp.source_post_id
+  where tp.status = 'active'
+    and tp.embedding is not null
+    and p.status = 'published'
+    and (exclude_post_id is null or tp.source_post_id <> exclude_post_id)
+  order by tp.embedding <=> query_embedding
+  limit match_count;
+$$;
+
+-- ---------------------------------------------------------------- edit_lessons
+
+create table if not exists edit_lessons (
+  id             uuid primary key default gen_random_uuid(),
+  source_post_id uuid references posts(id) on delete cascade,
+  category       text not null default 'other'
+                   check (category in ('opener', 'invention', 'facts', 'links', 'style', 'structure', 'other')),
+  lesson         text not null,            -- an instruction the drafting prompts can follow
+  before_text    text,                     -- short quote from the system's draft
+  after_text     text,                     -- short quote of what the editor changed it to
+  status         text not null default 'pending' check (status in ('pending', 'approved', 'rejected')),
+  created_at     timestamptz not null default now(),
+  decided_at     timestamptz
+);
+
+create index if not exists edit_lessons_status_idx on edit_lessons (status);
+alter table edit_lessons enable row level security;
+
+-- ------------------------------------------------------------- content_catalog
+
+create table if not exists content_catalog (
+  id           uuid primary key default gen_random_uuid(),
+  source       text not null check (source in ('blog', 'substack')),
+  url          text not null unique,
+  title        text not null,
+  summary      text,
+  published_at timestamptz,
+  embedding    vector(1536),
+  synced_at    timestamptz not null default now()
+);
+
+create index if not exists content_catalog_embedding_idx
+  on content_catalog using hnsw (embedding vector_cosine_ops);
+alter table content_catalog enable row level security;
+
+-- Closest catalog entries to a query, optionally limited to one source.
+create or replace function match_content_catalog(
+  query_embedding vector(1536),
+  match_count     int  default 6,
+  source_filter   text default null
+)
+returns table (
+  id           uuid,
+  source       text,
+  url          text,
+  title        text,
+  summary      text,
+  published_at timestamptz,
+  similarity   float
+)
+language sql stable
+as $$
+  select
+    c.id, c.source, c.url, c.title, c.summary, c.published_at,
+    1 - (c.embedding <=> query_embedding) as similarity
+  from content_catalog c
+  where c.embedding is not null
+    and (source_filter is null or c.source = source_filter)
+  order by c.embedding <=> query_embedding
   limit match_count;
 $$;
 
@@ -350,3 +485,13 @@ alter table content_chunks enable row level security;
 alter table domains        enable row level security;
 alter table url_freshness  enable row level security;
 alter table injected_links enable row level security;
+-- talking_points, edit_lessons and content_catalog enable RLS in their own sections above.
+
+-- Supabase no longer grants access to new public tables automatically; the app and
+-- the GitHub workflow use the service role, so grant it explicitly (migration 0004).
+-- anon and authenticated stay locked out.
+grant all on table talking_points  to service_role;
+grant all on table edit_lessons    to service_role;
+grant all on table content_catalog to service_role;
+grant execute on function match_talking_points(vector, int, uuid) to service_role;
+grant execute on function match_content_catalog(vector, int, text) to service_role;

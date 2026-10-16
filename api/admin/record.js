@@ -14,6 +14,7 @@ import { requireRole } from '../../lib/admin-auth.js';
 import { sendJson, readJsonBody } from '../../lib/http.js';
 import { saveVoiceMemo } from '../../lib/admin-data.js';
 import { extractText } from '../../lib/text-extract.js';
+import { analyzeTranscript, describeWarnings } from '../../lib/transcript-check.js';
 
 // Vercel's edge answers a request body over 4.5 MB (decimal) with
 // FUNCTION_PAYLOAD_TOO_LARGE before this function is invoked, so the cap here
@@ -47,7 +48,7 @@ function audioExt(filename, mime) {
 
 async function transcribe(audioBuffer, mime, filename) {
   if (process.env.ADMIN_MOCK === '1') {
-    return '(mock transcript) I have been doing this for almost 40 years. This topic matters because people check you out online before they ever call you.';
+    return { text: '(mock transcript) I have been doing this for almost 40 years. This topic matters because people check you out online before they ever call you.', duration: null, segments: [] };
   }
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error('OPENAI_API_KEY is not set');
@@ -57,6 +58,9 @@ async function transcribe(audioBuffer, mime, filename) {
   form.append('file', new Blob([audioBuffer], { type: mime || 'audio/webm' }), `memo.${ext}`);
   form.append('model', 'whisper-1');
   form.append('language', 'en');
+  // verbose_json adds per-segment timestamps and duration, which is how a gap or
+  // a looping stretch in a corrupted recording gets noticed (lib/transcript-check.js).
+  form.append('response_format', 'verbose_json');
 
   const res = await fetch('https://api.openai.com/v1/audio/transcriptions', {
     method: 'POST',
@@ -65,7 +69,7 @@ async function transcribe(audioBuffer, mime, filename) {
   });
   if (!res.ok) throw new Error(`Whisper API error: ${res.status} ${await res.text()}`);
   const data = await res.json();
-  return data.text;
+  return { text: data.text, duration: data.duration ?? null, segments: data.segments ?? [] };
 }
 
 export default async function handler(req, res) {
@@ -86,6 +90,7 @@ export default async function handler(req, res) {
     }
 
     let transcript;
+    let check = null;
     if (documentBase64) {
       const buffer = Buffer.from(documentBase64, 'base64');
       if (buffer.length === 0) return sendJson(res, 400, { error: 'document is empty' });
@@ -109,7 +114,9 @@ export default async function handler(req, res) {
             + `${(MAX_UPLOAD_BYTES / 1000000).toFixed(2)} MB, about 14 minutes at the recorder's 32 kbps`,
         });
       }
-      transcript = await transcribe(audio, mime, filename);
+      const verbose = await transcribe(audio, mime, filename);
+      transcript = verbose.text;
+      check = analyzeTranscript(verbose);
     }
 
     if (!transcript || transcript.trim().length < 20) {
@@ -117,11 +124,14 @@ export default async function handler(req, res) {
       return sendJson(res, 422, { error: `${documentBase64 ? 'the document' : 'transcription'} came back empty; ${retry}` });
     }
 
-    const memo = await saveVoiceMemo({ topicId, transcript });
+    // Stored only when something looks wrong, so a clean recording needs nothing
+    // new in the database.
+    const memo = await saveVoiceMemo({ topicId, transcript, check: check && !check.ok ? check : null });
     return sendJson(res, 200, {
       ok: true,
       voice_memo_id: memo.id,
       transcript_preview: transcript.slice(0, 200),
+      transcript_warnings: check ? describeWarnings(check) : [],
     });
   } catch (err) {
     return sendJson(res, 500, { error: err.message });

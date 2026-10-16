@@ -127,9 +127,14 @@ This is his single most distinctive pattern and it must survive every pass.
 
 ### Openings
 
-- Opens with a scene, a friction point, a specific moment, or a direct
-  statement of the problem. Usually a real client situation, stated flat.
-- Then one sentence naming what that situation is an example of.
+- Opens with a thesis statement synopsis: one to three sentences stating the
+  position the post takes and why it matters to the reader, in his own words
+  from the recording wherever possible. Not a scene. (Decision 2026-10-15: a
+  scene forced the draft to invent one whenever the recording had none.)
+- A real client fact can carry the opener only when it comes from the
+  recording (or a published talking point) and directly proves the thesis.
+  Never an invented anecdote, conversation, client, or time reference
+  ("last week").
 - Does not open with a question to the reader.
 - Does not open with a definition.
 - Does not open with "In today's world" or any time-marker framing.
@@ -166,8 +171,10 @@ This is his single most distinctive pattern and it must survive every pass.
 
 ### Post Architecture
 
-1. Open with friction or scene. A specific moment, a real client, a contrast.
-2. Name what it is an example of. One sentence.
+1. Open with the thesis: the position this post takes, in one to three
+   sentences. A real client fact from the recording can carry it if the fact
+   proves the point.
+2. Name what the post will show the reader. One sentence.
 3. Establish stakes in real terms, usually money or time the reader is losing.
 4. Move through the idea consequence by consequence, not point by point.
 5. Give the strongest counterargument its own section. State it fairly, then
@@ -374,6 +381,18 @@ prospective client.
 - Do not name a third-party vendor in a negative or accusatory context unless
   the transcript names them explicitly.
 - Do not invent dates, durations, or engagement timelines.
+- Do not invent events or conversations ("a business owner messaged me last
+  week") or relative time ("five years ago") that the recording does not
+  contain.
+- Do not claim a process the recording does not describe ("in my research",
+  "when I tested this").
+- Do not finish a thought the recording leaves unfinished. If he trails off,
+  the idea ends where he stopped; no stance, hedge, or recommendation he did
+  not state.
+- Never name a client, a client's company, or a client's founder or staff.
+  Describe them by role and industry.
+- If he misstates a well-known public fact, state it correctly or drop the
+  detail; never repeat the slip.
 - A figure stated by another speaker in a transcript does not qualify as
   Simo's claim.
 - Do not write external links. Internal links come from the structure plan;
@@ -440,7 +459,8 @@ prospective client.
 
 The post below is the standard for this surface. Match its rhythm, its
 concession structure, its willingness to run long, and its specificity. Do
-not imitate its topic or reuse its content.
+not imitate its topic or reuse its content. Its opener predates the
+thesis-first rule: match its rhythm and concessions, not its opening move.
 
 # Why SaaS Is Ass
 
@@ -518,8 +538,8 @@ rules, and the dynamic signals govern subject-matter opinions.
 | Swearing | None on this surface |
 | Metaphor source | Construction, plus Belize analog world |
 | Punctuation | Semicolons and colons freely. Em dashes banned completely |
-| Opener type | Specific real situation, stated flat |
+| Opener type | Thesis statement synopsis, 1-3 sentences, not a scene |
 | Closer type | Sympathy, related reading, one-line conclusion, plain low-pressure invitation |
 | Credibility signal | Specificity and friction, not titles |
 | Length | 1,200 to 1,500 words |
-| Hard limits | No invented figures, prices, dates, client stories, named vendors, or external URLs |
+| Hard limits | No invented figures, prices, dates, events, client stories, named vendors, client names, or external URLs |

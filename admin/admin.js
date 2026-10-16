@@ -191,7 +191,7 @@ function wireRecorder() {
           filename: recorder.filename,
         }),
       });
-      markRecordSuccess(r.transcript_preview);
+      markRecordSuccess(r.transcript_preview, r.transcript_warnings);
     } catch (err) {
       $('#record-status').innerHTML = `<span class="err">${escapeHtml(err.message)}</span>`
         + '<br><span class="meta">The audio is still loaded — save a copy above before you leave this page, '
@@ -249,7 +249,7 @@ function wireRecorder() {
         method: 'POST',
         body: JSON.stringify({ topic_id: recorder.topicId, document_base64, filename: file.name }),
       });
-      markRecordSuccess(r.transcript_preview);
+      markRecordSuccess(r.transcript_preview, r.transcript_warnings);
     } catch (err) {
       $('#record-status').innerHTML = `<span class="err">${escapeHtml(err.message)}</span>`;
       $('#record-btn').disabled = false;
@@ -262,8 +262,13 @@ function wireRecorder() {
 // Shared by the audio submit button and the document upload: once a
 // transcript is saved for the topic (whichever path produced it), every
 // submission control locks — only one memo per topic is expected.
-function markRecordSuccess(transcriptPreview) {
-  $('#record-status').innerHTML = `Got it. The post will go live on schedule.<br><span class="meta">${escapeHtml(transcriptPreview)}…</span>`;
+function markRecordSuccess(transcriptPreview, warnings = []) {
+  // Recording problems (a gap, looping filler, far too few words) are worth
+  // knowing about now, while a re-record is still easy.
+  const warn = (warnings || []).length
+    ? `<br><span class="err">Heads up: ${warnings.map(escapeHtml).join('; ')}. If part of your recording is missing, reload this page and record it again to replace this one.</span>`
+    : '';
+  $('#record-status').innerHTML = `Got it. The post will go live on schedule.<br><span class="meta">${escapeHtml(transcriptPreview)}…</span>${warn}`;
   $('#record-btn').disabled = true;
   $('#upload-input').disabled = true;
   $('#doc-input').disabled = true;
@@ -312,16 +317,30 @@ function updateToggleDesc(on) {
 // a factual look before publishing.
 const CONTRADICTION_RE = /contradict|conflicts? with|disagrees?|disputes?|refutes?|understat|overstat/i;
 
+// What the sweep's outcome means for the editor. quota_exhausted and
+// search_failed are retried automatically, and Publish stays enabled.
+const LINKS_STATUS_NOTES = {
+  quota_exhausted: 'No sources were searched: the search quota is used up. This draft is re-checked automatically when searches are available again. You can publish now; it just has no external links yet.',
+  search_failed: 'The source search failed for every claim. It is retried automatically. You can publish now; it just has no external links yet.',
+  no_claims: 'Checked: nothing in this draft needed an outside source.',
+};
+
 function buildLinksPanel(post) {
   const rows = (post.injected_links || []).slice().sort((a, b) => {
     const order = { injected: 0, flagged: 1, surplus: 2 };
     return (order[a.status] ?? 9) - (order[b.status] ?? 9);
   });
+  const statusNote = LINKS_STATUS_NOTES[post.links_status]
+    ? `<p class="meta lint-warn">${escapeHtml(LINKS_STATUS_NOTES[post.links_status])}</p>`
+    : '';
+  const bodyChanged = post.links_report?.bodyChangedDuringSweep
+    ? '<p class="meta lint-warn">You edited this draft while the sweep was running, so its links were not written into the body. Add the ones below by hand if you want them.</p>'
+    : '';
   if (rows.length === 0) {
     const msg = post.links_checked_at
       ? 'Checked — no qualifying external sources found for this draft.'
       : 'Link check pending — the sweep has not processed this draft yet.';
-    return `<div class="field"><label>External links</label><p class="meta">${msg}</p></div>`;
+    return `<div class="field"><label>External links</label>${statusNote}${statusNote ? '' : `<p class="meta">${msg}</p>`}</div>`;
   }
   // Rows can exist before links_checked_at is stamped (e.g. the manual
   // `npm run links:inject -- --apply` escape hatch) — surface that distinctly
@@ -342,7 +361,32 @@ function buildLinksPanel(post) {
       ${contradiction}
     </div>`;
   }).join('');
-  return `<div class="field"><label>External links (auto-injected, read-only)</label>${sweepPending}${items}</div>`;
+  return `<div class="field"><label>External links (auto-injected, read-only)</label>${sweepPending}${statusNote}${bodyChanged}${items}</div>`;
+}
+
+// Fact-check panel: sentences the grounding check found that the recording (or
+// the approved facts and published talking points) does not support. Errors are
+// things invented outright (an event, a figure, a stance); warnings are
+// embellishments. Read-only: the fix is the editor's call, in the body below.
+function buildGroundingPanel(post) {
+  const g = post.grounding_report;
+  if (!g) return '';
+  const findings = (g.findings || []).slice().sort((a, b) => (a.level === 'error' ? 0 : 1) - (b.level === 'error' ? 0 : 1));
+  const verifierNote = g.checked === false
+    ? `<p class="meta lint-warn">The fact-check model did not run (${escapeHtml(g.error || 'unknown error')}); only the rule checks applied.</p>`
+    : '';
+  if (findings.length === 0) {
+    return `<div class="field"><label>Fact check</label><p class="meta">Passed: nothing concrete in this draft lacks support in the recording.</p>${verifierNote}</div>`;
+  }
+  const head = g.blocking
+    ? '<p class="meta lint-warn">These sentences are not supported by the recording. Check each one before publishing. Auto-publish is held until you do.</p>'
+    : '<p class="meta">Worth a glance before publishing.</p>';
+  const items = findings.map((f) => `<div style="margin-bottom:10px;">
+      <span class="chips"><span>${escapeHtml(f.level === 'error' ? 'unsupported' : 'embellished')}</span><span>${escapeHtml(f.type || '')}</span></span>
+      <em>${escapeHtml(f.sentence || '')}</em>
+      <div class="meta">${escapeHtml(f.detail || '')}</div>
+    </div>`).join('');
+  return `<div class="field"><label>Fact check</label>${head}${verifierNote}${items}</div>`;
 }
 
 function buildPostEditor(post) {
@@ -354,6 +398,7 @@ function buildPostEditor(post) {
     ? '<div class="lint-warn">Lint flagged issues in this draft. Review the body before publishing.</div>' : '';
   el.innerHTML = `
     ${lintWarn}
+    ${buildGroundingPanel(post)}
     ${buildLinksPanel(post)}
     <div class="field">
       <label>Title</label>
@@ -505,6 +550,54 @@ function renderSources(sources) {
         await loadSources();
       } catch (err) {
         alert(`Could not remove ${domain}: ${err.message}`);
+        btn.disabled = false;
+      }
+    });
+  });
+}
+
+// Lessons the system proposes from the editor's own edits. Approving one adds
+// it to every future drafting prompt; rejecting (or retiring) removes it.
+async function loadLessons() {
+  const pendingHost = $('#lessons-pending');
+  const approvedHost = $('#lessons-approved');
+  if (!pendingHost || !approvedHost) return;
+  try {
+    const { pending, approved } = await api('/api/admin/lessons');
+    renderLessons(pendingHost, pending, 'pending');
+    renderLessons(approvedHost, approved, 'approved');
+  } catch (err) {
+    pendingHost.innerHTML = `<p class="err">${escapeHtml(err.message)}</p>`;
+    approvedHost.innerHTML = '';
+  }
+}
+
+function renderLessons(host, lessons, kind) {
+  host.innerHTML = lessons.length
+    ? lessons.map((l) => `
+      <div class="queue-item" data-id="${escapeHtml(l.id)}" style="display:block;margin-bottom:14px">
+        <span class="chips"><span>${escapeHtml(l.category)}</span></span>
+        <strong>${escapeHtml(l.lesson)}</strong>
+        ${l.before_text ? `<div class="meta">Draft: <em>${escapeHtml(l.before_text)}</em></div>` : ''}
+        ${l.after_text ? `<div class="meta">You: <em>${escapeHtml(l.after_text)}</em></div>` : ''}
+        ${l.posts?.title ? `<div class="meta">From: ${escapeHtml(l.posts.title)}</div>` : ''}
+        <div class="card-actions">
+          ${kind === 'pending'
+            ? '<button class="btn btn--primary" data-act="approve">Approve</button> <button class="btn" data-act="reject">Reject</button>'
+            : '<button class="btn" data-act="reject">Retire</button>'}
+        </div>
+      </div>`).join('')
+    : `<p class="meta">${kind === 'pending' ? 'Nothing waiting for review.' : 'None approved yet.'}</p>`;
+
+  host.querySelectorAll('[data-act]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const id = btn.closest('[data-id]').dataset.id;
+      btn.disabled = true;
+      try {
+        await api(`/api/admin/lessons?action=${btn.dataset.act}`, { method: 'POST', body: JSON.stringify({ id }) });
+        await loadLessons();
+      } catch (err) {
+        alert(`Could not update that lesson: ${err.message}`);
         btn.disabled = false;
       }
     });
@@ -777,6 +870,7 @@ async function init() {
     loadUpcomingTopics();
     wireSettings();
     loadSources();
+    loadLessons();
   } else {
     // Legacy creator role (no longer assigned): no tabs, only the Record view.
     $('#view-editor').remove();

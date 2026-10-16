@@ -2,11 +2,11 @@
 // Editor only. The cron publish path (M6) reuses the same steps; this
 // endpoint exists so drafts can be produced and reviewed on demand.
 
-import { readFileSync } from 'node:fs';
 import { requireRole } from '../../lib/admin-auth.js';
 import { sendJson, readJsonBody } from '../../lib/http.js';
 import { getSupabaseClient } from '../../lib/supabase.js';
 import { runGeneration } from '../../lib/generation/engine.js';
+import { buildGenerationInputs } from '../../lib/generation/inputs.js';
 import { createAnthropicClient } from '../../lib/generation/anthropic.js';
 import { selectUnusedImage, markImageUsed } from '../../lib/images.js';
 
@@ -40,21 +40,11 @@ export default async function handler(req, res) {
 
     await supabase.from('topics').update({ status: 'generating' }).eq('id', topicId);
 
-    // blog/index.json in the deployment bundle is current: every publish
-    // commit triggers a fresh deploy.
-    const priorPosts = JSON.parse(readFileSync('blog/index.json', 'utf8')).posts
-      .slice(0, 5).map((p) => ({ title: p.title, slug: p.slug }));
-
-    const result = await runGeneration({
-      topicTitle: topic.title,
-      topicDescription: topic.description,
-      primaryKeyword: topic.primary_keyword,
-      guidingQuestions: topic.guiding_questions || [],
-      transcript: memo.transcript,
-      priorPosts,
-      ragFlag: false,
-      ragChunks: null,
-    }, createAnthropicClient());
+    // Same inputs the cron builds (prior posts as full URLs, talking points,
+    // published bodies for the reuse check). blog/index.json in the deployment
+    // bundle is current: every publish commit triggers a fresh deploy.
+    const { inputs } = await buildGenerationInputs({ topic, memo });
+    const result = await runGeneration(inputs, createAnthropicClient());
 
     // Persist the dynamic TOV signals against the memo for later reference.
     await supabase.from('voice_memos').update({ tov_signals: result.dynamicTov }).eq('id', memo.id);
@@ -81,6 +71,8 @@ export default async function handler(req, res) {
       slug: post.slug,
       title: post.title,
       body_md: post.body_md,
+      body_md_generated: post.body_md,
+      grounding_report: result.grounding,
       meta_title: post.meta_title,
       meta_description: post.meta_description,
       primary_keyword: post.primary_keyword,

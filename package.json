@@ -14,7 +14,9 @@
     "index-embeddings": "node scripts/index-embeddings.js",
     "links:onboard": "node scripts/onboard-link-client.js",
     "links:inject": "node scripts/inject-links.js",
-    "links:recheck": "node scripts/recheck-domains.js"
+    "links:recheck": "node scripts/recheck-domains.js",
+    "test:quality": "node scripts/test-quality-gates.js && node scripts/test-catalog-lessons.js",
+    "talking-points:backfill": "node scripts/backfill-talking-points.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
