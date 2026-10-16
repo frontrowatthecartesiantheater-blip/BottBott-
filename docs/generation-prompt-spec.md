@@ -57,7 +57,7 @@ transcript had none. A real client fact may carry the opener only when it comes
 from the transcript or a talking point and proves the thesis.
 
 Concrete assertions must trace to the transcript, the approved facts in
-`client-config.js` (`autoblogPrice`, `autoblogRunCost`, `canonicalFacts`), or a
+`client-config.js` (`pricingFacts`, `canonicalFacts`), or a
 published talking point. Rules 29-33 in Call 2 ban invented events and relative
 time, invented process claims ("in my research"), completing a thought the
 transcript leaves unfinished, client names (`anonymizeNames`), and repeating a

@@ -37,8 +37,12 @@ Run `npm run preflight`; it must exit 0 before cutover.
 Set every variable from `.env.example` in Vercel (and locally in `.env` for the
 dry run). Sources:
 
-- [ ] **Supabase:** create the project; run `supabase/schema.sql`. Confirm
-  `pgvector` is enabled if using RAG, and `match_content_chunks` exists. Set
+- [ ] **Supabase:** create the project; run `supabase/schema.sql` (it includes
+  migrations through 0004, including the `service_role` grants on the newer
+  tables; for an existing deployment apply `supabase/migrations/0002`-`0004` in
+  order). Confirm `pgvector` is enabled and `match_content_chunks`,
+  `match_talking_points`, and `match_content_catalog` exist. Probe each new table
+  with the service role: "permission denied" means the grants were skipped. Set
   `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
 - [ ] **Anthropic:** `ANTHROPIC_API_KEY` (generation).
 - [ ] **OpenAI:** `OPENAI_API_KEY` (Whisper transcription + RAG embeddings).
@@ -57,13 +61,19 @@ dry run). Sources:
   JSON key in `GOOGLE_SERVICE_ACCOUNT_KEY`. Set up a "Social Posts" tab with a
   header row and F/G checkbox columns (posted-to-LinkedIn / posted-to-Facebook).
 - [ ] **SerpApi:** `SERPAPI_API_KEY` (link-injection candidate sourcing) — a
-  NEW key scoped to this client, never reused from another project.
+  NEW key scoped to this client, never reused from another project. The free
+  plan is 250 searches a month (about 5 per post) and one account is one
+  quota, so two builds on one account share it. Note the renewal date and watch
+  the quota in `/admin` > Settings.
 - [ ] **GitHub Actions secrets (link sweep):** add every secret listed in
   `.github/workflows/link-sweep.yml` to the repo's Actions secrets
   (`SERPAPI_API_KEY`, `ANTHROPIC_API_KEY`, `SUPABASE_URL`,
   `SUPABASE_SERVICE_ROLE_KEY`, `GITHUB_REPO`, `GITHUB_BRANCH`,
   `GOOGLE_SHEETS_SPREADSHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_KEY`,
-  `VERIFY_BASE_URL`). Confirm the scheduled workflow runs green.
+  `VERIFY_BASE_URL`, plus `OPENAI_API_KEY` for talking points and the link
+  catalog and, optionally, `RESEND_API_KEY` for quota alerts). Confirm the
+  scheduled workflow runs green and its log shows the talking-points, link
+  catalog, and edit-lessons sections.
 - [ ] **Link-client onboarding:** with the site reachable, run
   `npm run links:onboard` once and confirm `link_client_business_type` /
   `link_client_market` landed in `system_config`.
@@ -91,6 +101,15 @@ Against production services with **editor toggle ON**, before DNS cutover.
   (workflow_dispatch) against a pending_review draft; confirm links appear in
   the admin Review panel and the Publish button unlocks
   (`posts.links_checked_at` stamped).
+- [ ] **Fact check.** In the Review tab, confirm the "Fact check" panel renders
+  for the draft and that the opener is a thesis statement, not an invented scene.
+- [ ] **Memory.** After the first posts are published, run
+  `npm run talking-points:backfill -- --dry-run`, read the points for client
+  names and for anything that is not the client's own view, then run it for real.
+  Confirm the sweep's next run syncs the link catalog.
+- [ ] **Guardrails.** `CLIENT.anonymizeNames` lists every client name that must
+  never appear; `CLIENT.canonicalFacts` lists public facts the client tends to
+  misstate.
 - [ ] **Commit + verification.** With toggle ON, approve the draft → Publish.
   Confirm a single GitHub commit, one Vercel deploy, the Sheet row, and
   `VERIFY_BASE_URL` polling reporting the post live.

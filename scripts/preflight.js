@@ -123,6 +123,29 @@ const manual = (item, detail) => results.push({ item, status: 'MANUAL', detail }
   }
 })();
 
+// --- 13. Generation guardrails are set for this client.
+(() => {
+  const names = CLIENT.anonymizeNames ?? [];
+  const facts = CLIENT.canonicalFacts ?? [];
+  manual('13. generation guardrails',
+    `anonymizeNames: ${names.length ? names.join(', ') : '(none)'}; canonicalFacts: ${facts.length} listed. List every client name that must never appear in a post, and any public fact the client tends to misstate.`);
+})();
+
+// --- 14. Schema carries the memory tables and the service-role grants.
+(() => {
+  const schema = readFileSync('supabase/schema.sql', 'utf8');
+  const missing = [];
+  for (const t of ['talking_points', 'content_catalog', 'edit_lessons']) {
+    if (!new RegExp(`create table if not exists ${t}\\b`).test(schema)) missing.push(`table ${t}`);
+    if (!new RegExp(`grant all on table ${t}\\s+to service_role`).test(schema)) missing.push(`grant on ${t}`);
+  }
+  if (missing.length === 0) {
+    manual('14. memory tables', 'schema.sql defines talking_points, content_catalog, edit_lessons and grants them to service_role. After applying it, probe each table with the service role: "permission denied" means the grants did not run.');
+  } else {
+    fail('14. memory tables', `schema.sql is missing: ${missing.join(', ')}`);
+  }
+})();
+
 // --- live-run / DNS items (cannot be machine-verified here).
 manual('6. live generation', 'run with real ANTHROPIC_API_KEY; compare to mock; iterate prompts.');
 manual('7. live Whisper', 'record a memo through /admin and confirm transcription.');

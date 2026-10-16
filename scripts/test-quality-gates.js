@@ -19,6 +19,9 @@ const { validatePoints, extractTalkingPoints, indexTalkingPoints, retrieveTalkin
 const { buildLintRevisionPrompt } = await import('../lib/generation/prompts.js');
 const { runGeneration } = await import('../lib/generation/engine.js');
 const { createMockClient } = await import('../lib/generation/mock-client.js');
+const { CLIENT } = await import('../lib/client-config.js');
+// The tests set the client values they depend on, so they pass for any client build.
+CLIENT.anonymizeNames = ['Acme Plumbing'];
 
 const checks = [];
 const check = (name, cond, extra = '') => { checks.push({ name, pass: Boolean(cond) }); if (!cond) console.log(`  FAIL ${name} ${extra}`); };
@@ -69,9 +72,9 @@ const basePkg = (body) => ({
 });
 const body = (extra) => `Opening thesis.\n\n# T\n\n## One Section\n\n${extra}\n\n## Two\n\nMore.\n\n## Three\n\nEnd.`;
 
-let r = lintGenerationResult(basePkg(body('I built it for Wonderfish last year.')), 'kw', { anonymizeNames: ['Wonderfish'] });
+let r = lintGenerationResult(basePkg(body('I built it for Acme Plumbing last year.')), 'kw', { anonymizeNames: ['Acme Plumbing'] });
 check('client name is an error', r.findings.some((f) => f.check === 'client-name' && f.level === 'error'));
-r = lintGenerationResult(basePkg(body('I built it for a podcast placement agency.')), 'kw', { anonymizeNames: ['Wonderfish'] });
+r = lintGenerationResult(basePkg(body('I built it for a plumbing company owner.')), 'kw', { anonymizeNames: ['Acme Plumbing'] });
 check('anonymized description passes', !r.findings.some((f) => f.check === 'client-name'));
 
 r = lintGenerationResult(basePkg(body('Right after ChatGPT launched in late 2023, everything flooded.')), 'kw');
@@ -211,24 +214,43 @@ summary = await runLinkSweep({
 });
 check("editor's concurrent edit is not overwritten", state.posts[0].body_md === 'Editor changed this while the sweep ran.' && state.posts[0].links_report.bodyChangedDuringSweep === true);
 
+// quota monitoring: recorded every run, even with nothing to sweep
+state = { posts: [], system_config: [], topics: [] };
+summary = await runLinkSweep({ supabase: fakeSupabase(state), clients: {}, quotaFn: async () => ({ left: 247, limit: 250, renewal: '2026-11-16', plan: 'Free Plan' }), injectFn: neverCalled });
+const qStatus = JSON.parse(state.system_config.find((r) => r.key === 'link_quota_status').value);
+check('quota: latest reading recorded even when there is nothing to sweep', qStatus.left === 247 && qStatus.renewal === '2026-11-16' && qStatus.checkedAt);
+let qHistory = JSON.parse(state.system_config.find((r) => r.key === 'link_quota_history').value);
+check('quota: one history entry for today', qHistory.length === 1 && qHistory[0].left === 247);
+await runLinkSweep({ supabase: fakeSupabase(state), clients: {}, quotaFn: async () => ({ left: 240, limit: 250 }), injectFn: neverCalled });
+qHistory = JSON.parse(state.system_config.find((r) => r.key === 'link_quota_history').value);
+check('quota: a second run the same day updates the entry instead of adding one', qHistory.length === 1 && qHistory[0].left === 240);
+state.system_config.find((r) => r.key === 'link_quota_history').value = JSON.stringify([{ d: '2000-01-01', left: 3 }]);
+await runLinkSweep({ supabase: fakeSupabase(state), clients: {}, quotaFn: async () => ({ left: 250, limit: 250 }), injectFn: neverCalled });
+qHistory = JSON.parse(state.system_config.find((r) => r.key === 'link_quota_history').value);
+check('quota: a new day appends, so a monthly reset shows up as a jump', qHistory.length === 2 && qHistory[0].left === 3 && qHistory[1].left === 250);
+await runLinkSweep({ supabase: fakeSupabase(state), clients: {}, quotaFn: async () => { throw new Error('SerpApi account check failed: 401'); }, injectFn: neverCalled });
+const qFail = JSON.parse(state.system_config.find((r) => r.key === 'link_quota_status').value);
+check('quota: a failed check is recorded so a bad key is visible', /401/.test(qFail.error));
+check('quota: a failed check does not erase the history', JSON.parse(state.system_config.find((r) => r.key === 'link_quota_history').value).length === 2);
+
 // ------------------------------------------------------------ talking points
 hr('talking points');
-const tpBody = 'I think SaaS pricing that does not roll over credits is disingenuous. [OpenAI says](https://openai.com/x) its crawler is separate. For a podcast placement agency I built a pitch system.';
+const tpBody = 'I think SaaS pricing that does not roll over credits is disingenuous. [OpenAI says](https://openai.com/x) its crawler is separate. For a plumbing company owner I built a pitch system.';
 const validated = validatePoints([
   { kind: 'stance', point: 'Credits that expire each month make a usage-based product feel like a subscription trap.', topics: ['saas', 'pricing'], client_ref: null, evidence_url: null },
   { kind: 'claim', point: 'OpenAI documents a crawler that is separate from its training scraper.', topics: ['ai search'], client_ref: null, evidence_url: 'https://openai.com/x' },
   { kind: 'claim', point: 'A made-up claim with an evidence link that is not in the post at all.', topics: [], client_ref: null, evidence_url: 'https://invented.example/y' },
-  { kind: 'client_fact', point: 'Wonderfish saved hours every week on its pitch drafting.', topics: [], client_ref: null, evidence_url: null },
-  { kind: 'client_fact', point: 'A pitch drafting system cut hours of weekly manual work for an agency.', topics: ['automation'], client_ref: 'a podcast placement agency founder', evidence_url: null },
+  { kind: 'client_fact', point: 'Acme Plumbing saved hours every week on its pitch drafting.', topics: [], client_ref: null, evidence_url: null },
+  { kind: 'client_fact', point: 'A pitch drafting system cut hours of weekly manual work for an agency.', topics: ['automation'], client_ref: 'a plumbing company owner founder', evidence_url: null },
   { kind: 'opinion', point: 'This kind is not allowed so it is dropped from the list.', topics: [], client_ref: null, evidence_url: null },
   { kind: 'stance', point: 'Credits that expire each month make a usage-based product feel like a subscription trap.', topics: [], client_ref: null, evidence_url: null },
   { kind: 'stance', point: 'short', topics: [], client_ref: null, evidence_url: null },
 ], tpBody);
 check('keeps valid points', validated.length === 4, `got ${validated.length}`);
-check('drops a point naming a client', !validated.some((p) => /wonderfish/i.test(p.point)));
+check('drops a point naming a client', !validated.some((p) => /acme plumbing/i.test(p.point)));
 check('hallucinated evidence URL is nulled, real one kept',
   validated.find((p) => p.point.startsWith('A made-up')).evidence_url === null && validated.find((p) => p.point.startsWith('OpenAI')).evidence_url === 'https://openai.com/x');
-const own = validatePoints([{ kind: 'how_to', point: 'Build a pitch system on top of the autoblog page.', topics: [], client_ref: null, evidence_url: 'https://www.bottbottgenai.com/autoblog/' }], 'See [the autoblog](https://www.bottbottgenai.com/autoblog/).');
+const own = validatePoints([{ kind: 'how_to', point: 'Build a pitch system on top of the autoblog page.', topics: [], client_ref: null, evidence_url: `https://${CLIENT.siteDomain}/autoblog/` }], `See [the autoblog](https://${CLIENT.siteDomain}/autoblog/).`);
 check('own-site URLs are not kept as evidence', own[0].evidence_url === null);
 check('drops duplicates, bad kinds, too-short points', validated.filter((p) => p.point.startsWith('Credits')).length === 1);
 

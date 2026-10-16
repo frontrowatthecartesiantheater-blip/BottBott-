@@ -1,6 +1,7 @@
 // Editor toggle and Settings-tab source management. Editor role only.
 //
-// GET returns { editor_toggle, sources }.
+// GET returns { editor_toggle, sources, link_quota } (link_quota: the sweep's latest
+//   SerpApi reading plus daily history, or null before the first reading).
 // POST {editor_toggle: "on"|"off"} sets the toggle — OFF makes the publish
 //   cron auto-publish without review; the admin UI isn't involved on that path.
 // POST ?action=add-source {domain} / ?action=remove-source {domain} manage
@@ -10,7 +11,7 @@ import { requireRole } from '../../lib/admin-auth.js';
 import { sendJson, readJsonBody, getQuery } from '../../lib/http.js';
 import {
   getEditorToggle, setEditorToggle,
-  getAllowlistedSources, addAllowlistedSource, removeAllowlistedSource,
+  getAllowlistedSources, addAllowlistedSource, removeAllowlistedSource, getLinkQuota,
 } from '../../lib/admin-data.js';
 
 // A plain hostname: labels of letters/digits/hyphens, no scheme, no path, no
@@ -33,8 +34,10 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
-      const [editorToggle, sources] = await Promise.all([getEditorToggle(), getAllowlistedSources()]);
-      return sendJson(res, 200, { editor_toggle: editorToggle, sources });
+      const [editorToggle, sources, linkQuota] = await Promise.all([
+        getEditorToggle(), getAllowlistedSources(), getLinkQuota().catch(() => null),
+      ]);
+      return sendJson(res, 200, { editor_toggle: editorToggle, sources, link_quota: linkQuota });
     }
     if (req.method === 'POST') {
       const { action } = getQuery(req);

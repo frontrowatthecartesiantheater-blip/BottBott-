@@ -522,11 +522,39 @@ async function loadUpcomingTopics() {
 async function loadSources() {
   const host = $('#sources-list');
   try {
-    const { sources } = await api('/api/admin/config');
+    const { sources, link_quota: linkQuota } = await api('/api/admin/config');
+    renderQuota(linkQuota);
     renderSources(sources);
   } catch (err) {
     host.innerHTML = `<p class="err">${escapeHtml(err.message)}</p>`;
   }
+}
+
+// SerpApi quota as last recorded by the link sweep, with the daily readings so a
+// monthly reset is visible when it happens.
+function renderQuota(q) {
+  const box = $('#quota-box');
+  if (!box) return;
+  if (!q || !q.status) {
+    box.innerHTML = '<p class="meta">No reading yet. The link sweep records one on its next run.</p>';
+    return;
+  }
+  const s = q.status;
+  const when = s.checkedAt ? new Date(s.checkedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+  if (s.error) {
+    box.innerHTML = `<p class="err">The last quota check failed: ${escapeHtml(s.error)} (${escapeHtml(when)}). If this persists, the SerpApi key may be wrong or revoked.</p>`;
+    return;
+  }
+  const low = s.left != null && s.left <= 15;
+  const history = (q.history || []).slice(-10)
+    .map((h) => `${escapeHtml(new Date(`${h.d}T00:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }))} ${h.left}`)
+    .join(' &middot; ');
+  box.innerHTML = `
+    <p ${low ? 'class="err"' : ''}><strong>${s.left ?? '?'}${s.limit ? ` of ${s.limit}` : ''}</strong> searches left on the ${escapeHtml(s.plan || 'current plan')}.
+      ${s.renewal ? `Renews ${escapeHtml(fmtDate(s.renewal))}.` : ''}
+      <span class="meta">Checked ${escapeHtml(when)}.</span></p>
+    ${low ? '<p class="err">Running low: new drafts will go out without outside source links once this reaches zero. They are retried automatically after the quota renews.</p>' : ''}
+    ${history ? `<p class="meta">Daily readings: ${history}</p>` : ''}`;
 }
 
 function renderSources(sources) {

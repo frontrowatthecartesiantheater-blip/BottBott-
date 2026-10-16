@@ -61,13 +61,25 @@ or off-voice writing.
 - No [clichés to ban].
 - [Any grammatical or stylistic tic to avoid, e.g. passive-voice hedging,
   PowerPoint-style lists of three, generic CTAs].
+- No invented events or conversations ("a client messaged me last week"), no
+  relative time ("five years ago") the recording does not contain, no claimed
+  process ("in my research") the recording does not describe, and never a thought
+  finished for the client where the recording trails off.
+- Never name a client, a client's company, or a client's staff. Describe them by
+  role and industry.
+- If the client misstates a well-known public fact, state it correctly or drop
+  the detail; never repeat the slip. (Also add it to `CLIENT.canonicalFacts`.)
 
 ---
 
 ## Structural patterns for blog posts
 
-**Opening:** [How should a post open? Ground it in experience? Never start with
-a question? A specific house rule.]
+**Opening:** A thesis statement synopsis: one to three sentences stating the
+position the post takes and why it matters to the reader, in the client's own
+words from the recording wherever possible. Not a scene: a scene forces the
+draft to invent one whenever the recording has none. A real client fact can
+carry the opener only if it comes from the recording and proves the thesis.
+[Add any client-specific house rule: never start with a question, etc.]
 
 **Middle:** [How do they move between practical and personal? Context before
 advice, or after?]

@@ -179,6 +179,12 @@
       <!-- ============ Settings view ============ -->
       <section id="view-settings" class="hidden">
         <div class="content-section">
+          <h3>Link Search Quota</h3>
+          <p class="meta">Outside source links come from SerpApi, which allows a fixed number of searches per month. The link sweep records this every 30 minutes. After the renewal date the number should jump back up; if it does not, the plan is not resetting.</p>
+          <div id="quota-box"></div>
+        </div>
+
+        <div class="content-section">
           <h3>Trusted Sources</h3>
           <p class="meta">Domains here skip the link sweep's freshness check — for
             a source that's clearly authoritative (a company's own blog, docs, or

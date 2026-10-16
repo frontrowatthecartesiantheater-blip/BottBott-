@@ -29,7 +29,7 @@ alter table posts add column if not exists talking_points_extracted_at timestamp
 -- One row per reusable idea from a published post, restated in neutral words
 -- (never a verbatim sentence). Generation retrieves the closest points for a
 -- new topic and may rehash them as supporting context. client_ref is an
--- anonymized label ("a podcast placement agency founder"); real client names
+-- anonymized label ("a plumbing company owner"); real client names
 -- are never stored here.
 
 create table if not exists talking_points (

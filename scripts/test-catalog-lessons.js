@@ -15,7 +15,10 @@ const { buildCall1Prompt, buildCall2Prompt, buildCall3Prompt, buildPrePassPrompt
 const { runGeneration } = await import('../lib/generation/engine.js');
 const { createMockClient } = await import('../lib/generation/mock-client.js');
 const { embedOne } = await import('../lib/embeddings.js');
-const { SITE_ORIGIN } = await import('../lib/client-config.js');
+const { SITE_ORIGIN, CLIENT } = await import('../lib/client-config.js');
+// The tests set the client values they depend on, so they pass for any client build.
+CLIENT.anonymizeNames = ['Acme Plumbing'];
+CLIENT.substackDomain = 'example.substack.com';
 
 const checks = [];
 const check = (name, cond, extra = '') => { checks.push({ name, pass: Boolean(cond) }); if (!cond) console.log(`  FAIL ${name} ${extra}`); };
@@ -57,16 +60,16 @@ function fakeSupabase(state) {
 
 // ---------------------------------------------------------------- catalog
 hr('catalog: parsing');
-const rss = `<?xml version="1.0"?><rss><channel><title>BottBott</title>
-<item><title><![CDATA[Building the Nuance Layer]]></title><link>https://bottbott.substack.com/p/building-the-nuance-layer</link>
+const rss = `<?xml version="1.0"?><rss><channel><title>Example Blog</title>
+<item><title><![CDATA[Building the Nuance Layer]]></title><link>https://example.substack.com/p/building-the-nuance-layer</link>
 <description><![CDATA[How to make a system think like a person &amp; handle nuance]]></description><pubDate>Fri, 02 Oct 2026 12:00:00 GMT</pubDate></item>
-<item><title>Not a post</title><link>https://bottbott.substack.com/about</link></item>
+<item><title>Not a post</title><link>https://example.substack.com/about</link></item>
 </channel></rss>`;
 const items = parseRss(rss);
 check('rss: items parsed with CDATA and entities decoded', items.length === 2 && items[0].title === 'Building the Nuance Layer' && items[0].summary.includes('& handle nuance'));
 check('rss: pubDate becomes ISO', items[0].published_at === '2026-10-02T12:00:00.000Z');
-const sitemap = '<urlset><url><loc>https://bottbott.substack.com/p/older-post</loc></url><url><loc>https://bottbott.substack.com/about</loc></url></urlset>';
-check('sitemap: only /p/ post URLs', JSON.stringify(parseSitemapPostUrls(sitemap)) === JSON.stringify(['https://bottbott.substack.com/p/older-post']));
+const sitemap = '<urlset><url><loc>https://example.substack.com/p/older-post</loc></url><url><loc>https://example.substack.com/about</loc></url></urlset>';
+check('sitemap: only /p/ post URLs', JSON.stringify(parseSitemapPostUrls(sitemap)) === JSON.stringify(['https://example.substack.com/p/older-post']));
 const og = parseOgMeta('<meta property="og:title" content="An Older Post"><meta content="Its &quot;subtitle&quot;" property="og:description">');
 check('og meta: title and description (either attribute order)', og.title === 'An Older Post' && og.summary === 'Its "subtitle"');
 
@@ -100,10 +103,10 @@ check('sync: an outage does not stamp the sync time', !state2.system_config.some
 const seed = async (source, url, title, summary) => ({ source, url, title, summary, embedding: await embedOne(`${title}. ${summary}`) });
 _seedMockCatalog([
   await seed('blog', `${SITE_ORIGIN}/blog/blogging-in-the-age-of-ai`, 'Why Blogging in the Age of AI Matters More Than Ever', 'EEAT and AI content.'),
-  await seed('substack', 'https://bottbott.substack.com/p/building-the-nuance-layer', 'Building the Nuance Layer', 'How to make a system think like a person.'),
+  await seed('substack', 'https://example.substack.com/p/building-the-nuance-layer', 'Building the Nuance Layer', 'How to make a system think like a person.'),
 ]);
 const hit = await retrieveCatalog('Building the Nuance Layer. How to make a system think like a person.', { topN: 1 });
-check('retrieve: closest entry first', hit[0]?.url === 'https://bottbott.substack.com/p/building-the-nuance-layer');
+check('retrieve: closest entry first', hit[0]?.url === 'https://example.substack.com/p/building-the-nuance-layer');
 const onlyBlog = await retrieveCatalog('Building the Nuance Layer. How to make a system think like a person.', { topN: 5, source: 'blog' });
 check('retrieve: can be limited to one source', onlyBlog.length === 1 && onlyBlog[0].source === 'blog');
 check('retrieve: empty text returns nothing', (await retrieveCatalog('   ')).length === 0);
@@ -151,7 +154,7 @@ const lessons = validateLessons([
   { category: 'opener', lesson: 'Never open with an anecdote the recording does not contain; open with his stated position.', before: 'A business owner messaged me last week', after: 'A lot of "expert" marketers are claiming SEO is dead.' },
   { category: 'style', lesson: 'Do not write paired contrasts such as "The bar isn\'t X because A. The bar is Y because B."', before: 'x', after: 'y' },
   { category: 'nonsense', lesson: 'Always link the first mention of a named platform to its own documentation.' },
-  { category: 'facts', lesson: 'Wonderfish prefers pitches under 200 words.', before: '', after: '' },
+  { category: 'facts', lesson: 'Acme Plumbing prefers pitches under 200 words.', before: '', after: '' },
   { category: 'opener', lesson: 'Never open with an anecdote the recording does not contain; open with his stated position.' },
   { category: 'style', lesson: 'short' },
 ]);
@@ -182,19 +185,19 @@ const base = {
 const rich = {
   ...base,
   editorLessons: ['Never open with an anecdote the recording does not contain.'],
-  catalog: [{ source: 'substack', title: 'Building the Nuance Layer', url: 'https://bottbott.substack.com/p/building-the-nuance-layer', summary: 'How to make a system think like a person.' }],
+  catalog: [{ source: 'substack', title: 'Building the Nuance Layer', url: 'https://example.substack.com/p/building-the-nuance-layer', summary: 'How to make a system think like a person.' }],
   requestedLinks: [{ mention: 'system link to that post', describes: 'how models browse the web', match: { title: 'Why Blogging in the Age of AI', url: `${SITE_ORIGIN}/blog/blogging-in-the-age-of-ai`, similarity: 0.52 } }, { mention: 'link my other piece', describes: 'something unmatched', match: null }],
   transcriptCheck: { warnings: [{ type: 'gap', detail: 'no speech from 1:02 to 2:40 (98 seconds)' }] },
 };
 const c1 = buildCall1Prompt(rich);
 check('call 1: catalog URLs offered as link targets', c1.includes('LINK CATALOG') && c1.includes('p/building-the-nuance-layer'));
-check('call 1: a matched spoken request is handed over with its URL', c1.includes('LINKS HE ASKED FOR') && c1.includes('blog/blogging-in-the-age-of-ai'));
+check('call 1: a matched spoken request is handed over with its URL', c1.includes('LINKS REQUESTED IN THE RECORDING') && c1.includes('blog/blogging-in-the-age-of-ai'));
 check('call 1: an unmatched request says not to guess', c1.includes('Do not guess a URL'));
-check('call 1: prefers a specific Substack post to the home page', c1.includes('prefer a specific post from the LINK CATALOG'));
+check('call 1: prefers a specific post to a home page', c1.includes("Prefer a specific post here over a site's home page"));
 check('call 1: approved lessons and recording problems included', c1.includes('LESSONS FROM') && c1.includes('RECORDING PROBLEMS') && c1.includes('1:02 to 2:40'));
 check('call 1: spoken instructions are marked as not content', c1.includes('instructions, not content'));
 const c1plain = buildCall1Prompt(base);
-check('call 1: no empty sections when there is nothing to add', !c1plain.includes('## LINK CATALOG') && !c1plain.includes('## LINKS HE ASKED FOR') && !c1plain.includes('## RECORDING PROBLEMS') && !c1plain.includes('## LESSONS FROM'));
+check('call 1: no empty sections when there is nothing to add', !c1plain.includes('## LINK CATALOG') && !c1plain.includes('## LINKS REQUESTED IN THE RECORDING') && !c1plain.includes('## RECORDING PROBLEMS') && !c1plain.includes('## LESSONS FROM'));
 const c2 = buildCall2Prompt({ ...rich, call1Output: 'PLAN' });
 check('call 2: lessons, recording problems, and the spoken-instruction rule', c2.includes('LESSONS FROM') && c2.includes('RECORDING PROBLEMS') && c2.includes('SPOKEN INSTRUCTIONS ARE NOT CONTENT'));
 check('call 3: lessons included', buildCall3Prompt({ ...rich, call2Output: 'DRAFT' }).includes('LESSONS FROM'));

@@ -16,6 +16,16 @@ injected as citation links — with borderline candidates flagged for manual
 review in the admin panel. Publishing is blocked until the sweep has checked
 a draft.
 
+Generation is also held to a fact standard and builds memory over time. An
+independent **grounding check** flags anything concrete in a draft that the
+recording does not support (invented anecdotes, relative time, figures, finished
+thoughts, client names) and holds auto-publish until a human looks. Published
+posts are distilled into **talking points** that later drafts rehash, a **link
+catalog** lets "link to that post" in a memo resolve to a real URL, uploads get a
+**recording check** for dropped audio, and the system proposes **lessons** from
+the editor's own edits that the editor approves in `/admin`. See "Quality gates
+and memory" below.
+
 This repo is the **template**. To deploy for a client you fill in one config
 file, one voice profile, and a `.env`, then run the launch checklist.
 
@@ -27,7 +37,8 @@ Accounts / API keys before starting: **Vercel**, **GitHub** (a repo for the
 client's site), **Supabase**, **Anthropic** (Claude), **OpenAI** (Whisper +
 embeddings), **Google Cloud** (OAuth client + a service account with the
 Sheets API enabled), **Resend**, **Twilio** (WhatsApp, currently shelved),
-**SerpApi** (link-injection candidate sourcing), and a **Google account** for
+**SerpApi** (link-injection candidate sourcing; the free plan allows 250
+searches a month, about 5 per post), and a **Google account** for
 the social-log sheet. Node 18+ locally (Node 22 in the link-sweep workflow).
 
 ---
@@ -36,7 +47,12 @@ the social-log sheet. Node 18+ locally (Node 22 in the link-sweep workflow).
 
 1. **Supabase** — create a project, open the SQL editor, replace the
    topic-category CHECK values in `supabase/schema.sql` (marked "REPLACE PER
-   CLIENT"), then run it. (Enable `pgvector` only if you want the RAG fallback.)
+   CLIENT"), then run it. `schema.sql` already includes every migration through
+   0004, including the `service_role` grants (Supabase no longer grants access to
+   new public tables automatically, so without them every read of the new tables
+   fails with "permission denied"). An EXISTING deployment instead applies
+   `supabase/migrations/0002` to `0004` in order. `pgvector` is needed for talking
+   points and the link catalog as well as the RAG fallback.
 2. **GitHub** — create the client's site repo, push this filled template to it.
 3. **Vercel** — import the repo, add the env vars (below), deploy.
 4. **Google OAuth** — create an OAuth client; authorized redirect URI is
@@ -51,11 +67,17 @@ the social-log sheet. Node 18+ locally (Node 22 in the link-sweep workflow).
    (`SERPAPI_API_KEY`, `ANTHROPIC_API_KEY`, `SUPABASE_URL`,
    `SUPABASE_SERVICE_ROLE_KEY`, `GITHUB_REPO`, `GITHUB_BRANCH`,
    `GOOGLE_SHEETS_SPREADSHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_KEY`,
-   `VERIFY_BASE_URL`) to the repo's Actions secrets.
+   `VERIFY_BASE_URL`, plus `OPENAI_API_KEY` for the talking-points and catalog
+   steps, which skip themselves without it, and optionally `RESEND_API_KEY` for
+   the quota alert emails) to the repo's Actions secrets.
 8. **Link-client onboarding** — after the site is live, run
    `npm run links:onboard` once. It crawls the client's own site, extracts
    `business_type` + `market`, and stores them in `system_config` so the
    sweep's competitor filter knows who the client is.
+9. **Memory** — once the first posts are published, run
+   `npm run talking-points:backfill` (add `-- --dry-run` to preview). After that
+   the sweep workflow keeps talking points, the link catalog, and edit lessons
+   current on its own. Approve proposed lessons in `/admin` > Settings.
 
 ---
 
@@ -67,6 +89,12 @@ Two places, no client values anywhere else:
   phone, emails, social URLs, service areas, timezone, topic categories,
   internal-link pools, blog/CTA copy, admin brand). Replace every
   `{{PLACEHOLDER}}`. The HTML templates and generation prompts read from here.
+- **`lib/client-config.js` guardrails** — set `anonymizeNames` (client names that
+  must never appear in a post), `canonicalFacts` (public facts the speaker tends to
+  misstate), `pricingFacts` (prices and fees the model may state; empty if none),
+  and `linkClaimGuidance` (what kinds of sentences are worth an outside source for
+  this client's blog). `substackDomain` feeds the link catalog from a Substack
+  (feed + sitemap); leave it empty for a client without one.
 - **`.env`** — secrets and infra (copy `.env.example`). The same values go into
   the Vercel project. Where each comes from is annotated in `.env.example`.
 
@@ -157,8 +185,46 @@ editor toggle ON, DNS cutover, then flip the editor toggle OFF in Supabase
 
 ---
 
+## Quality gates and memory
+
+All of this lives in `lib/` and is described in `docs/generation-prompt-spec.md`.
+
+- **Thesis openers, no invention.** Posts open with a thesis statement, not a
+  scene (a scene forced the draft to invent one whenever the recording had none).
+  The prompts ban invented events, relative time, process claims, completing a
+  thought the recording leaves unfinished, client names, and repeating a
+  misstated public fact.
+- **Grounding check** (`lib/generation/grounding.js`). Rules plus a verifier
+  call. High-severity findings trigger one corrective pass; any that survive set
+  `posts.grounding_report.blocking`, which holds auto-publish. Everything shows in
+  the admin Review tab's "Fact check" panel.
+- **Talking points** (`lib/talking-points.js`). Published posts are distilled
+  into anonymized, restated ideas; later drafts may rehash them (never quote;
+  a verbatim-reuse lint enforces it).
+- **Link catalog** (`lib/catalog.js`). Blog posts and Substack posts as real link
+  targets; a spoken "system, link to that post" is matched to one.
+- **Recording check** (`lib/transcript-check.js`). Whisper's timing data is
+  checked for gaps, looping filler, and a thin transcript; warnings show right
+  after upload and reach the prompts.
+- **Edit lessons** (`lib/edit-lessons.js`). `posts.body_md_generated` keeps the
+  model's draft; after publishing, draft vs published yields proposed rules that
+  only take effect once approved in `/admin` > Settings.
+- **Link sweep resilience.** The sweep reads the SerpApi quota first (a free
+  call). With none left it stamps posts `quota_exhausted`, keeps them retryable
+  for 96 hours, and alerts the editor; a post whose searches all fail is retried
+  instead of being stamped "checked" with zero links.
+- Tests: `npm run test:quality` and `node scripts/test-cron.js`.
+
+---
+
 ## Maintenance
 
+- **SerpApi quota.** `/admin` > Settings shows searches left and a daily history,
+  recorded by the sweep every 30 minutes. A free plan resets on its renewal date;
+  if the number does not jump back up then, the plan is not resetting. Roughly
+  5 searches are spent per post.
+- **Edit lessons.** Check `/admin` > Settings now and then and approve or reject
+  what the system proposes from your edits. Nothing is used until approved.
 - **Model updates** — the generation model id is in
   `lib/generation/prompts.js` (`GENERATION_MODEL`); the embedding model in
   `lib/embeddings.js`. Update when providers retire models.

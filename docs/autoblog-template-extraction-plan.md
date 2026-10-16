@@ -73,3 +73,91 @@ template with the already-abandoned keyword design (the orphaned
 `keyword` / `topic_tags` / `priority` table). Regenerating from the live
 migrations is the only way to guarantee the template reflects the current
 schema.
+
+
+---
+
+## C. October 2026: draft-quality work folded into the template
+
+Made in the BottBott build (commits `1c20406` and follow-ups, 2026-10-16) after
+a review of the client's own edits showed the drafts inventing anecdotes, figures
+and timing, finding no outside links, and discarding what the editor changed.
+Folded into this template the same day. Re-apply anything of this kind that a
+later client build adds.
+
+### What was added
+
+- **Grounding check** (`lib/generation/grounding.js`): rules plus a verifier call
+  flag anything concrete the recording does not support; one corrective pass;
+  unresolved findings set `posts.grounding_report.blocking` and hold auto-publish.
+  Admin "Fact check" panel.
+- **Thesis openers, anti-invention rules, client anonymity** in
+  `lib/generation/prompts.js`, plus new lint checks (client names, known public
+  facts, verbatim reuse of earlier posts) in `lint.js`.
+- **Talking points** (`lib/talking-points.js`, table `talking_points`): published
+  posts distilled into anonymized ideas that later drafts rehash, never quote.
+- **Link catalog** (`lib/catalog.js`, table `content_catalog`): the client's blog
+  posts and an optional Substack as real link targets; a spoken "link to that
+  post" is resolved to a real URL.
+- **Recording check** (`lib/transcript-check.js`): Whisper timing data checked for
+  gaps, looping filler, thin transcripts.
+- **Edit lessons** (`lib/edit-lessons.js`, table `edit_lessons`,
+  `posts.body_md_generated`): draft vs published yields proposed rules that only
+  apply once approved in `/admin` > Settings.
+- **Link-sweep resilience** (`lib/links/sweep.js`, `search.js`, `engine.js`): reads
+  the SerpApi quota first, stamps `quota_exhausted` / `search_failed` posts as
+  retryable instead of "checked with zero links", allowlisted domains get a trust
+  floor, a stale freshness verdict no longer outlives allowlisting, and the sweep
+  records the quota (latest + daily history) for the admin Settings tab.
+- `lib/generation/inputs.js` builds generation inputs for both the cron and the
+  manual draft endpoint (the two had drifted).
+
+### New per-client config (`lib/client-config.js`)
+
+`pricingFacts`, `canonicalFacts`, `anonymizeNames`, `substackDomain`, and an
+optional `linkClaimGuidance`. All default to empty or unset in the template; fill
+`anonymizeNames` as soon as a client name shows up in a recording.
+
+### Migrations
+
+Fresh deploys use `supabase/schema.sql`, which already includes everything.
+`supabase/migrations/0002`-`0004` are for upgrading an existing client build
+(`0001` is the BottBott-specific topic-category migration and is not carried here).
+**`0004` matters**: Supabase no longer grants access to new public tables
+automatically, so without the `service_role` grants every read or write to the new
+tables fails with "permission denied".
+
+### Deliberately left as the template had it
+
+The template's generation core predates several BottBott-specific design choices,
+and those were not imported: word targets (900-1,100), 1-2 internal links, short
+paragraphs and no colons in headers, the name in the conclusion H2, the phone
+CTA, and the token budgets and model (Sonnet 4.6). The new features were added
+around those rules, not over them. The new rule wording is client-neutral on
+purpose (no pronouns, no client examples).
+
+### Drift noticed
+
+- **Fixed:** `lib/generation/anthropic.js` in the template lacked the
+  `output_config: { effort: 'medium' }` setting the BottBott build added for
+  Sonnet 5, while `lib/links/models.js` already routes the link pipeline to
+  Sonnet 5. Without it, adaptive thinking can exhaust `max_tokens` and surface as
+  "response truncated" skips in the link sweep. Both repos now send the setting
+  only to `claude-sonnet-5*` models (Haiku rejects the parameter, and Sonnet 4.6
+  keeps its default effort), so the file is identical in both.
+- **Not fixed:** the recording check was verified against real Whisper segment values and
+  synthetic audio, not a real corrupted recording. Phone recordings in a 3GPP
+  container (`ftyp3gp4`) were rejected by Whisper outright.
+- `lib/catalog.js` assumes a Substack (feed + sitemap) for the optional second
+  source; any other second site needs its own reader.
+
+### How the port was done (repeatable)
+
+For each file changed in the client build: take the client build as it was
+before the work as the base, the template's current file as ours, and the
+client build's new file as theirs, and run `git merge-file`. Files the template
+already matched were copied; conflicting hunks (the prompts, the engine, the
+launch checklist) were resolved by hand, keeping the template's own rules. New
+files were copied after checking them for client-specific names and pronouns.
+Run `npm run test:quality` and `node scripts/test-cron.js` in the template
+afterwards; both are written to pass for any client config.
