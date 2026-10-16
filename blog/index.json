@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "slug": "ai-search-vs-seo-expertise-wins",
+      "title": "Why \"AI Search\" Is Misleading, Not a New Game",
+      "date": "2026-10-15",
+      "description": "AI Overviews just cite top search results. Here's why AI search vs SEO is a false fight, and what actually gets your content seen.",
+      "image": "assets/images/blog/ai-content-visibility/1789528292795-representation-user-experience-interface-design.webp",
+      "readMinutes": 5
+    },
+    {
       "slug": "scale-business-without-hiring",
       "title": "How to Scale Your Business Without Adding Headcount",
       "date": "2026-10-08",
