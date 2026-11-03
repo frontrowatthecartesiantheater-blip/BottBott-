@@ -10,6 +10,11 @@
       "source": "/solutions/:path*",
       "destination": "/systems/:path*",
       "permanent": true
+    },
+    {
+      "source": "/simon-d.webp",
+      "destination": "/simo-d.webp",
+      "permanent": true
     }
   ],
   "crons": [

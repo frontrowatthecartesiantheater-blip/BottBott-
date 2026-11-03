@@ -90,4 +90,4 @@ The companies that win in the long term won't be the ones with the slickest AI c
 
 ---
 
-If you want to explore custom AI infrastructure for your business, I'm happy to discuss what that actually looks like in practice, the good, the messy, and the trade-offs worth making. Visit [bottbottgenai.com](https://www.bottbottgenai.com) or reach me at [simon@bottbottgenai.com](mailto:simon@bottbottgenai.com).
+If you want to explore custom AI infrastructure for your business, I'm happy to discuss what that actually looks like in practice, the good, the messy, and the trade-offs worth making. Visit [bottbottgenai.com](https://www.bottbottgenai.com) or reach me at [simo@bottbottgenai.com](mailto:simo@bottbottgenai.com).
