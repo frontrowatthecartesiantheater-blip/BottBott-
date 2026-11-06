@@ -16,15 +16,5 @@
       "destination": "/simo-d.webp",
       "permanent": true
     }
-  ],
-  "crons": [
-    {
-      "path": "/api/cron/reminder",
-      "schedule": "0 13 * * *"
-    },
-    {
-      "path": "/api/cron/publish",
-      "schedule": "2 13 * * *"
-    }
   ]
 }
