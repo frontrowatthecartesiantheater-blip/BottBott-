@@ -1,0 +1,43 @@
+# BottBott Business Systems
+
+> AI-powered automation systems — content pipelines, outreach systems, and custom web apps — that small businesses own outright. No subscriptions, no vendor lock-in.
+
+BottBott Business Systems is founded and run by Simo D (https://simod.me/), a Workflow Systems Architect who builds bespoke, owned-outright AI systems for owner-operated businesses.
+
+## Systems
+
+- [Systems Overview](https://www.bottbottgenai.com/systems/): Explore BottBott's productized AI systems — built once, owned outright, no subscriptions.
+- [Website + Blog Growth Package](https://www.bottbottgenai.com/growth-package/): A search-ready small business website bundled with the BottBott Autoblog.
+- [The Autoblog System](https://www.bottbottgenai.com/autoblog/): Turns a 2-minute voice memo into a published, SEO-optimized blog post in the owner’s voice, every week.
+- [Podcast Pitching](https://www.bottbottgenai.com/podcast-pitching/): Finds podcasts, scores them for fit, and drafts personalized pitch emails for review before sending.
+- [LinkedIn Outreach Pipeline](https://www.bottbottgenai.com/linkedin-outreach-pipeline/): Scores prospects, builds research briefs, and drafts personalized outreach messages.
+- [Warm Outreach System](https://www.bottbottgenai.com/warm-outreach/): Keeps existing relationships personally warm without adding to the owner’s workload.
+- [Lead Prospector](https://www.bottbottgenai.com/lead-prospector/): Finds prospects matching a defined ICP, scores every match, and hands over a contact list.
+- [Strategy Call](https://www.bottbottgenai.com/strategy-call/): A working conversation about what a business actually needs from AI.
+- [Ongoing Systems Support](https://www.bottbottgenai.com/ongoing-support/): Maintenance and support for AI systems after launch.
+- [Workflow & Integration Build](https://www.bottbottgenai.com/workflow-build/): Custom process mapping, tool integration, and automation pipelines.
+- [AI Agent Build](https://www.bottbottgenai.com/agent-build/): Purpose-built AI agents that handle specific business tasks autonomously.
+- [Web App MVP Build](https://www.bottbottgenai.com/webapp-build/): Custom dashboards, scoring systems, and internal tools, from idea to working product.
+- [Team Fluency Training](https://www.bottbottgenai.com/team-fluency/): Gets a client's whole team using AI, from fundamentals to an actionable playbook.
+
+## About
+
+- [About Simo D](https://www.bottbottgenai.com/about/): Workflow Systems Architect and founder of BottBott Business Systems.
+- [How We Work](https://www.bottbottgenai.com/how-we-work/): What working with BottBott looks like, from diagnosis through build and hand-off.
+
+## Blog
+
+- [Why "AI Search" Is Misleading, Not a New Game](https://www.bottbottgenai.com/blog/ai-search-vs-seo-expertise-wins): AI Overviews just cite top search results. Here's why AI search vs SEO is a false fight, and what actually gets your content seen.
+- [How to Scale Your Business Without Adding Headcount](https://www.bottbottgenai.com/blog/scale-business-without-hiring): Growth doesn't require more hires. See how automation lets a small team absorb more volume, and where judgment still needs a human.
+- [What a Workflow Audit Actually Looks Like](https://www.bottbottgenai.com/blog/what-a-workflow-audit-looks-like): Business process automation starts with a real workflow audit. Here's what that diagnosis actually looks like, and why most businesses skip it.
+- [The Real Math Behind AI Automation ROI, Week to Week](https://www.bottbottgenai.com/blog/ai-automation-roi-time-saved-explained): What a 50%+ time savings claim actually looks like week to week, from a real client build to a blog post written in five minutes.
+- [Why Blogging in the Age of AI Matters More Than Ever](https://www.bottbottgenai.com/blog/blogging-in-the-age-of-ai): Why blogging in the age of AI matters more than ever, what Google's EEAT update really targets, and what separates content that ranks.
+- [The Founder Bottleneck Is a Systems Problem, Not You](https://www.bottbottgenai.com/blog/founder-bottleneck-systems-problem): Overwhelmed founders often blame discipline when the real issue is a missing governing system. Here's how to diagnose the actual founder bottleneck.
+- [When Connecting Business Tools to AI, Fix the Workflow First](https://www.bottbottgenai.com/blog/connect-business-tools-ai-workflow-fix): Most "AI tools that don't work" fail from missing governing prompts and messy data, not bad AI. Here's how to actually connect business tools AI can use.
+- [SaaS is Ass: Why Owning Your Software Beats SaaS Subscription Cost for Small Business Owners](https://www.bottbottgenai.com/blog/owning-software-vs-saas-subscription-cost): Simon D breaks down AI vs SaaS subscription cost with a real client story: $200/month for nothing vs. owning your automation stack outright.
+- [Are You Renting a Template or Building Infrastructure?](https://www.bottbottgenai.com/blog/custom-ai-infrastructure-vs-saas-platforms): How to avoid being a founder who trades long-term control for short-term convenience when adopting AI for your business.
+- [The AI Wall Professional Services Firms Are Hitting, and the Only Way Through It](https://www.bottbottgenai.com/blog/ai-data-security-professional-services): Why sending client data through a public API is a security risk and what a small professional services firm can actually do about it today.
+
+## Optional
+
+- [Privacy Policy](https://www.bottbottgenai.com/privacy/)

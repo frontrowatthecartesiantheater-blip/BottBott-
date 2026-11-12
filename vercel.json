@@ -15,6 +15,30 @@
       "source": "/simon-d.webp",
       "destination": "/simo-d.webp",
       "permanent": true
+    },
+
+    { "source": "/systems", "destination": "/systems/", "permanent": true },
+    { "source": "/autoblog", "destination": "/autoblog/", "permanent": true },
+    { "source": "/growth-package", "destination": "/growth-package/", "permanent": true },
+    { "source": "/podcast-pitching", "destination": "/podcast-pitching/", "permanent": true },
+    { "source": "/linkedin-outreach-pipeline", "destination": "/linkedin-outreach-pipeline/", "permanent": true },
+    { "source": "/warm-outreach", "destination": "/warm-outreach/", "permanent": true },
+    { "source": "/lead-prospector", "destination": "/lead-prospector/", "permanent": true },
+    { "source": "/strategy-call", "destination": "/strategy-call/", "permanent": true },
+    { "source": "/ongoing-support", "destination": "/ongoing-support/", "permanent": true },
+    { "source": "/workflow-build", "destination": "/workflow-build/", "permanent": true },
+    { "source": "/agent-build", "destination": "/agent-build/", "permanent": true },
+    { "source": "/webapp-build", "destination": "/webapp-build/", "permanent": true },
+    { "source": "/team-fluency", "destination": "/team-fluency/", "permanent": true },
+    { "source": "/about", "destination": "/about/", "permanent": true },
+    { "source": "/how-we-work", "destination": "/how-we-work/", "permanent": true },
+    { "source": "/privacy", "destination": "/privacy/", "permanent": true },
+    { "source": "/blog", "destination": "/blog/", "permanent": true },
+
+    {
+      "source": "/blog/:slug/",
+      "destination": "/blog/:slug",
+      "permanent": true
     }
   ]
 }
