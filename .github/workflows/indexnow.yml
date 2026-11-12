@@ -1,0 +1,25 @@
+name: IndexNow submit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sitemap.xml'
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Submit every URL in the sitemap, not just changed ones'
+        type: boolean
+        default: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Needed so scripts/indexnow.mjs can diff sitemap.xml against the
+          # commit before this push to find which URLs actually changed.
+          fetch-depth: 2
+
+      - run: node scripts/indexnow.mjs ${{ (github.event_name == 'workflow_dispatch' && inputs.all) && '--all' || '' }}

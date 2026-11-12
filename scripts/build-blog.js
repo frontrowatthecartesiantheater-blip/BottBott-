@@ -14,6 +14,7 @@ import {
   renderBlogIndex,
   renderSitemap,
   renderFeed,
+  renderLlmsTxt,
   toManifestEntry,
 } from '../lib/blog.js';
 
@@ -85,5 +86,6 @@ writeFileSync(
 writeFileSync(path.join(blogDir, 'index.html'), renderBlogIndex(manifestEntries));
 writeFileSync(path.join(repoRoot, 'sitemap.xml'), renderSitemap(manifestEntries));
 writeFileSync(path.join(repoRoot, 'feed.xml'), renderFeed(manifestEntries));
+writeFileSync(path.join(repoRoot, 'llms.txt'), renderLlmsTxt(manifestEntries));
 
-console.log(`built blog/index.json, blog/index.html, sitemap.xml, feed.xml (${posts.length} posts)`);
+console.log(`built blog/index.json, blog/index.html, sitemap.xml, feed.xml, llms.txt (${posts.length} posts)`);
